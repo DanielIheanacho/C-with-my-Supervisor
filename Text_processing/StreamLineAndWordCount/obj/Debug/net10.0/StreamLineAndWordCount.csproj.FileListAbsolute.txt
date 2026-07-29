@@ -1,0 +1,14 @@
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\bin\Debug\net10.0\StreamLineAndWordCount.exe
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\bin\Debug\net10.0\StreamLineAndWordCount.deps.json
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\bin\Debug\net10.0\StreamLineAndWordCount.runtimeconfig.json
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\bin\Debug\net10.0\StreamLineAndWordCount.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\bin\Debug\net10.0\StreamLineAndWordCount.pdb
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.AssemblyInfo.cs
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\refint\StreamLineAndWordCount.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.pdb
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\StreamLineAndWordCount.genruntimeconfig.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\StreamLineAndWordCount\obj\Debug\net10.0\ref\StreamLineAndWordCount.dll

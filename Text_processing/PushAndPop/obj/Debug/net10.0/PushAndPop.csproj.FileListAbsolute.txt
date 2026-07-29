@@ -1,0 +1,14 @@
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.AssemblyInfo.cs
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\bin\Debug\net10.0\PushAndPop.exe
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\bin\Debug\net10.0\PushAndPop.deps.json
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\bin\Debug\net10.0\PushAndPop.runtimeconfig.json
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\bin\Debug\net10.0\PushAndPop.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\bin\Debug\net10.0\PushAndPop.pdb
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\refint\PushAndPop.dll
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.pdb
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\PushAndPop.genruntimeconfig.cache
+C:\Users\PC\Documents\C#_Source_Codes\Text_processing\PushAndPop\obj\Debug\net10.0\ref\PushAndPop.dll

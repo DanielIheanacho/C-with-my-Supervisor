@@ -1,0 +1,8 @@
+Daniel,85
+Grace,92
+Michael,76
+Sarah,88
+John,97
+Mercy,100
+Vincent, 66
+sb, 100
