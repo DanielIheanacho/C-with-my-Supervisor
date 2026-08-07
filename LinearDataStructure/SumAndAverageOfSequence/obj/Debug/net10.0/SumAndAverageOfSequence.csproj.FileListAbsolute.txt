@@ -1,0 +1,15 @@
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.AssemblyInfo.cs
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.sourcelink.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\bin\Debug\net10.0\SumAndAverageOfSequence.exe
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\bin\Debug\net10.0\SumAndAverageOfSequence.deps.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\bin\Debug\net10.0\SumAndAverageOfSequence.runtimeconfig.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\bin\Debug\net10.0\SumAndAverageOfSequence.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\bin\Debug\net10.0\SumAndAverageOfSequence.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\refint\SumAndAverageOfSequence.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\SumAndAverageOfSequence.genruntimeconfig.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\LinearDataStructure\SumAndAverageOfSequence\obj\Debug\net10.0\ref\SumAndAverageOfSequence.dll

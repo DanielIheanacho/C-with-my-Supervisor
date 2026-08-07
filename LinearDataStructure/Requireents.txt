@@ -1,0 +1,7 @@
+- Take input From console
+    -Accept only integers
+    - sequence ends when an empty line is entered (Should be able to read integer and empty space character)
+-Store sequence of numbers in a list of type List<T
+- Calculate the sum of the elements in the sequence
+- Calculat the average of the sequence.
+- Print the sum and average to the screen
