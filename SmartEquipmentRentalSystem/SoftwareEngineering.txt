@@ -1,0 +1,131 @@
+
+Equipments        and       customers
+
+
+The equipment include :
+Drills
+Welding machines
+Generators
+Air compressors
+Measuring instruments
+Ladders
+Power tools
+
+For equipments we should be able to
+
+Every piece of equipment has:
+
+A unique identification number.
+A name.
+A category.
+A daily rental price.
+A current condition.
+A status.
+
+Equipment can be in different states, such as:
+
+Available → Rented → Available
+
+or
+
+Available → Maintenance → Available
+
+You decide exactly how you want to model these states
+
+And the system should be able to:
+    Register equipment
+    Display Available equipment
+    Display equipment currently rented out
+    Allow a customer  equipment ---0
+    prevent renting an equipment already being rented---0
+    Return rented equipment---0
+    Display rental history of a particular piece of equipment
+
+
+Allow equipment to be marked as unavailable when it requires maintenance
+Prevent unavailable equipment from being rented
+Allow equipment to be reruned to service after maintenance
+
+
+A customer has information such as:
+
+Identification number
+Name
+Phone number
+Address
+
+For customer we ahould be able to 
+
+Register customers.
+Allow a customer to rent equipment. ---0
+Prevent a customer from renting equipment that is already rented.---0
+Return rented equipment.---0
+Calculate the rental cost.
+Identify overdue equipment.
+Calculate an additional charge when equipment is returned late.
+Display a customer's current rentals.
+Display the rental history of a customer.
+
+ customer can have multiple rentals.
+
+However, the company doesn't want customers accumulating an unreasonable number of active rentals.
+
+A rental represents the relationship between:
+
+Customer + Equipment + Rental period
+
+For example:
+
+Daniel rents Generator G001 for 5 days.
+
+The rental should keep enough information to determine:
+
+When the rental started.
+When it should end.
+Whether it has been returned.
+How much it should cost.
+Whether it is overdue.
+Whether an additional charge is required.
+Different equipment behaves differently
+
+
+Not every piece of equipment should necessarily be charged in exactly the same way.
+
+For example:
+
+Standard equipment
+
+Normal calculation:
+
+Daily price × number of days
+
+Heavy equipment
+
+Heavy equipment could have an additional fixed service charge.
+
+Measuring equipment
+
+Measuring instruments might have a calibration requirement.
+
+For example, the company may require a measuring instrument to be inspected after a certain number of rentals.
+
+You should decide how your design represents these differences.
+
+Maintenance
+
+Equipment sometimes develops problems.
+
+For example:
+
+Generator G001 is returned with a damaged cable.
+
+The employee can place the generator into maintenance.
+
+While equipment is under maintenance:
+
+It cannot be rented.
+It should not appear among available equipment.
+Someone should be able to record why it was sent for maintenance.
+It should eventually be returned to service.
+
+You decide how maintenance records should work.

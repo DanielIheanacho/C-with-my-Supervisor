@@ -1,0 +1,206 @@
+Project: Smart Equipment Rental System
+Real-world scenario
+
+A small engineering company rents out equipment to customers.
+
+The company owns different types of equipment, such as:
+
+Drills
+Welding machines
+Generators
+Air compressors
+Measuring instruments
+Ladders
+Power tools
+
+Customers can rent equipment for a specified number of days. However, the company needs a system to keep track of its equipment and rentals.
+
+Your task is to design and implement the system using OOP.
+
+What the system should be able to do
+
+The company should be able to:
+
+Register new equipment.
+Register customers.
+Display all available equipment.
+Display equipment currently rented out.
+Allow a customer to rent equipment.
+Prevent a customer from renting equipment that is already rented.
+Record when equipment was rented.
+Record the expected return date.
+Return rented equipment.
+Calculate the rental cost.
+Identify overdue equipment.
+Calculate an additional charge when equipment is returned late.
+Display a customer's current rentals.
+Display the rental history of a customer.
+Display the rental history of a particular piece of equipment.
+Allow equipment to be marked as unavailable when it requires maintenance.
+Prevent unavailable equipment from being rented.
+Allow equipment to be returned to service after maintenance.
+
+Important business rules
+
+Here are some rules the company has decided on.
+
+Equipment
+
+Every piece of equipment has:
+
+A unique identification number.
+A name.
+A category.
+A daily rental price.
+A current condition.
+A status.
+
+Equipment can be in different states, such as:
+
+Available → Rented → Available
+
+or
+
+Available → Maintenance → Available
+
+You decide exactly how you want to model these states.
+
+Customers
+
+A customer has information such as:
+
+Identification number
+Name
+Phone number
+Address
+
+A customer can have multiple rentals.
+
+However, the company doesn't want customers accumulating an unreasonable number of active rentals.
+
+You must decide how this restriction should work.
+
+Rentals
+
+A rental represents the relationship between:
+
+Customer + Equipment + Rental period
+
+For example:
+
+Daniel rents Generator G001 for 5 days.
+
+The rental should keep enough information to determine:
+
+When the rental started.
+When it should end.
+Whether it has been returned.
+How much it should cost.
+Whether it is overdue.
+Whether an additional charge is required.
+Different equipment behaves differently
+
+Here's where the project becomes more interesting.
+
+Not every piece of equipment should necessarily be charged in exactly the same way.
+
+For example:
+
+Standard equipment
+
+Normal calculation:
+
+Daily price × number of days
+
+Heavy equipment
+
+Heavy equipment could have an additional fixed service charge.
+
+Measuring equipment
+
+Measuring instruments might have a calibration requirement.
+
+For example, the company may require a measuring instrument to be inspected after a certain number of rentals.
+
+You should decide how your design represents these differences.
+
+Don't simply put a huge if/else statement inside your rental system.
+
+Think about what OOP principle could help you model this.
+
+Maintenance
+
+Equipment sometimes develops problems.
+
+For example:
+
+Generator G001 is returned with a damaged cable.
+
+The employee can place the generator into maintenance.
+
+While equipment is under maintenance:
+
+It cannot be rented.
+It should not appear among available equipment.
+Someone should be able to record why it was sent for maintenance.
+It should eventually be returned to service.
+
+You decide how maintenance records should work.
+
+Console application
+
+For now, make this a console application.
+
+Something roughly like:
+
+===== EQUIPMENT RENTAL SYSTEM =====
+
+1. Register Equipment
+2. Register Customer
+3. View Equipment
+4. View Customers
+5. Rent Equipment
+6. Return Equipment
+7. View Customer Rentals
+8. View Rental History
+9. Send Equipment for Maintenance
+10. Return Equipment to Service
+11. View Overdue Rentals
+12. Exit
+
+Select an option:
+
+The exact menu and user interface are entirely up to you.
+
+Constraints
+
+I deliberately want you to work within these constraints:
+
+You may use
+Classes
+Objects
+Interfaces
+Abstract classes
+Inheritance
+Encapsulation
+Properties
+Constructors
+Methods
+Enums
+List<T>
+Loops
+Conditional statements
+Exception handling
+Basic LINQ if you've learned it
+
+
+Don't use
+Dictionary<TKey,TValue>
+HashSet<T>
+Hash tables
+Databases
+Entity Framework
+External APIs
+UI frameworks
+
+For persistence, just keep everything in memory while the program is running.

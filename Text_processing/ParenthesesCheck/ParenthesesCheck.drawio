@@ -1,0 +1,62 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="SkHLp5yTguALoRpoQPkH">
+    <mxGraphModel dx="1848" dy="1348" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-18" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Uu5v_YHdQfnyULNhXiRj-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-1" parent="1" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" value="User enters an expression" vertex="1">
+          <mxGeometry height="50" width="192.5" x="96.25" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-5" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Uu5v_YHdQfnyULNhXiRj-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;" value="Extract all the brackets into a custom length array" vertex="1">
+          <mxGeometry height="35" width="187.5" x="98.75" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-8" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="Uu5v_YHdQfnyULNhXiRj-13" value="Yes">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="190" y="520.0030150753769" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-19" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Uu5v_YHdQfnyULNhXiRj-20" value="No">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="460" y="375" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-4" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Check if there are possible&lt;div&gt;&amp;nbsp;bracket pair combinations&lt;/div&gt;&lt;div&gt;&amp;nbsp;if there are possible&amp;nbsp;&lt;/div&gt;&lt;div&gt;bracket combinations&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="226.25" x="76.88" y="300" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-16" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="Uu5v_YHdQfnyULNhXiRj-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="10" y="590.03" />
+              <mxPoint x="10" y="375" />
+            </Array>
+            <mxPoint y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Check through Custom&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;&amp;nbsp;bracket array and&lt;/span&gt;&lt;div&gt;&lt;div&gt;&amp;nbsp;find adjacent open (ist)&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;followed by a&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&amp;nbsp;closed bracket pair&lt;/div&gt;&lt;/div&gt;&lt;div&gt;print message of index of bracket&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="220" x="80" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-23" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Uu5v_YHdQfnyULNhXiRj-22" value="No">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-26" edge="1" parent="1" source="Uu5v_YHdQfnyULNhXiRj-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="Uu5v_YHdQfnyULNhXiRj-25" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-20" parent="1" style="rhombus;whiteSpace=wrap;html=1;" value="Check if there are brackets left" vertex="1">
+          <mxGeometry height="115" width="140" x="440" y="317.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-22" parent="1" style="whiteSpace=wrap;html=1;" value="Print The Perenthesis are correctly used" vertex="1">
+          <mxGeometry height="60" width="120" x="450" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="Uu5v_YHdQfnyULNhXiRj-25" parent="1" style="whiteSpace=wrap;html=1;" value="Print The Parenthesis are not correctly used&lt;br&gt;and&lt;div&gt;Print indexes of unpaired brackets&lt;/div&gt;" vertex="1">
+          <mxGeometry height="85" width="160" x="680" y="332.5" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
