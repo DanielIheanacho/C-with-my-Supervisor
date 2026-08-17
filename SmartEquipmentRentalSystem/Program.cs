@@ -67,6 +67,10 @@ namespace RentalManager
                 Console.WriteLine("         5. Rent Equipment");
                 Console.WriteLine("        6. Return Equipment");
                 Console.WriteLine("      7. View Customer Rentals");
+                Console.WriteLine("       8. View Rental History");
+                Console.WriteLine(" 9. Send Equipment for Maintenance");
+                Console.WriteLine("      10. Return Equipment to Service");
+                Console.WriteLine("     11. View Overdue Rentals");
                 Console.WriteLine("             0. Exit\n");
                 Console.Write("Pick a number from the options: ");
                 if( int.TryParse(Console.ReadLine(), out menuOption) && menuOption>=0 && menuOption<8 )
@@ -92,7 +96,7 @@ namespace RentalManager
                         case 3:
                             foreach(Equipment equipment in registeredEquipment)
                                 {
-                                    Console.WriteLine(equipment.UniqueID);
+                                    Console.WriteLine("{0} Status-{1}",equipment.UniqueID,equipment.status);
                                 }
                             break;
                         case 4:
@@ -107,8 +111,11 @@ namespace RentalManager
                         case 5:
                             SelectCustomerAndEquipment();
                             break;
+                        case 6:
+                            ReturnEquipment();
+                            break;
                         case 7:
-                        
+                            ViewCustomerRentals();
                             break;
                    }
                }
@@ -185,9 +192,10 @@ namespace RentalManager
             List<Equipment> equipmentsToRent = new List<Equipment>();
             string equipmentName;
             int equipmentIndex;
-            Console.WriteLine("Select the customer making the rent");
+            
             if(!(registeredCustomers.Count == 0))
             {
+                Console.WriteLine("Select the customer making the rent");
                 for(int i = 0; i < registeredCustomers.Count;i++)
                 {
                     Console.WriteLine( "{0}. {1}",i + 1, registeredCustomers[i].CustomerID);
@@ -231,6 +239,7 @@ namespace RentalManager
                             if ((registeredEquipment[k].Name == equipmentName) && (registeredEquipment[k].status == Equipment.EquipmentStatus.Available) )
                             {
                                equipmentsToRent.Add(registeredEquipment[k]);
+                               registeredEquipment[k].CurrentCondition = Equipment.ConditionStatus.Rented ;
                                break; 
                             }        
                         }
@@ -239,7 +248,7 @@ namespace RentalManager
                     Console.WriteLine("Do you want to add another equipment?");
                     if(!(YesOrNo() == 1))
                     {
-                        currentCustomer.CustomersRentedEquipment = equipmentsToRent;
+                        currentCustomer.RentedEquipment = equipmentsToRent;
                         break;  
                     }     
                 }    
@@ -248,6 +257,83 @@ namespace RentalManager
             {
                 Console.WriteLine("There is no Registered Customer");
             }      
+        }
+
+        private static void ViewCustomerRentals()
+        {
+            
+            int customerSelectionOption;
+            Customer currentCustomer;
+            if(!(registeredCustomers.Count == 0))
+            {
+                for(int i = 0; i < registeredCustomers.Count;i++)
+                {
+                    Console.WriteLine( "{0}. {1}",i + 1, registeredCustomers[i].CustomerID);
+                }
+
+                customerSelectionOption = SelectOption(PossibleCustomers);
+
+                if( customerSelectionOption == 0)
+                {
+                    return;
+                }
+                else
+                {
+                currentCustomer = registeredCustomers[customerSelectionOption - 1];
+                }    
+                foreach(Equipment equipment in currentCustomer.RentedEquipment)
+                {
+                    Console.WriteLine("{0}{1}",equipment.Name, equipment.UniqueID);
+                }
+            } 
+            else
+            {
+                Console.WriteLine("There is no Registered Customer");
+            }         
+        }
+        private static void ReturnEquipment()
+        {
+            int customerSelectionOption;
+            Customer currentCustomer;
+            if(!(registeredCustomers.Count == 0))
+            {
+                for(int i = 0; i < registeredCustomers.Count;i++)
+                {
+                    Console.WriteLine( "{0}. {1}",i + 1, registeredCustomers[i].CustomerID);
+                }
+
+                customerSelectionOption = SelectOption(PossibleCustomers);
+
+                if( customerSelectionOption == 0)
+                {
+                    return;
+                }
+                else
+                {
+                currentCustomer = registeredCustomers[customerSelectionOption - 1];
+                }
+                int input;
+                Equipment equipmentToRemove;
+                Console.WriteLine("What Equipment do you want to return");
+                for(int i = 0; i < currentCustomer.RentedEquipment.Count; i++)
+                {
+                    Console.WriteLine("{0}. {1} -{2}", i + 1, currentCustomer.RentedEquipment[i].UniqueID, currentCustomer.RentedEquipment[i].UniqueID);
+                    input = SelectOption(currentCustomer.RentedEquipment.Count);
+                    if(input == 0)
+                    {
+                        break;
+                    }
+                    else
+                    {   equipmentToRemove = currentCustomer.RentedEquipment[1];
+                        currentCustomer.RentedEquipment.Remove(equipmentToRemove);
+                    }
+                }
+            } 
+            else
+            {
+                Console.WriteLine("There is no Registered Customer");
+            }   
+
         }
 
         private static int SelectOption(int limit)
@@ -310,7 +396,7 @@ namespace RentalManager
         private List<Equipment> rentedEquipment = new List<Equipment>();
         private int dailyCount = 0 ;
 
-        public List<Equipment> CustomersRentedEquipment
+        public List<Equipment> RentedEquipment
         {
             get
             {
@@ -396,14 +482,12 @@ namespace RentalManager
             Precision,
             Specialised
         }
-        
         public enum ConditionStatus
         {
             Rented,
             InMaintenance,
             Ready
         }
-
         public enum EquipmentStatus
         {
             Available,
@@ -413,14 +497,34 @@ namespace RentalManager
         private int categoryIndex = 1;
         private string uniqueID = string.Empty;
         private string name = string.Empty;
+        private int dateCount = 0;
         private EquipmentCategory category = EquipmentCategory.Standard;
         private ConditionStatus currentCondition = ConditionStatus.Ready;
-
         public EquipmentStatus status = EquipmentStatus.Available;
 
         public Equipment()
         {
 
+        }
+
+        public int DateCount
+        {
+            get
+            {
+                return this.dateCount;
+            }
+            set
+            {
+                this.dateCount = value;
+            }
+        }
+
+        public EquipmentStatus Status
+        {
+            get
+            {
+                return this.status;
+            }
         }
 
         public void Register(string name) 
@@ -493,18 +597,6 @@ namespace RentalManager
             string iD = $"{newID.ToString()}{ManagementSystem.EquipmentCount:D3}";
 
             return iD;
-        }
-    
-    
-    }
-
-    public static class RentEquipment
-    {
-            
-    }
-    
-    public class CostProcessing
-    {
-
+        }   
     }
 }
