@@ -9,8 +9,7 @@ namespace RentalManager
 {
     public static class ManagementSystem
     {
-
-
+        private static int globalDayCount = 0;
         private static List<Customer> registeredCustomers = new List<Customer>();
         private static List<Equipment> registeredEquipment = new List<Equipment>();
         private static string[][] equipmentOption =
@@ -71,9 +70,10 @@ namespace RentalManager
                 Console.WriteLine(" 9. Send Equipment for Maintenance");
                 Console.WriteLine("      10. Return Equipment to Service");
                 Console.WriteLine("     11. View Overdue Rentals");
+                Console.WriteLine("          12. LoadNew Day");
                 Console.WriteLine("             0. Exit\n");
                 Console.Write("Pick a number from the options: ");
-                if( int.TryParse(Console.ReadLine(), out menuOption) && menuOption>=0 && menuOption<8 )
+                if( int.TryParse(Console.ReadLine(), out menuOption) && menuOption>=0 && menuOption< 13 )
                 {
                     switch (menuOption)
                     {
@@ -116,6 +116,12 @@ namespace RentalManager
                             break;
                         case 7:
                             ViewCustomerRentals();
+                            break;
+                        case 8:
+                            RentalHistory();
+                            break;
+                        case 12:
+                            NewDay();
                             break;
                    }
                }
@@ -234,28 +240,33 @@ namespace RentalManager
 
                     if(!(registeredEquipment.Count == 0))
                     {
-                        for(int k = 0; k < registeredEquipment.Count; k++)
+                        foreach(Equipment equipment in registeredEquipment)
                         {
-                            if ((registeredEquipment[k].Name == equipmentName) && (registeredEquipment[k].status == Equipment.EquipmentStatus.Available) )
+                            if ((equipment.Name == equipmentName) && (equipment.Status == Equipment.EquipmentStatus.Available) )
                             {
-                               equipmentsToRent.Add(registeredEquipment[k]);
-                               registeredEquipment[k].CurrentCondition = Equipment.ConditionStatus.Rented ;
-                               break; 
-                            }        
-                        }
-                    }     
-
-                    Console.WriteLine("Do you want to add another equipment?");
-                    if(!(YesOrNo() == 1))
-                    {
-                        currentCustomer.RentedEquipment = equipmentsToRent;
-                        break;  
-                    }     
+                                equipmentsToRent.Add(equipment);
+                                equipment.CurrentCondition = Equipment.ConditionStatus.Rented ;
+                                equipment.DaysRented = PickRentDuration();                               
+                                break; 
+                            }  
+                        }     
+                            Console.WriteLine("Do you want to add another equipment?");
+                            if(!(YesOrNo() == 1))
+                            {
+                                currentCustomer.RentedEquipment = equipmentsToRent;
+                                break;  
+                            }                         
+                    }
+                    else
+                        {
+                            Console.WriteLine("\nThere is no Avialable {0}", equipmentName);
+                            break;
+                        }     
                 }    
             } 
             else
             {
-                Console.WriteLine("There is no Registered Customer");
+                Console.WriteLine("\nThere is no Registered Customer");
             }      
         }
 
@@ -325,6 +336,8 @@ namespace RentalManager
                     }
                     else
                     {   equipmentToRemove = currentCustomer.RentedEquipment[1];
+                        equipmentToRemove.DayCount = 0;
+                        equipmentToRemove.DaysRented = 0;
                         currentCustomer.RentedEquipment.Remove(equipmentToRemove);
                     }
                 }
@@ -335,7 +348,6 @@ namespace RentalManager
             }   
 
         }
-
         private static int SelectOption(int limit)
         {
             Console.Write("Pick an option from above: ");
@@ -360,7 +372,6 @@ namespace RentalManager
                 return optionIndex; 
             } 
         }
-
         private static int YesOrNo()
         {
             int result ;
@@ -383,7 +394,60 @@ namespace RentalManager
             }
             return result;
         }
-
+        private static int PickRentDuration()
+        {
+            int rentDuration;
+            Console.WriteLine("How long would you like to rent it for?");
+            while(!int.TryParse(Console.ReadLine(), out rentDuration))
+            {
+                Console.WriteLine("Invalid Option");
+            }
+            return rentDuration;
+        }
+        private static void NewDay()
+        {
+            globalDayCount++;
+            foreach(Customer customer in registeredCustomers)
+            {
+                foreach(Equipment equipment in customer.RentedEquipment)
+                {
+                    equipment.DayCount += 1;
+                }
+            }
+        }
+        private static void RentalHistory()
+        {
+            if(registeredCustomers.Count != 0)
+            {   Console.WriteLine("========Customer Rental Report========");
+                foreach(Customer customer in registeredCustomers)
+                {
+                    Console.WriteLine("========{0}========", customer.CustomerName);                   
+                
+                    foreach(Equipment equipment in customer.RentedEquipment)
+                    {
+                        Console.WriteLine("Equipment Name: ", equipment.Name);
+                        Console.WriteLine("Rented: {0} days ago", globalDayCount );
+                        if(equipment.DayCount > equipment.DaysRented)
+                        {
+                            Console.WriteLine("To be rented for: {0}days\nOverdue for {1}days.", equipment.DaysRented, equipment.DayCount - equipment.DaysRented);
+                        }
+                        else if(equipment.DayCount == equipment.DaysRented)
+                        {
+                            Console.WriteLine("To be rented for: {0}days\nTo be returned Today", equipment.DaysRented);
+                        }
+                        else
+                        {
+                            Console.WriteLine("To be rented for: {0}days, {1}days to go", equipment.DaysRented, equipment.DaysRented - equipment.DayCount);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("No registered customers");
+            }
+ 
+        }
     }
            
     public class Customer
@@ -394,7 +458,7 @@ namespace RentalManager
         private string phoneNumber = string.Empty;
         private string address = string.Empty;
         private List<Equipment> rentedEquipment = new List<Equipment>();
-        private int dailyCount = 0 ;
+
 
         public List<Equipment> RentedEquipment
         {
@@ -405,18 +469,6 @@ namespace RentalManager
             set
             {
                 this.rentedEquipment = value;
-            }
-        }
-
-        public int DailyCount
-        {
-            get
-            {
-                return this.dailyCount;
-            }
-            set
-            {
-                this.dailyCount = value;
             }
         }
 
@@ -497,7 +549,8 @@ namespace RentalManager
         private int categoryIndex = 1;
         private string uniqueID = string.Empty;
         private string name = string.Empty;
-        private int dateCount = 0;
+        private int daysRented = 0;
+        private int dayCount = 0;
         private EquipmentCategory category = EquipmentCategory.Standard;
         private ConditionStatus currentCondition = ConditionStatus.Ready;
         public EquipmentStatus status = EquipmentStatus.Available;
@@ -507,15 +560,27 @@ namespace RentalManager
 
         }
 
-        public int DateCount
+        public int DayCount
         {
             get
             {
-                return this.dateCount;
+                return this.dayCount;
             }
             set
             {
-                this.dateCount = value;
+                this.dayCount = value;
+            }
+        }
+
+        public int DaysRented
+        {
+            get
+            {
+                return this.daysRented;
+            }
+            set
+            {
+                this.daysRented = value;
             }
         }
 
