@@ -14,13 +14,13 @@ namespace RentalManager
         private static List<Equipment> registeredEquipment = new List<Equipment>();
         private static string[][] equipmentOption =
         {
-            new string[] { "Electric Drills",          "Standard",     "3000", "1000", "5000", "20000" },
-            new string[] { "Welding Machine",         "Heavy",        "7000", "2000", "7500", "25000" },
-            new string[] { "Generator",               "Heavy",        "10000", "2500", "10000", "40000" },
-            new string[] { "Air Compressors",         "Heavy",        "8000", "2000", "10000", "35000" },
-            new string[] { "Measuring Instrument",     "Precision",    "5000", "1500", "7500", "30000" },
-            new string[] { "Ladders",                  "Standard",     "2500", "1000", "5000", "20000" },
-            new string[] { "Power Tools",              "Specialised",  "5000", "1500", "7500", "25000" }
+            new string[] { "Electric Drills",          "Standard",     "3000", "1000", "0", "0" },
+            new string[] { "Welding Machine",         "Heavy",        "7000", "2000", "7500", "0" },
+            new string[] { "Generator",               "Heavy",        "10000", "2500", "10000", "0" },
+            new string[] { "Air Compressors",         "Heavy",        "8000", "2000", "10000", "0" },
+            new string[] { "Measuring Instrument",     "Precision",    "5000", "1500", "0", "3000" },
+            new string[] { "Ladders",                  "Standard",     "2500", "1000", "0", "0" },
+            new string[] { "Power Tools",              "Specialised",  "5000", "1500", "0", "1500" }
         };
         public static int PossibleCustomers
         {
@@ -416,7 +416,8 @@ namespace RentalManager
             }
         }
         private static void RentalHistory()
-        {
+        {   
+            int sumTotal = 0;
             if(registeredCustomers.Count != 0)
             {   Console.WriteLine("========Customer Rental Report========");
                 foreach(Customer customer in registeredCustomers)
@@ -425,21 +426,26 @@ namespace RentalManager
                 
                     foreach(Equipment equipment in customer.RentedEquipment)
                     {
-                        Console.WriteLine("Equipment Name: ", equipment.Name);
+                        Console.WriteLine("Equipment Name: {0} ", equipment.Name);
                         Console.WriteLine("Rented: {0} days ago", globalDayCount );
                         if(equipment.DayCount > equipment.DaysRented)
                         {
                             Console.WriteLine("To be rented for: {0}days\nOverdue for {1}days.", equipment.DaysRented, equipment.DayCount - equipment.DaysRented);
+                            Console.WriteLine("The Total to be paid for this equipment is");
+                            sumTotal += CalculateCurrentEquipmentCost(equipment);
                         }
                         else if(equipment.DayCount == equipment.DaysRented)
                         {
                             Console.WriteLine("To be rented for: {0}days\nTo be returned Today", equipment.DaysRented);
+                            sumTotal = CalculateCurrentEquipmentCost(equipment);
                         }
                         else
                         {
                             Console.WriteLine("To be rented for: {0}days, {1}days to go", equipment.DaysRented, equipment.DaysRented - equipment.DayCount);
+                            CalculateCurrentEquipmentCost(equipment);
                         }
                     }
+                    Console.WriteLine("SumTotal: ", sumTotal);
                 }
             }
             else
@@ -448,7 +454,53 @@ namespace RentalManager
             }
  
         }
+
+        static int equipmentDataIndex ;
+        private static int CalculateCurrentEquipmentCost(Equipment equipment)
+        {
+            int total = 0;
+            int dailyRate;
+            int overdueCount;
+            int regularCount;
+            int dailyServiceCharge;
+            int baseFee;
+
+            //int standardFee;
+            int latenessFee;
+
+            if(equipment.DayCount > equipment.DaysRented)
+            {
+                overdueCount = equipment.DayCount - equipment.DaysRented;
+                regularCount = equipment.DaysRented;
+            }
+            else
+            {
+                overdueCount = 0;
+                regularCount = equipment.DayCount;
+            }
+            
+                 
+            for(int i = 0; i< ManagementSystem.PossibleEquipment; i++)
+            {
+                if(equipment.Name == EquipmentOption(i,0))
+                {
+                    dailyRate = int.Parse(EquipmentOption(i,2));
+                    dailyServiceCharge = int.Parse(EquipmentOption(i,4));
+                    baseFee = int.Parse(EquipmentOption(i,5));
+                    latenessFee = int.Parse(EquipmentOption(i,3));
+                    
+                    total = (dailyRate  + dailyServiceCharge)*regularCount + baseFee + (latenessFee*overdueCount);
+                    Console.WriteLine("Regularfee: {0}", (dailyRate  + dailyServiceCharge)*regularCount + baseFee); 
+                    Console.WriteLine("Latenessfee: {0}", latenessFee*overdueCount);
+                    Console.WriteLine("Total: {0}", total);
+                    
+                }
+
+            }
+            return total;
+        }
     }
+
            
     public class Customer
     {
@@ -638,6 +690,14 @@ namespace RentalManager
                     this.status = EquipmentStatus.Available;
 
                 }
+            }
+        }
+
+        public EquipmentCategory Category
+        {
+            get
+            {
+                return this.category;
             }
         }
 
