@@ -1,0 +1,15 @@
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\bin\Debug\net10.0\AllVariationsWithDuplicates.exe
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\bin\Debug\net10.0\AllVariationsWithDuplicates.deps.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\bin\Debug\net10.0\AllVariationsWithDuplicates.runtimeconfig.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\bin\Debug\net10.0\AllVariationsWithDuplicates.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\bin\Debug\net10.0\AllVariationsWithDuplicates.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.AssemblyInfo.cs
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.sourcelink.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\refint\AllVariationsWithDuplicates.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\AllVariationsWithDuplicates.genruntimeconfig.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\AllVariationsWithDuplicates\obj\Debug\net10.0\ref\AllVariationsWithDuplicates.dll
