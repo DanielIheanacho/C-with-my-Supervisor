@@ -198,6 +198,7 @@ namespace RentalManager
             List<Equipment> equipmentsToRent = new List<Equipment>();
             string equipmentName;
             int equipmentIndex;
+            //bool Available = true;
             
             if(!(registeredCustomers.Count == 0))
             {
@@ -250,12 +251,12 @@ namespace RentalManager
                                 break; 
                             }  
                         }     
-                            Console.WriteLine("Do you want to add another equipment?");
-                            if(!(YesOrNo() == 1))
-                            {
-                                currentCustomer.RentedEquipment = equipmentsToRent;
-                                break;  
-                            }                         
+                        Console.WriteLine("Do you want to add another equipment?");
+                        if(YesOrNo() == 0)
+                        {
+                            currentCustomer.RentedEquipment = equipmentsToRent;
+                            break;  
+                        }                       
                     }
                     else
                         {
