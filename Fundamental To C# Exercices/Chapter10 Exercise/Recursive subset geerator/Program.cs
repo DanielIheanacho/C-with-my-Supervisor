@@ -1,0 +1,63 @@
+﻿string[] set = {"a","b","c","d","e","f","g","h"};
+List<string> currentSubset= new List<string>();
+int subSetLength = 6;
+int endAt = set.Length - subSetLength + 1 ;
+
+// Console.WriteLine(set.Length);
+// Console.WriteLine(subSetLength);
+// Console.WriteLine(endAt);
+
+
+
+PrintIterate(0,subSetLength,set,endAt,currentSubset);
+
+
+void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt,List<string> currentSet)
+{   
+    if(firstElementIndex > (set.Length - subSetLength))
+    {   
+        return;
+    }
+    int iterateStart = firstElementIndex + 1;
+    currentSubset.Clear();
+    currentSubset.Add(set[firstElementIndex]);
+    if(subSetLength > 1 && subSetLength <= set.Length)
+    {
+        while(iterateStart <= endAt)
+        {
+            for(int i = iterateStart, count = 1; count < subSetLength; i++,count++)
+            {
+                currentSubset.Add(set[i]);
+            }
+            PrintList(currentSubset);
+            currentSubset.RemoveRange(1,(subSetLength - 1));
+            iterateStart++;
+        }
+    }
+    else if(subSetLength == 1)
+    {
+        PrintList(currentSubset);    
+    }
+    else
+    {
+        Console.WriteLine("Cant make Subset of 0 length");
+        return;
+    }
+
+    Console.WriteLine();
+    firstElementIndex++;
+    PrintIterate(firstElementIndex,subSetLength,set,endAt,currentSet);
+}
+
+
+
+
+void PrintList(List<string> input)
+{
+    foreach(string element in input)
+    {
+        Console.Write(element);
+    }
+    Console.Write(" ");
+    return;
+}

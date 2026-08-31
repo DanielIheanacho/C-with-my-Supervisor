@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StreamLineAndWordCount")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+35a0215d74ceac36297818f045d22baf58b17ad3")]
 [assembly: System.Reflection.AssemblyProductAttribute("StreamLineAndWordCount")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StreamLineAndWordCount")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
