@@ -1,6 +1,6 @@
-﻿string[] set = {"a","b","c","d","e","f","g","h"};
+﻿string[] set = {"a","b","c","d","e"};
 List<string> currentSubset= new List<string>();
-int subSetLength = 6;
+int subSetLength = 3;
 int endAt = set.Length - subSetLength + 1 ;
 
 // Console.WriteLine(set.Length);
@@ -19,8 +19,8 @@ void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt
         return;
     }
     int iterateStart = firstElementIndex + 1;
-    currentSubset.Clear();
-    currentSubset.Add(set[firstElementIndex]);
+    currentSet.Clear();
+    currentSet.Add(set[firstElementIndex]);
     if(subSetLength > 1 && subSetLength <= set.Length)
     {
         while(iterateStart <= endAt)
@@ -29,14 +29,14 @@ void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt
             {
                 currentSubset.Add(set[i]);
             }
-            PrintList(currentSubset);
-            currentSubset.RemoveRange(1,(subSetLength - 1));
+            PrintList(currentSet);
+            currentSet.RemoveRange(1,(subSetLength - 1));
             iterateStart++;
         }
     }
     else if(subSetLength == 1)
     {
-        PrintList(currentSubset);    
+        PrintList(currentSet);    
     }
     else
     {
