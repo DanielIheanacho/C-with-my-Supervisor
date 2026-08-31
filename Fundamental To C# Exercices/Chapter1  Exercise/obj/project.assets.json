@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Intoduction To Programming Exercise\\Intoduction To Programming Exercise.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter1  Exercise\\Intoduction To Programming Exercise.csproj",
       "projectName": "Intoduction To Programming Exercise",
-      "projectPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Intoduction To Programming Exercise\\Intoduction To Programming Exercise.csproj",
+      "projectPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter1  Exercise\\Intoduction To Programming Exercise.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Intoduction To Programming Exercise\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter1  Exercise\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"

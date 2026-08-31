@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Recursive subset geerator")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae723d819bc75333291557f182d202dd5a58e56b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb7785230cccf28e56f162f6ba966e61ea8e1ad7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Recursive subset geerator")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Recursive subset geerator")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

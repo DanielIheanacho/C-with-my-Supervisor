@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj": {}
+    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj": {
+    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj",
         "projectName": "StreamLineAndWordCount",
-        "projectPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Text_processing\\StreamLineAndWordCount\\StreamLineAndWordCount.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\Text_processing\\StreamLineAndWordCount\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Text_processing\\StreamLineAndWordCount\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -61,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.303/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
