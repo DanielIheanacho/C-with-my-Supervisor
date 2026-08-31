@@ -27,7 +27,7 @@ void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt
         {
             for(int i = iterateStart, count = 1; count < subSetLength; i++,count++)
             {
-                currentSubset.Add(set[i]);
+                currentSet.Add(set[i]);
             }
             PrintList(currentSet);
             currentSet.RemoveRange(1,(subSetLength - 1));
