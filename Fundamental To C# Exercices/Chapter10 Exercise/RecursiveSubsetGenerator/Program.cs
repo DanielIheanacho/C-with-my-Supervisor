@@ -1,6 +1,6 @@
 ﻿string[] set = {"a","b","c","d","e"};
 List<string> currentSubset= new List<string>();
-int subSetLength = 3;
+int subSetLength = 9;
 int endAt = set.Length - subSetLength + 1 ;
 
 // Console.WriteLine(set.Length);
@@ -40,7 +40,7 @@ void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt
     }
     else
     {
-        Console.WriteLine("Cant make Subset of 0 length");
+        Console.WriteLine("{}");
         return;
     }
 
@@ -54,10 +54,12 @@ void PrintIterate(int firstElementIndex,int subSetLength, string[] set,int endAt
 
 void PrintList(List<string> input)
 {
+    Console.Write("{");
     foreach(string element in input)
-    {
+    {   
         Console.Write(element);
     }
+    Console.Write("}");
     Console.Write(" ");
     return;
 }
