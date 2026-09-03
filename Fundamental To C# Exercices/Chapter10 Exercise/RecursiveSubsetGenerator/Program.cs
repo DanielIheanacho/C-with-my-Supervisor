@@ -1,6 +1,6 @@
 ﻿string[] set = {"a","b","c","d","e"};
 List<string> currentSubset= new List<string>();
-int subSetLength = 9;
+int subSetLength = 2;
 int endAt = set.Length - subSetLength + 1 ;
 
 // Console.WriteLine(set.Length);
