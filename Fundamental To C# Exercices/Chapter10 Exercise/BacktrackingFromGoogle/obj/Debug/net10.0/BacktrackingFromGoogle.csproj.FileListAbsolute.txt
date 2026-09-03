@@ -1,0 +1,15 @@
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\bin\Debug\net10.0\BacktrackingFromGoogle.exe
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\bin\Debug\net10.0\BacktrackingFromGoogle.deps.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\bin\Debug\net10.0\BacktrackingFromGoogle.runtimeconfig.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\bin\Debug\net10.0\BacktrackingFromGoogle.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\bin\Debug\net10.0\BacktrackingFromGoogle.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.AssemblyInfoInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.AssemblyInfo.cs
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.csproj.CoreCompileInputs.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.sourcelink.json
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\refint\BacktrackingFromGoogle.dll
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.pdb
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\BacktrackingFromGoogle.genruntimeconfig.cache
+C:\Users\PC\Documents\C#_Source_Codes\CSharpWithMySupervisorGitRepo\Fundamental To C# Exercices\Chapter10 Exercise\BacktrackingFromGoogle\obj\Debug\net10.0\ref\BacktrackingFromGoogle.dll
