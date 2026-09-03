@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj": {}
+    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj": {}
   },
   "projects": {
-    "c:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj": {
+    "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj",
+        "projectUniqueName": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj",
         "projectName": "BacktrackingFromGoogle",
-        "projectPath": "c:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj",
+        "projectPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\BacktrackingFromGoogle.csproj",
         "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\obj\\",
+        "outputPath": "C:\\Users\\PC\\Documents\\C#_Source_Codes\\CSharpWithMySupervisorGitRepo\\Fundamental To C# Exercices\\Chapter10 Exercise\\BacktrackingFromGoogle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config"
