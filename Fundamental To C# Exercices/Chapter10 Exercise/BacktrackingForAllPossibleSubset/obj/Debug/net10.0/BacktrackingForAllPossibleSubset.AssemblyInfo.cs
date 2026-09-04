@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BacktrackingForAllPossibleSubset")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b7bfa3ec6b781b22fc3d13d4d12131e3f54ad48d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97130ffaf8690ae0101edb3444bed36071a78f4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("BacktrackingForAllPossibleSubset")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BacktrackingForAllPossibleSubset")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

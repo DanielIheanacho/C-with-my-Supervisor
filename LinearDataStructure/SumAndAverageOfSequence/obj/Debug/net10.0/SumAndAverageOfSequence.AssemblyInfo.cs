@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SumAndAverageOfSequence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bb7785230cccf28e56f162f6ba966e61ea8e1ad7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97130ffaf8690ae0101edb3444bed36071a78f4d")]
 [assembly: System.Reflection.AssemblyProductAttribute("SumAndAverageOfSequence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SumAndAverageOfSequence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

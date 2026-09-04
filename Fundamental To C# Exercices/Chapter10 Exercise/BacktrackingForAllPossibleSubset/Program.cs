@@ -1,12 +1,19 @@
-﻿List<string>  set = new List<string>(["a","b","c","d",]);
+﻿List<string>  set = new List<string>([]);
 
 PrintCurrentCombination(set);
 
 void PrintCurrentCombination<T>(List<T> currentCombination)
 {   Console.Write("{");
-    for(int i = 0; i < currentCombination.Count; i++)
+    if(currentCombination.Count != 0)
     {
-        Console.Write(currentCombination[i] as string);
+        for(int i = 0; i < currentCombination.Count; i++)
+        {
+            Console.Write(currentCombination[i]?.ToString());
+            if(i < (currentCombination.Count - 1))
+            {
+                Console.Write(", ");
+            }
+        }
     }
     Console.WriteLine("}");
 }
