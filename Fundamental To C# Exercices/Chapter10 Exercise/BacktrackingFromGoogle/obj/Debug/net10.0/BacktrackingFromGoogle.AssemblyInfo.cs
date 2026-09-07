@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BacktrackingFromGoogle")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+97130ffaf8690ae0101edb3444bed36071a78f4d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dea8e61e53ca6866ac31a5fd3b1ae76ae4d4a6d9")]
 [assembly: System.Reflection.AssemblyProductAttribute("BacktrackingFromGoogle")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BacktrackingFromGoogle")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
