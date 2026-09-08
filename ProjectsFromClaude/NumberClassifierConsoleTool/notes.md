@@ -1,0 +1,1 @@
+Number classifier console tool — takes a number and reports even/odd, positive/negative/zero, and whether it's a multiple of 3, 5, or both (FizzBuzz, but build your own rule set first, then do classic FizzBuzz)
