@@ -1,0 +1,1 @@
+Simple grade calculator — input several exam scores, output average, min, max, and letter grade using a rule table.s
