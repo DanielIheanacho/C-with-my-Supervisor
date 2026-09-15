@@ -2,3 +2,4 @@ Text_processing/ParenthesesCheck/
 **/bin/
 **/obj/
 **/Debug/
+.vscode
