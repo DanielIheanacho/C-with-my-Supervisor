@@ -3,3 +3,4 @@ Text_processing/ParenthesesCheck/
 **/obj/
 **/Debug/
 .vscode
+.vs
