@@ -7,18 +7,11 @@ namespace ConsoleApp1
     public class Subject
     {
         public int Id {  get; set; }
+        public string name { get; set; }
         public string Category { get; set; }
-        //int iD;
-        //string name;
-        //Category category;
-        //ClassRoom classRoom;
-        //bool isCore;
+        public ClassRoom classRoom { get; set; }
+        public bool isCore { get; set; }
 
-        //public ID()
-        //{
-        //    get{  return iD; };
 
-        //    set{ this.iD = value; }
-        //}
     }
 }
