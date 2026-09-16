@@ -7,7 +7,7 @@ namespace ConsoleApp1
     public class ClassRoom
     {
         private int Id { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
         public int Capacity { get; set; }
     }
 }
