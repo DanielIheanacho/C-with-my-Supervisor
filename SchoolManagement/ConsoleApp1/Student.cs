@@ -11,7 +11,7 @@ namespace ConsoleApp1
         public Gender Gender { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Surnname { get; set; }
+        public string SurnName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ClassRoom Classroom { get; set; }    
     }
