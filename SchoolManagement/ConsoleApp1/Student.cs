@@ -13,7 +13,7 @@ namespace ConsoleApp1
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public ClassRooms ClassRoom { get; set; }
+        public ClassRoom ClassRoom { get; set; }
 
         public void Print()
         {

@@ -9,7 +9,7 @@ namespace ConsoleApp1
         public int Id {  get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
-        public ClassRooms ClassRoom { get; set; }
+        public ClassRoom ClassRoom { get; set; }
         public bool IsCore { get; set; }
 
         public void Print() 

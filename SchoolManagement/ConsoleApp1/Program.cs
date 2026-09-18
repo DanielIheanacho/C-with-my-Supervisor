@@ -4,10 +4,10 @@ Register().PrintUsers();
 
 static School Register()
 {   
-    User user = User.RegisterUser();
+    User admin = User.Admin.RegisterUser();
 
     School school = School.RegisterSchool();
-    school.users.Add(user);
+    school.users.Add(admin);
     return school;
 }
 
