@@ -1,30 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Text;
 
-namespace ConsoleApp1
-{
-    public class Teacher
-    {
-        public int Id { get; set; }
-        public string StaffNumber { get; set; }
-        public Genders Gender { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Department { get; set; }
-        public ClassRooms Designation { get;  set; }
+//namespace ConsoleApp1
+//{
+//    public class Teacher
+//    {
+//        public int Id { get; set; }
+//        public string StaffNumber { get; set; }
+//        public Genders Gender { get; set; }
+//        public string FirstName { get; set; }
+//        public string LastName { get; set; }
+//        public string Email { get; set; }
+//        public string PhoneNumber { get; set; }
+//        public string Department { get; set; }
+//        public ClassRooms Designation { get;  set; }
 
-        public void Print()
-        {
-            Console.WriteLine("Id: " + this.Id);
-            Console.WriteLine("StaffNumber: " + this.StaffNumber);
-            Console.WriteLine("Name: " + this.FirstName + this.LastName);
-            Console.WriteLine("Email: " + this.Email);
-            Console.WriteLine("PhoneNumber: " + this.PhoneNumber);
-            Console.WriteLine("Department: " + Department);
-            Console.WriteLine("Designation: " + this.Designation);
-        }
-    }
-}
+//        public void Print()
+//        {
+//            Console.WriteLine("Id: " + this.Id);
+//            Console.WriteLine("StaffNumber: " + this.StaffNumber);
+//            Console.WriteLine("Name: " + this.FirstName + this.LastName);
+//            Console.WriteLine("Email: " + this.Email);
+//            Console.WriteLine("PhoneNumber: " + this.PhoneNumber);
+//            Console.WriteLine("Department: " + Department);
+//            Console.WriteLine("Designation: " + this.Designation);
+//        }
+//    }
+//}
