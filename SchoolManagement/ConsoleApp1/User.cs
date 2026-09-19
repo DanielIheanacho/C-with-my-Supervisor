@@ -15,6 +15,7 @@ namespace ConsoleApp1
         public Roles Role { get; set; }
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
+        public string PhoneNumber { get; set; }
 
         public void Print()
         {
@@ -25,35 +26,6 @@ namespace ConsoleApp1
             Console.WriteLine("Password: " + this.PassWord);
         }
 
-        public User()
-        {
-
-        }
-
-        public static User RegisterUser()
-        {
-
-            User user = new();
-
-
-            user.Id = userCount++;
-
-            user.Role = Roles.Default;
-
-            Console.WriteLine("----Fill Form----");
-            Console.WriteLine("FirstName: ");
-            user.FirstName = Console.ReadLine();
-
-            Console.WriteLine("LastName: ");
-            user.LastName = Console.ReadLine();
-
-            Console.WriteLine("Email: ");
-            user.Email = Console.ReadLine();
-
-            Console.WriteLine("Password: ");
-            user.PassWord = Console.ReadLine();
-
-            return user;
-        }
+        
     }
 }

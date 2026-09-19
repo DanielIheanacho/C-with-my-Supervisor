@@ -1,15 +1,43 @@
 ﻿using ConsoleApp1;
 
-Register().PrintUsers();
+Console.WriteLine(User.userCount);
 
-static School Register()
-{   
-    User admin = User.Admin.RegisterUser();
+Admin admin1 = Admin.Register();
 
-    School school = School.RegisterSchool();
-    school.users.Add(admin);
-    return school;
+Console.WriteLine(User.userCount);
+
+foreach (School school in School.schools )
+{
+    school.PrintUsers();
 }
+
+admin1.RegisterTeacher();
+
+Console.WriteLine(User.userCount);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 //School school1 = new School();
