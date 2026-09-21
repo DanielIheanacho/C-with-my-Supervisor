@@ -33,8 +33,6 @@
 
             user.Id = userCount++;
 
-            //user.Role = Roles.Default;
-
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");
             user.FirstName = Console.ReadLine();
@@ -47,6 +45,21 @@
 
             Console.WriteLine("Password: ");
             user.PassWord = Console.ReadLine();
+
+            Console.WriteLine("Insert an I=int value"+
+                "Admin - 0\n" +
+                "Teacher - 1\n" +
+                "Guardian - 2\n\n" +
+                "Insert users Role:" 
+                );
+            if(int.TryParse(Console.ReadLine(), out int input))
+            {
+                user.Role = (Roles)input;
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input");
+            }
 
             return user;
         }
