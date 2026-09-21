@@ -17,7 +17,7 @@
             School school = new();
             Console.WriteLine("SchooL Name: ");
             school.Name = Console.ReadLine();
-            school.Id = School.schoolId;
+            school.Id = School.schoolId++;
             schools.Add(school);
             return school;
         }
