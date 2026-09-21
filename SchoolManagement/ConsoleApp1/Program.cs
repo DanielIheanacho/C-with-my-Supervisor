@@ -1,4 +1,5 @@
-﻿using ConsoleApp1;
+﻿
+using SchoolManagement.Models;
 
 Register().PrintUsers();
 
@@ -6,10 +7,48 @@ static School Register()
 {   
     User user = User.RegisterUser();
 
+<<<<<<< HEAD
     School school = School.RegisterSchool();
     school.users.Add(user);
     return school;
 }
+=======
+user1.Print();
+Console.WriteLine();
+
+ClassRoom ss1 = new ClassRoom();
+ss1.Id = 10;
+ss1.Name = "Childre of God";
+ss1.Capacity = 20;
+
+ss1.Print();
+Console.WriteLine();
+
+Student student1 = new Student();
+
+student1.Id = 2;
+student1.AdmissionNumber = "STU001";
+student1.Gender = Genders.Male;
+student1.FirstName = "Gidion";
+student1.LastName = "Edoghotu";
+student1.MiddleName = "Azibaobuom";
+student1.DateOfBirth = DateTime.Now ;
+student1.ClassRoom = ss1;
+
+student1.Print();
+Console.WriteLine();
+
+Subject subject1 = new Subject();
+
+subject1.Id = 7;
+subject1.Name = "Mathematics";
+subject1.Category = "Science";
+subject1.ClassRoom = ss1;
+subject1.IsCore = true;
+
+subject1.Print();
+Console.WriteLine();
+>>>>>>> 36357ec (Created a new project file to contain all modeks, and modified the dependencies and refrences to be consistent.)
 
 
 //School school1 = new School();
