@@ -18,7 +18,17 @@
             Console.WriteLine("Email: " + this.Email);
             Console.WriteLine("Role: " + this.Role);
             Console.Write("Password: ******");
+            Console.Write("Password: ");
+            this.PrintPassword();
+        }
 
+        public void PrintPassword()
+        {
+            for(int i = 0; i < this.PassWord.Length; i++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
         }
 
         public User()
