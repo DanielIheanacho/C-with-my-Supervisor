@@ -42,37 +42,46 @@
 
             user.Id = userCount++;
 
+           
+
+            user.Print();
+
+            return user;
+        }
+
+        private void FillUserDetail()
+        {
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");
-            user.FirstName = Console.ReadLine();
+            this.FirstName = Console.ReadLine();
 
             Console.WriteLine("LastName: ");
-            user.LastName = Console.ReadLine();
+            this.LastName = Console.ReadLine();
 
             Console.WriteLine("Email: ");
-            user.Email = Console.ReadLine();
+            this.Email = Console.ReadLine();
 
             Console.WriteLine("Password: ");
-            user.PassWord = Console.ReadLine();
+            this.PassWord = Console.ReadLine();
 
-            Console.WriteLine("Insert an I=int value"+
+            Console.WriteLine("Insert an I=int value" +
                 "Admin - 0\n" +
                 "Teacher - 1\n" +
                 "Guardian - 2\n\n" +
-                "Insert users Role:" 
+                "Insert users Role:"
                 );
-            if(int.TryParse(Console.ReadLine(), out int input) && input>0 && input<3)
+            if (int.TryParse(Console.ReadLine(), out int input) && input > 0 && input < 3)
             {
                 switch (input)
                 {
                     case 0:
-                        user.Role = (Roles)0; 
+                        this.Role = (Roles)0;
                         break;
-                    case 1: 
-                        user.Role = (Roles)1; 
+                    case 1:
+                        this.Role = (Roles)1;
                         break;
-                    case 2: 
-                        user.Role = (Roles)2; 
+                    case 2:
+                        this.Role = (Roles)2;
                         break;
                 }
 
@@ -81,10 +90,6 @@
             {
                 Console.WriteLine("Invalid Input");
             }
-
-            user.Print();
-
-            return user;
         }
     }
 }
