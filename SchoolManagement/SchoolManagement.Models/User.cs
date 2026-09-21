@@ -17,7 +17,17 @@
             Console.WriteLine("Name: " + this.LastName + " " + this.FirstName);
             Console.WriteLine("Email: " + this.Email);
             Console.WriteLine("Role: " + this.Role);
-            Console.WriteLine("Password: " + this.PassWord);
+            Console.Write("Password: ");
+            this.PrintPassword();
+        }
+
+        public void PrintPassword()
+        {
+            for(int i = 0; i < this.PassWord.Length; i++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
         }
 
         public User()
@@ -60,6 +70,8 @@
             {
                 Console.WriteLine("Invalid Input");
             }
+
+            user.Print();
 
             return user;
         }
