@@ -11,9 +11,6 @@ static School Register()
     return school;
 }
 
-user1.Print();
-Console.WriteLine();
-
 ClassRoom ss1 = new ClassRoom();
 ss1.Id = 10;
 ss1.Name = "Childre of God";
@@ -46,11 +43,6 @@ subject1.IsCore = true;
 
 subject1.Print();
 Console.WriteLine();
-
-    School school = School.RegisterSchool();
-    school.users.Add(user);
-    return school;
-}
 
 //School school1 = new School();
 //School.Add(school1);
