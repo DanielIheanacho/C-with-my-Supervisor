@@ -1,4 +1,5 @@
-﻿using ConsoleApp1;
+﻿
+using SchoolManagement.Models;
 
 User user1 = new User();
 
@@ -12,7 +13,7 @@ user1.PassWord = "********";
 user1.Print();
 Console.WriteLine();
 
-ClassRooms ss1 = new ClassRooms();
+ClassRoom ss1 = new ClassRoom();
 ss1.Id = 10;
 ss1.Name = "Childre of God";
 ss1.Capacity = 20;

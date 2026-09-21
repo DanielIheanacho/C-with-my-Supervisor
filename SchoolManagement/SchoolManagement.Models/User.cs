@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Text;
-
-namespace ConsoleApp1
+﻿namespace SchoolManagement.Models
 {
     public class User
     {
         public static int userCount = 0;
         public int Id { get; set; }
-        public string FirstName {  get; set; }
+        public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public Roles Role { get; set; }
@@ -38,7 +33,7 @@ namespace ConsoleApp1
 
             user.Id = userCount++;
 
-            user.Role = Roles.Default;
+            //user.Role = Roles.Default;
 
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");

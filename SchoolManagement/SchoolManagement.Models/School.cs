@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApp1
+﻿namespace SchoolManagement.Models
 {
 
     public class School
@@ -11,7 +7,7 @@ namespace ConsoleApp1
         static List<School> schools = new();
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<User> users =  new();
+        public List<User> users = new();
         //public List<Student> students = new();
         //public List<Subject> subjects = new();
         //public List<ClassRoom> classRooms = new();
@@ -49,7 +45,7 @@ namespace ConsoleApp1
             {
                 if (users.Count != 0)
                 {
-                    Console.WriteLine(users[i].FirstName +  " " +users[i].LastName);
+                    Console.WriteLine(users[i].FirstName + " " + users[i].LastName);
                 }
                 else
                 {

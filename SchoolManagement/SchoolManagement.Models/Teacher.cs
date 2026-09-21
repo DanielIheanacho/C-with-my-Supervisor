@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApp1
+﻿namespace SchoolManagement.Models
 {
     public class Teacher
     {
@@ -14,7 +10,7 @@ namespace ConsoleApp1
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Department { get; set; }
-        public ClassRooms Designation { get;  set; }
+        public ClassRoom Designation { get; set; }
 
         public void Print()
         {

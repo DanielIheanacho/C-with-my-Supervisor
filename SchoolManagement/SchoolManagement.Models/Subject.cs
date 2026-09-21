@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ConsoleApp1
+﻿namespace SchoolManagement.Models
 {
     public class Subject
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Category { get; set; }
-        public ClassRooms ClassRoom { get; set; }
+        public ClassRoom ClassRoom { get; set; }
         public bool IsCore { get; set; }
 
-        public void Print() 
+        public void Print()
         {
             Console.WriteLine("ID: " + this.Id);
             Console.WriteLine("Name: " + this.Name);
