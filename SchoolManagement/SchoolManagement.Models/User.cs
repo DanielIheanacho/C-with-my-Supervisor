@@ -36,16 +36,10 @@
 
         public static User RegisterUser()
         {
-
             User user = new();
-
-
             user.Id = userCount++;
-
-           
-
+            user.FillUserDetail();
             user.Print();
-
             return user;
         }
 
@@ -84,7 +78,6 @@
                         this.Role = (Roles)2;
                         break;
                 }
-
             }
             else
             {
