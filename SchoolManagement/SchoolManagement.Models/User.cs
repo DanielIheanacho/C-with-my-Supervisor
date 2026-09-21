@@ -20,6 +20,15 @@
             Console.Write("Password: ******");
         }
 
+        public void PrintPassword()
+        {
+            for(int i = 0; i < this.PassWord.Length; i++)
+            {
+                Console.Write("*");
+            }
+            Console.WriteLine();
+        }
+
         public User()
         {
 
@@ -52,9 +61,21 @@
                 "Guardian - 2\n\n" +
                 "Insert users Role:" 
                 );
-            if(int.TryParse(Console.ReadLine(), out int input))
+            if(int.TryParse(Console.ReadLine(), out int input) && input>0 && input<3)
             {
-                user.Role = (Roles)input;
+                switch (input)
+                {
+                    case 0:
+                        user.Role = (Roles)0; 
+                        break;
+                    case 1: 
+                        user.Role = (Roles)1; 
+                        break;
+                    case 2: 
+                        user.Role = (Roles)2; 
+                        break;
+                }
+
             }
             else
             {
