@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ConsoleApp1
 {
-    public enum Gender
+    public enum Genders
     {
         Male,
         Female,

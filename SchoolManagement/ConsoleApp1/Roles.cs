@@ -6,8 +6,8 @@ namespace ConsoleApp1
 {
     public enum Roles
     {
-        guardian,
-        teacher,
-        admin,
+        Guardian,
+        Teacher,
+        Admin,
     }
 }
