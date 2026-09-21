@@ -14,7 +14,7 @@
         public void Print()
         {
             Console.WriteLine("User id: " + this.Id);
-            Console.WriteLine("Name: " + this.LastName + this.FirstName);
+            Console.WriteLine("Name: " + this.LastName + " " + this.FirstName);
             Console.WriteLine("Email: " + this.Email);
             Console.WriteLine("Role: " + this.Role);
             Console.WriteLine("Password: " + this.PassWord);
