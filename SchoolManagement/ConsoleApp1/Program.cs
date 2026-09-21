@@ -7,15 +7,11 @@ static School Register()
 {   
     User user = User.RegisterUser();
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     School school = School.RegisterSchool();
     school.users.Add(user);
     return school;
 }
-=======
->>>>>>> 2e091d91eda7fb050fefef079189984db2187aee
+
 user1.Print();
 Console.WriteLine();
 
