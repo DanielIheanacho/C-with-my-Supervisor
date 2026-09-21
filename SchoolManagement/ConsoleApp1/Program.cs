@@ -46,14 +46,11 @@ subject1.IsCore = true;
 
 subject1.Print();
 Console.WriteLine();
-<<<<<<< HEAD
-=======
 
     School school = School.RegisterSchool();
     school.users.Add(user);
     return school;
 }
->>>>>>> 77aea765e8da4420bfc779ca57689bc8cd30f497
 
 //School school1 = new School();
 //School.Add(school1);
