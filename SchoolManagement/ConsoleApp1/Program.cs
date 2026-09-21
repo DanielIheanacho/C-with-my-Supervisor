@@ -6,7 +6,6 @@ Register().PrintUsers();
 static School Register()
 {   
     User user = User.RegisterUser();
-
     School school = School.RegisterSchool();
     school.users.Add(user);
     return school;
@@ -49,15 +48,12 @@ subject1.Print();
 Console.WriteLine();
 <<<<<<< HEAD
 =======
+
     School school = School.RegisterSchool();
     school.users.Add(user);
     return school;
 }
->>>>>>> e00f1ffe2a458ea04cc9bd50d2f868f258350d08
-=======
->>>>>>> 36357ec (Created a new project file to contain all modeks, and modified the dependencies and refrences to be consistent.)
->>>>>>> 2e091d91eda7fb050fefef079189984db2187aee
-
+>>>>>>> 77aea765e8da4420bfc779ca57689bc8cd30f497
 
 //School school1 = new School();
 //School.Add(school1);
