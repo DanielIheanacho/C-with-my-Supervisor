@@ -2,7 +2,7 @@
 
 Console.WriteLine(User.userCount);
 
-Admin admin1 = Admin.Register();
+School school1 = School.RegisterSchool();
 
 Console.WriteLine(User.userCount);
 
@@ -11,34 +11,9 @@ foreach (School school in School.schools )
     school.PrintUsers();
 }
 
-admin1.RegisterTeacher();
-
 Console.WriteLine(User.userCount);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+school1.users[0].RegisterTeacher();
 
 //School school1 = new School();
 //School.Add(school1);
