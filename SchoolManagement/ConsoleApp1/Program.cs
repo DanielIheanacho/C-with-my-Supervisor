@@ -3,7 +3,7 @@ using SchoolManagement.Models;
 
 Register().PrintUsers();
 
-static School Register()
+School Register()
 {   
     User user = User.RegisterUser();
     School school = School.RegisterSchool();
