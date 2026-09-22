@@ -20,15 +20,6 @@
             Console.Write("Password: ******");
         }
 
-        public void PrintPassword()
-        {
-            for(int i = 0; i < this.PassWord.Length; i++)
-            {
-                Console.Write("*");
-            }
-            Console.WriteLine();
-        }
-
         public User()
         {
 
@@ -36,53 +27,60 @@
 
         public static User RegisterUser()
         {
-            User user = new();
-            user.Id = userCount++;
-            user.FillUserDetail();
+            User user = FillUserDetail();
+            user.Role = SelectRole();
+            Console.WriteLine("Rgistered new User");
             user.Print();
             return user;
         }
 
-        private void FillUserDetail()
+        private static User FillUserDetail()
         {
+            User user = new();
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");
-            this.FirstName = Console.ReadLine();
+            user.FirstName = Console.ReadLine();
 
             Console.WriteLine("LastName: ");
-            this.LastName = Console.ReadLine();
+            user.LastName = Console.ReadLine();
 
             Console.WriteLine("Email: ");
-            this.Email = Console.ReadLine();
+            user.Email = Console.ReadLine();
 
             Console.WriteLine("Password: ");
-            this.PassWord = Console.ReadLine();
+            user.PassWord = Console.ReadLine();
 
-            Console.WriteLine("Insert an I=int value" +
+            return user;
+   
+        }
+
+        private static Roles SelectRole()
+        {
+            while (true)
+            {
+                Console.WriteLine("Insert an int value\n" +
                 "Admin - 0\n" +
                 "Teacher - 1\n" +
                 "Guardian - 2\n\n" +
-                "Insert users Role:"
-                );
-            if (int.TryParse(Console.ReadLine(), out int input) && input > 0 && input < 3)
-            {
-                switch (input)
+                "Insert users Role:");
+                if (int.TryParse(Console.ReadLine(), out int input) && input >= 0 && input < 3)
                 {
-                    case 0:
-                        this.Role = (Roles)0;
-                        break;
-                    case 1:
-                        this.Role = (Roles)1;
-                        break;
-                    case 2:
-                        this.Role = (Roles)2;
-                        break;
+                    switch (input)
+                    {
+                        case 0:
+                            return Roles.Admin;
+                        case 1:
+                            return Roles.Teacher;
+                        case 2:
+                            return Roles.Guardian;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid Input");
                 }
             }
-            else
-            {
-                Console.WriteLine("Invalid Input");
-            }
+            
         }
     }
 }
