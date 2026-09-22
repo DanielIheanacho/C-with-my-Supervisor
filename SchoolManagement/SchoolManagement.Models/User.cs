@@ -11,15 +11,6 @@
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
 
-        public void Print()
-        {
-            Console.WriteLine("User id: " + this.Id);
-            Console.WriteLine("Name: " + this.LastName + " " + this.FirstName);
-            Console.WriteLine("Email: " + this.Email);
-            Console.WriteLine("Role: " + this.Role);
-            Console.Write("Password: ******");
-        }
-
         public User()
         {
 
@@ -29,8 +20,8 @@
         {
             User user = FillUserDetail();
             user.Role = SelectRole();
-            Console.WriteLine("Rgistered new User");
-            user.Print();
+            //Console.WriteLine("Rgistered new User");
+            //user.Print();
             return user;
         }
 
@@ -63,24 +54,30 @@
                 "Teacher - 1\n" +
                 "Guardian - 2\n\n" +
                 "Insert users Role:");
-                if (int.TryParse(Console.ReadLine(), out int input) && input >= 0 && input < 3)
+                switch (Console.ReadLine())
                 {
-                    switch (input)
-                    {
-                        case 0:
-                            return Roles.Admin;
-                        case 1:
-                            return Roles.Teacher;
-                        case 2:
-                            return Roles.Guardian;
-                    }
+                    case "0":
+                        return Roles.Admin;
+                    case "1":
+                        return Roles.Teacher;
+                    case "2":
+                        return Roles.Guardian;
+                    default:
+                        Console.WriteLine("Invalid Input");
+                        break;
                 }
-                else
-                {
-                    Console.WriteLine("Invalid Input");
-                }
+
             }
-            
-        }
+
+        //public void Print()
+        //{
+        //    Console.WriteLine("User id: " + this.Id);
+        //    Console.WriteLine("Name: " + this.LastName + " " + this.FirstName);
+        //    Console.WriteLine("Email: " + this.Email);
+        //    Console.WriteLine("Role: " + this.Role);
+        //    Console.Write("Password: ******");
+        //}
+
+    }
     }
 }
