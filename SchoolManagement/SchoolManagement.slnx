@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="ConsoleApp1/ConsoleApp1.csproj" />
+  <Project Path="SchoolManagement.Models/SchoolManagement.Models.csproj" Id="f4347663-839a-4c68-bd8b-e3c8c16399fc" />
 </Solution>
