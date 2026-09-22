@@ -9,7 +9,7 @@
         public string Name { get; set; }
         public List<User> users = new();
         //public List<Student> students = new();
-        //public List<Subject> subjects = new();
+        public List<Subject> subjects = new();
         //public List<ClassRoom> classRooms = new();
 
         public static School RegisterSchool()
@@ -20,6 +20,12 @@
             school.Id = School.schoolId++;
             schools.Add(school);
             return school;
+        }
+
+        public void AddSubject(Subject subject)
+        {
+            this.subjects.Add(subject);
+            
         }
 
         public static void AssignUser(User user)
