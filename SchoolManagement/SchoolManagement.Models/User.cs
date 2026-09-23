@@ -11,6 +11,7 @@
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
 
+
         public User()
         {
 
@@ -22,8 +23,14 @@
             user.Role = SelectRole();
             //Console.WriteLine("Rgistered new User");
             //user.Print();
+
+            //store user in database
+
+
             return user;
         }
+
+        // Method to login user
 
         private static User FillUserDetail()
         {
