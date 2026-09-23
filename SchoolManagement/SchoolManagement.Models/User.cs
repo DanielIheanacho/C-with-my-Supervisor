@@ -23,11 +23,24 @@
             user.Role = SelectRole();
             //Console.WriteLine("Rgistered new User");
             //user.Print();
-
-            //store user in database
-
-
             return user;
+        }
+
+        public static void LoginUser()
+        {
+            Console.WriteLine("\nPlease Login");
+            Console.WriteLine("\n\nEmail: ");
+            string email = Console.ReadLine();
+            Console.WriteLine("Password: ");
+            string password = Console.ReadLine();
+
+            foreach(User user in School.users)
+            {
+                if (user.Email == email && user.PassWord == password)
+                    Console.WriteLine("Welcome to the School Management app");
+                else
+                    Console.WriteLine("Invalid Input");
+            }
         }
 
         // Method to login user
