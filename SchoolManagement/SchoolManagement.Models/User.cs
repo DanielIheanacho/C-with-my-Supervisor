@@ -18,6 +18,18 @@ namespace SchoolManagement.Models
 
         }
 
+        public static User RegisterNewAdmin()
+        {
+            School school = School.RegisterSchool();
+            User user = FillUserDetail();
+            user.Role = Roles.Admin;
+            user.SchoolId = School.schoolId;
+            School.users.Add(user);
+            //Console.WriteLine("Rgistered new User");
+            //user.Print();
+            return user;
+        }
+
         public static User RegisterUser()
         {
             User user = FillUserDetail();

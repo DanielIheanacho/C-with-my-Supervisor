@@ -1,15 +1,7 @@
 ﻿
 using SchoolManagement.Models;
 
-Register().PrintUsers();
-
-School Register()
-{   
-    User user = User.RegisterUser();
-    School school = School.RegisterSchool();
-    School.users.Add(user);
-    return school;
-}
+User.RegisterNewAdmin();
 
 
 User.LoginUser();
