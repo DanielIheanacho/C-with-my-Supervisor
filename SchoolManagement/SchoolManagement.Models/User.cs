@@ -1,4 +1,5 @@
-﻿namespace SchoolManagement.Models
+﻿
+namespace SchoolManagement.Models
 {
     public class User
     {
@@ -10,6 +11,7 @@
         public Roles Role { get; set; }
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
+
 
         public User()
         {
@@ -24,6 +26,27 @@
             //user.Print();
             return user;
         }
+
+        public static void LoginUser()
+        {
+            Console.WriteLine("\nPlease Login");
+            Console.WriteLine("\n\nEmail: ");
+            string email = Console.ReadLine().ToLower();
+            Console.WriteLine("Password: ");
+            string password = Console.ReadLine();
+
+            foreach(User user in School.users)
+            {
+                if (user.Email == email && user.PassWord == password)
+                {
+                    Console.WriteLine("Welcome to the School Management app");
+                    return;
+                }
+            }
+            Console.WriteLine("Invalid Email or Password");
+        }
+
+        // Method to login user
 
         private static User FillUserDetail()
         {
