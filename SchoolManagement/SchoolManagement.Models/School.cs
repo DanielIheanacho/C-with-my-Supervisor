@@ -7,7 +7,7 @@
         static List<School> schools = new();
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<User> users = new();
+        public static List<User> users = new();
         //public List<Student> students = new();
         public List<Subject> subjects = new();
         //public List<ClassRoom> classRooms = new();
@@ -22,28 +22,28 @@
             return school;
         }
 
-        public void AddSubject(Subject subject)
+        public void AddSubject( Subject subject)
         {
             this.subjects.Add(subject);
             
         }
 
-        public static void AssignUser(User user)
-        {
-            for (int i = 0; i < schools.Count; i++)
-            {
-                if (schools[i].Id != user.SchoolId && i < schools.Count - 1)
-                {
-                    continue;
-                }
-                else if (schools[i].Id == user.SchoolId)
-                {
-                    schools[i].users.Add(user);
-                    return;
-                }
-                Console.WriteLine("User was assigned to a school not in database.");
-            }
-        }
+        //public static void AssignUser(User user)
+        //{
+        //    for (int i = 0; i < schools.Count; i++)
+        //    {
+        //        if (schools[i].Id != user.SchoolId && i < schools.Count - 1)
+        //        {
+        //            continue;
+        //        }
+        //        else if (schools[i].Id == user.SchoolId)
+        //        {
+        //            schools[i].users.Add(user);
+        //            return;
+        //        }
+        //        Console.WriteLine("User was assigned to a school not in database.");
+        //    }
+        //}
 
         public void PrintUsers()
         {
