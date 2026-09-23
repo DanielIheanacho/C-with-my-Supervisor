@@ -52,6 +52,7 @@
                 if (users.Count != 0)
                 {
                     Console.WriteLine(users[i].FirstName + " " + users[i].LastName);
+                    Console.WriteLine(users[i].SchoolId);
                 }
                 else
                 {
