@@ -1,4 +1,5 @@
-﻿namespace SchoolManagement.Models
+﻿
+namespace SchoolManagement.Models
 {
     public class User
     {
@@ -30,16 +31,21 @@
         {
             Console.WriteLine("\nPlease Login");
             Console.WriteLine("\n\nEmail: ");
-            string email = Console.ReadLine();
+            string email = Console.ReadLine().ToLower();
             Console.WriteLine("Password: ");
             string password = Console.ReadLine();
 
             foreach(User user in School.users)
             {
                 if (user.Email == email && user.PassWord == password)
+                {
                     Console.WriteLine("Welcome to the School Management app");
+                    break;
+                }
                 else
+                {
                     Console.WriteLine("Invalid Input");
+                }
             }
         }
 
