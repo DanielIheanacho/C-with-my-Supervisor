@@ -7,10 +7,12 @@ School Register()
 {   
     User user = User.RegisterUser();
     School school = School.RegisterSchool();
-    school.users.Add(user);
+    School.users.Add(user);
     return school;
 }
 
+
+User.LoginUser();
 //ClassRoom ss1 = new ClassRoom();
 //ss1.Id = 10;
 //ss1.Name = "Childre of God";
