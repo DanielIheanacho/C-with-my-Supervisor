@@ -40,13 +40,10 @@ namespace SchoolManagement.Models
                 if (user.Email == email && user.PassWord == password)
                 {
                     Console.WriteLine("Welcome to the School Management app");
-                    break;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Input");
+                    return;
                 }
             }
+            Console.WriteLine("Invalid Email or Password");
         }
 
         // Method to login user
