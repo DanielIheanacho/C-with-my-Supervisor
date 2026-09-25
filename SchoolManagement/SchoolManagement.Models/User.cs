@@ -8,32 +8,36 @@ namespace SchoolManagement.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public Genders Gender { get; set; }
         public Roles Role { get; set; }
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
 
 
-        public User()
-        {
-
-        }
+        //public User()
+        //{
+        //}
 
         public static User RegisterNewAdmin()
         {
             School school = School.RegisterSchool();
             User user = FillUserDetail();
             user.Role = Roles.Admin;
-            user.SchoolId = School.schoolId;
-            School.users.Add(user);
+            user.SchoolId = school.Id;
             //Console.WriteLine("Rgistered new User");
             //user.Print();
             return user;
         }
 
+        //Craete a user
         public static User RegisterUser()
         {
             User user = FillUserDetail();
             user.Role = SelectRole();
+            user.SchoolId = SelectSchool();
+            Console.WriteLine(user.SchoolId);
+            //User.AssignUserToSchool(user);
             //Console.WriteLine("Rgistered new User");
             //user.Print();
             return user;
@@ -43,9 +47,9 @@ namespace SchoolManagement.Models
         {
             Console.WriteLine("\nPlease Login");
             Console.WriteLine("\n\nEmail: ");
-            string email = Console.ReadLine().ToLower();
+            string email = ValidInput().ToLower();
             Console.WriteLine("Password: ");
-            string password = Console.ReadLine();
+            string password = ValidInput();
 
             foreach(User user in School.users)
             {
@@ -58,23 +62,23 @@ namespace SchoolManagement.Models
             Console.WriteLine("Invalid Email or Password");
         }
 
-        // Method to login user
 
+        // Method to Fill user data for new users
         private static User FillUserDetail()
         {
             User user = new();
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");
-            user.FirstName = Console.ReadLine();
+            user.FirstName = ValidInput();
 
             Console.WriteLine("LastName: ");
-            user.LastName = Console.ReadLine();
+            user.LastName = ValidInput();
 
             Console.WriteLine("Email: ");
-            user.Email = Console.ReadLine();
+            user.Email = ValidInput().ToLower();
 
             Console.WriteLine("Password: ");
-            user.PassWord = Console.ReadLine();
+            user.PassWord = ValidInput();
 
             return user;
    
@@ -103,6 +107,46 @@ namespace SchoolManagement.Models
                 }
 
             }
+        }
+
+        private static int SelectSchool()
+        {
+            while (true)
+            {
+                int count = 0;
+                foreach (School school in School.schools)
+                {
+                    Console.WriteLine("Select A School\n input must be int value\n\n");
+                    Console.Write(count++ + " - " + school.Name);
+                }
+                if (int.TryParse(ValidInput(), out int option))
+                {
+                    if (option >= 0 && option <= School.schools.Count)
+                    {
+                        return School.schools[option].Id;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Pick option from List.");
+                    }
+                }
+            }
+            
+        }
+
+
+        //Ensures input is valid
+        private static string ValidInput()
+        {
+            while (true)
+            {
+                string? input = Console.ReadLine();
+                if (!string.IsNullOrEmpty(input))
+                {
+                    return input;
+                }
+            }
+        }
 
         //public void Print()
         //{
@@ -113,6 +157,5 @@ namespace SchoolManagement.Models
         //    Console.Write("Password: ******");
         //}
 
-    }
     }
 }
