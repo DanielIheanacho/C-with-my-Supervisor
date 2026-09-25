@@ -1,8 +1,11 @@
 ﻿
 using SchoolManagement.Models;
 
-User.RegisterNewAdmin();
+User user1 = User.RegisterNewAdmin();
+School.AssignUser(user1);
 
+User user2 = User.RegisterUser();
+School.AssignUser(user2);
 
 User.LoginUser();
 //ClassRoom ss1 = new ClassRoom();
