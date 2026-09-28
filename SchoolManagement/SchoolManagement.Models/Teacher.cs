@@ -9,7 +9,7 @@
         public void Print()
         {
             Console.WriteLine("Id: " + this.Id);
-            Console.WriteLine("StaffNumber: " + this.Id);
+            Console.WriteLine("StaffNumber: " + this.StaffId);
             Console.WriteLine("Name: " + this.FirstName + this.LastName);
             Console.WriteLine("Email: " + this.Email);
             Console.WriteLine("PhoneNumber: " + this.PhoneNumber);
