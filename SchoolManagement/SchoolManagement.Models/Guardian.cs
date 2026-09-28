@@ -6,7 +6,7 @@ namespace SchoolManagement.Models
 {
     public class Guardian : User
     {
-        public List<Student> wards = new();
+        public List<Student> students = new();
 
             public void Print()
         {
@@ -15,9 +15,9 @@ namespace SchoolManagement.Models
             Console.WriteLine("Email: " + this.Email);
             Console.WriteLine("Role: " + this.Role);
             Console.Write("Password: ******");
-            foreach (Student ward in wards)
+            foreach (Student student in students)
             {
-                Console.Write(ward + " ");
+                Console.Write(student.LastName + " " + student.FirstName + " ");
             }
         }
     }
