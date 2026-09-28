@@ -71,7 +71,7 @@
                     return;
                 }
             }
-            Console.WriteLine("ClassRoom is not Registered ubder any school.");
+            Console.WriteLine("ClassRoom is not Registered under any school.");
         }
 
         //Ensures input is valid
