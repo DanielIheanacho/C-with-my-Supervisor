@@ -44,30 +44,9 @@ namespace SchoolManagement.Models
             return user;
         }
 
-        public static void LoginUser()
+        internal static T FillUserDetail<T>() where T : User, new()
         {
-            Console.WriteLine("\nPlease Login");
-            Console.WriteLine("\n\nEmail: ");
-            string email = ValidInput().ToLower();
-            Console.WriteLine("Password: ");
-            string password = ValidInput();
-
-            foreach(User user in School.users)
-            {
-                if (user.Email == email && user.PassWord == password)
-                {
-                    Console.WriteLine("Welcome to the School Management app");
-                    return;
-                }
-            }
-            Console.WriteLine("Invalid Email or Password");
-        }
-
-
-        // Method to Fill user data for new users
-        private static User FillUserDetail()
-        {
-            User user = new();
+            var user = new T();
             Console.WriteLine("----Fill Form----");
             Console.WriteLine("FirstName: ");
             user.FirstName = ValidInput();
