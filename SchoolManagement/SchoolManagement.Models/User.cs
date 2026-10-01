@@ -15,27 +15,9 @@ namespace SchoolManagement.Models
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
 
-
-        //public User()
-        //{
-        //}
-
-        public static User RegisterNewAdmin()
+        public static T RegisterAnyUser<T>() where T : User, new()
         {
-            School school = School.RegisterSchool();
-            User user = FillUserDetail();
-            user.Role = Roles.Admin;
-            user.SchoolId = school.Id;
-            //Console.WriteLine("Rgistered new User");
-            //user.Print();
-            return user;
-        }
-
-        //Craete a user
-        public static User RegisterUser()
-        {
-            User user = FillUserDetail();
-            user.Role = SelectRole();
+            T user = FillUserDetail<T>();
             user.SchoolId = SelectSchool();
             Console.WriteLine(user.SchoolId);
             //User.AssignUserToSchool(user);
