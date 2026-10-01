@@ -20,9 +20,6 @@ namespace SchoolManagement.Models
             T user = FillUserDetail<T>();
             user.SchoolId = SelectSchool();
             Console.WriteLine(user.SchoolId);
-            //User.AssignUserToSchool(user);
-            //Console.WriteLine("Rgistered new User");
-            //user.Print();
             return user;
         }
 
@@ -85,7 +82,7 @@ namespace SchoolManagement.Models
                 {
                     if (option >= 0 && option <= School.schools.Count)
                     {
-                        return School.schools[option].Id;
+                        return School.schools[option].SchoolId;
                     }
                     else
                     {
@@ -93,11 +90,9 @@ namespace SchoolManagement.Models
                     }
                 }
             }
-            
+
         }
 
-
-        //Ensures input is valid
         private static string ValidInput()
         {
             while (true)
@@ -109,15 +104,5 @@ namespace SchoolManagement.Models
                 }
             }
         }
-
-        //public void Print()
-        //{
-        //    Console.WriteLine("User id: " + this.Id);
-        //    Console.WriteLine("Name: " + this.LastName + " " + this.FirstName);
-        //    Console.WriteLine("Email: " + this.Email);
-        //    Console.WriteLine("Role: " + this.Role);
-        //    Console.Write("Password: ******");
-        //}
-
     }
 }
