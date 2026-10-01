@@ -43,10 +43,10 @@ namespace SchoolManagement.Models
             user.PassWord = ValidInput();
 
             return user;
-   
+
         }
 
-        private static Roles SelectRole()
+        public static Roles SelectRole()
         {
             while (true)
             {
