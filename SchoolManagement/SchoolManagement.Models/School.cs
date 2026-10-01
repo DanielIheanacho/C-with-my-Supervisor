@@ -4,7 +4,7 @@
     public class School
     {
         public static List<School> schools = new();
-        public int Id { get; set; }
+        public int SchoolId { get; set; }
         public string Name { get; set; }
         public static List<User> users = new();
         public static List<Student> students = new();
