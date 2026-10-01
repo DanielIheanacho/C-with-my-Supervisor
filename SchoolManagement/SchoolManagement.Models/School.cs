@@ -3,7 +3,6 @@
 
     public class School
     {
-        public static int schoolId = 0;
         public static List<School> schools = new();
         public int Id { get; set; }
         public string Name { get; set; }
@@ -17,7 +16,6 @@
             School school = new();
             Console.WriteLine("SchooL Name: ");
             school.Name = ValidInput();
-            school.Id = School.schoolId++;
             schools.Add(school);
             return school;
         }
