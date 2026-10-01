@@ -1,4 +1,6 @@
 ﻿
+using ConsoleApp1.SchoolManagementSystem.Data;
+using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models;
 
 User user1 = User.RegisterNewAdmin();
