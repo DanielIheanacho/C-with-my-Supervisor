@@ -14,19 +14,17 @@ namespace SchoolManagement.Models
             return user;
         }
 
-        public void RegisterUser()
+            public User RegisterNewUser() 
         {
-            Roles role = User.SelectRole();
+            Roles role = SelectRole();
             switch (role)
             {
                 case Roles.Admin:
-                    User.RegisterAnyUser<Admin>();
-                    break;
+                    return RegisterAnyUser<Admin>(role);
                 case Roles.Teacher:
-                    User.RegisterAnyUser<Teacher>();
-                    break;
+                    return RegisterAnyUser<Teacher>(role);
                 case Roles.Guardian:
-                    User.RegisterAnyUser<Guardian>();
+                    return RegisterAnyUser<Guardian>(role);
         public T RegisterAnyUser<T>(Roles role) where T : User, new()
         {
             T user = FillUserDetail<T>();
