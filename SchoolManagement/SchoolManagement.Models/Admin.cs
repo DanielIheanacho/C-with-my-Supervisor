@@ -27,6 +27,15 @@ namespace SchoolManagement.Models
                     break;
                 case Roles.Guardian:
                     User.RegisterAnyUser<Guardian>();
+        public T RegisterAnyUser<T>(Roles role) where T : User, new()
+        {
+            T user = FillUserDetail<T>();
+            user.SchoolId = this.SchoolId;
+            user.Role = role;
+            Console.WriteLine(user.SchoolId);
+            return user;
+        }
+
         public static Roles SelectRole()
         {
             while (true)
