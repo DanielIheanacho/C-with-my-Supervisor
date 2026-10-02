@@ -58,8 +58,8 @@ namespace SchoolManagement.Models
                         return Roles.Guardian;
                     default:
                         Console.WriteLine("Invalid Input");
-                    break;
-            }
+                        break;
+                }
 
             }
         }
