@@ -25,6 +25,11 @@ namespace SchoolManagement.Models
                     return RegisterAnyUser<Teacher>(role);
                 case Roles.Guardian:
                     return RegisterAnyUser<Guardian>(role);
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(role));
+            }
+        }
+
         public T RegisterAnyUser<T>(Roles role) where T : User, new()
         {
             T user = FillUserDetail<T>();
