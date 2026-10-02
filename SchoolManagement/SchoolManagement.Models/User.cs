@@ -15,13 +15,6 @@ namespace SchoolManagement.Models
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
 
-        public static T RegisterAnyUser<T>() where T : User, new()
-        {
-            T user = FillUserDetail<T>();
-            user.SchoolId = SelectSchool();
-            Console.WriteLine(user.SchoolId);
-            return user;
-        }
 
         internal static T FillUserDetail<T>() where T : User, new()
         {
@@ -43,55 +36,30 @@ namespace SchoolManagement.Models
 
         }
 
-        public static Roles SelectRole()
-        {
-            while (true)
-            {
-                Console.WriteLine("Insert an int value\n" +
-                "Admin - 0\n" +
-                "Teacher - 1\n" +
-                "Guardian - 2\n\n" +
-                "Insert users Role:");
-                switch (Console.ReadLine())
-                {
-                    case "0":
-                        return Roles.Admin;
-                    case "1":
-                        return Roles.Teacher;
-                    case "2":
-                        return Roles.Guardian;
-                    default:
-                        Console.WriteLine("Invalid Input");
-                        break;
-                }
+        //private static int SelectSchool()
+        //{
+        //    while (true)
+        //    {
+        //        int count = 0;
+        //        foreach (School school in School.schools)
+        //        {
+        //            Console.WriteLine("Select A School\n input must be int value\n\n");
+        //            Console.Write(count++ + " - " + school.Name);
+        //        }
+        //        if (int.TryParse(ValidInput(), out int option))
+        //        {
+        //            if (option >= 0 && option <= School.schools.Count)
+        //            {
+        //                return School.schools[option].SchoolId;
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Pick option from List.");
+        //            }
+        //        }
+        //    }
 
-            }
-        }
-
-        private static int SelectSchool()
-        {
-            while (true)
-            {
-                int count = 0;
-                foreach (School school in School.schools)
-                {
-                    Console.WriteLine("Select A School\n input must be int value\n\n");
-                    Console.Write(count++ + " - " + school.Name);
-                }
-                if (int.TryParse(ValidInput(), out int option))
-                {
-                    if (option >= 0 && option <= School.schools.Count)
-                    {
-                        return School.schools[option].SchoolId;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Pick option from List.");
-                    }
-                }
-            }
-
-        }
+        //}
 
         private static string ValidInput()
         {
