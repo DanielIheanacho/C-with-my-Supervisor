@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models;
 
-namespace ConsoleApp1.SchoolManagementSystem.Data
+namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
 {
     public class AppDbContext : DbContext
     {
