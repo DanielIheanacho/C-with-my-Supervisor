@@ -44,7 +44,7 @@ void RegisterSchoolAndAdmin()
     }
 }
 
-static void LoginUser()
+void LoginUser()
 {
     Console.WriteLine("\n\nEmail: ");
     string email = ValidInput().ToLower();
