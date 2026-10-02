@@ -69,7 +69,7 @@ void LoginUser()
     switch (user)
     {
         case Admin admin:
-            // admin menu
+            AdminMenu(admin);
             break;
         case Teacher teacher:
             // teacher menu
@@ -77,6 +77,35 @@ void LoginUser()
         case Guardian guardian:
             // guardian menu
             break;
+    }
+}
+
+void AdminMenu(Admin admin)
+{
+    while (true)
+    {
+        Console.WriteLine("---Menu---\n");
+        Console.WriteLine("1. Register New user\n");
+        Console.WriteLine("0. Exit\n\n");
+        Console.Write("Select Option: ");
+
+        switch (Console.ReadLine())
+        {
+            case "1":
+                {
+                    User newUser = admin.RegisterNewUser();
+
+                    using var context = new AppDbContext();
+                    context.Add(newUser);
+                    context.SaveChanges();
+                    break;
+                }
+            case "0":
+                return; ;
+            default:
+                Console.WriteLine("Invalid Input");
+                break;
+        }
     }
 }
 
