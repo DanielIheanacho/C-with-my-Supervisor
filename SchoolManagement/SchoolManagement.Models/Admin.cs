@@ -27,7 +27,28 @@ namespace SchoolManagement.Models
                     break;
                 case Roles.Guardian:
                     User.RegisterAnyUser<Guardian>();
+        public static Roles SelectRole()
+        {
+            while (true)
+            {
+                Console.WriteLine("Insert an int value\n" +
+                "Admin - 0\n" +
+                "Teacher - 1\n" +
+                "Guardian - 2\n\n" +
+                "Insert users Role:");
+                switch (Console.ReadLine())
+                {
+                    case "0":
+                        return Roles.Admin;
+                    case "1":
+                        return Roles.Teacher;
+                    case "2":
+                        return Roles.Guardian;
+                    default:
+                        Console.WriteLine("Invalid Input");
                     break;
+            }
+
             }
         }
     }
