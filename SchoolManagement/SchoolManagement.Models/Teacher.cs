@@ -2,8 +2,7 @@
 {
     public class Teacher : User
     {
-        public string TeacherId { get; set; }
-        public string Department { get; set; }
-        public Designation Designation { get; set; }
+        public string? Department { get; set; }
+        public Designation? Designation { get; set; }
     }
 }
