@@ -12,7 +12,19 @@
         public int SchoolId { get; set; }
         public DateTime DateOfBirth { get; set; }
         public ClassRoom ClassRoom { get; set; }
-        public int GuardianId { get; set; }
+        public List<Guardian> Guardians { get; set; }
 
+        public void Print()
+        {
+            Console.WriteLine("User id: " + this.Id);
+            Console.WriteLine("Name: " + this.FirstName + this.MiddleName + this.LastName);
+            Console.WriteLine("DOB: " + this.DateOfBirth);
+            Console.WriteLine("ClassRoom: " + this.ClassRoom);
+            Console.WriteLine("Gender: " + this.Gender);
+            foreach(Guardian user in Guardians)
+            {
+                Console.Write(user + " "); 
+            }
+        }
     }
 }

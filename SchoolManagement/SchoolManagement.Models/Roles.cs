@@ -2,8 +2,8 @@
 {
     public enum Roles
     {
-        Admin,
+        Guardian,
         Teacher,
-        Guardian
+        Admin,
     }
 }
