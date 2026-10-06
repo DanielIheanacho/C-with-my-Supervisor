@@ -1,7 +1,6 @@
-﻿using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ClassModels;
-using SchoolManagement.Models.EnumModels;
+using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Services
 {
@@ -37,9 +36,10 @@ namespace SchoolManagementSystem.Services
                 .Where(u => u.SchoolId == admin.SchoolId && u.Role == role)
                 .OrderBy(u => u.LastName)
                 .Select(u => new UserInfo
-                {   UserId = u.UserId,
+                {
+                    UserId = u.UserId,
                     FirstName = u.FirstName,
-                    LastName = u.LastName 
+                    LastName = u.LastName
                 })
                 .ToList();
 
