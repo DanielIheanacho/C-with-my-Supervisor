@@ -1,6 +1,4 @@
-﻿using SchoolManagement.Models.EnumModels;
-
-namespace SchoolManagement.Models.ClassModels
+﻿namespace SchoolManagement.Models.ClassModels
 {
     public class Admin : User
     {
