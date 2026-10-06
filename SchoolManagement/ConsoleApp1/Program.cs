@@ -12,6 +12,8 @@ while (true)
 
     switch (Console.ReadLine())
     {
+        case "0":
+            return;
         case "1":
             var schoolInfo = GetSchoolDetail();
             var userInfo = GetUserInfo(true);
@@ -44,7 +46,7 @@ while (true)
                     // guardian menu
                     break;
             }
-        break;
+            break;
 
     }
 }
@@ -65,6 +67,8 @@ void AdminMenu(Admin admin)
 
         switch (Console.ReadLine())
         {
+            case "0":
+                return; ;
             case "1":
                 {
                     var userInfo = GetUserInfo(false);
@@ -84,8 +88,6 @@ void AdminMenu(Admin admin)
             case "5":
                 DeleteUser(admin);
                 break;
-            case "0":
-                return; ;
             default:
                 Console.WriteLine("Invalid Input");
                 break;
@@ -129,20 +131,31 @@ void DeleteUser(Admin admin)
             case "0":
                 return;
             case "1":
-                var result = PrintUsersInCategory(admin, Roles.Admin);
-                var userCount = result.Count;
-                var user = result.List;
-                Console.WriteLine("Select option:");
-                if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
-                {
-                    int userId = user[option - 1].UserId;
-                    AdminService.RemoveUser(userId);
-                }
+                DeleteUserInCategory(admin, Roles.Admin);
+                break;
+            case "2":
+                DeleteUserInCategory(admin, Roles.Teacher);
+                break;
+            case "3":
+                DeleteUserInCategory(admin, Roles.Guardian);
                 break;
             default:
                 Console.WriteLine("Invalid Input");
                 break;
         }
+    }
+}
+
+void DeleteUserInCategory(Admin admin, Roles role)
+{
+    var result = PrintUsersInCategory(admin, role);
+    var userCount = result.Count;
+    var user = result.List;
+    Console.WriteLine("Select option:");
+    if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
+    {
+        int userId = user[option - 1].UserId;
+        AdminService.RemoveUser(userId);
     }
 }
 
