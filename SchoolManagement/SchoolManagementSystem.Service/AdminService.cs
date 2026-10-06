@@ -1,5 +1,4 @@
-﻿using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
@@ -40,7 +39,7 @@ namespace SchoolManagementSystem.Services
                 {
                     UserId = u.UserId,
                     FirstName = u.FirstName,
-                    LastName = u.LastName 
+                    LastName = u.LastName
                 })
                 .ToList();
 
