@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SchoolManagement.Models
+namespace SchoolManagement.Models.ClassModels
 {
-    internal class Canbeusedanywhere
+    public class Guardian : User
     {
+
     }
 }

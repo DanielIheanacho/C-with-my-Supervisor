@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SchoolManagement.Models\SchoolManagement.Models.csproj" />
+    <ProjectReference Include="..\SchoolManagementSystem.Service\SchoolManagementSystem.Service.csproj" />
   </ItemGroup>
 
 </Project>

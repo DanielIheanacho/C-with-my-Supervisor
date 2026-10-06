@@ -1,4 +1,4 @@
-﻿namespace SchoolManagement.Models
+﻿namespace SchoolManagement.Models.ClassModels
 {
     public class Period
     {
