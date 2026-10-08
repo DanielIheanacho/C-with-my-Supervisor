@@ -28,7 +28,7 @@ while (true)
             if (user == null)
             {
                 Console.WriteLine("Invalid email or password.");
-                return;
+                break;
             }
 
             Console.WriteLine($"Welcome, {user.FirstName}!");
