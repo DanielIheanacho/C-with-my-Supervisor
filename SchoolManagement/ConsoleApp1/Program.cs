@@ -237,7 +237,7 @@ UserInfo InputUserInfo(bool isFirstUser)
 
     Console.WriteLine("Password: ");
     user.PassWord = ValidInput();
-    if (!isAdmin)
+    if (!isFirstUser)
     {
         Console.WriteLine("Role: ");
         user.Role = SelectRole();
