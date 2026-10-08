@@ -61,6 +61,7 @@ void AdminMenu(Admin admin)
         Console.WriteLine("3. View Teahers(s)");
         Console.WriteLine("4. View Guardian(s)");
         Console.WriteLine("5. Remove User");
+        Console.WriteLine("6. Update Details");
         Console.WriteLine("0. Exit\n\n");
         Console.Write("Select Option: ");
 
