@@ -20,10 +20,10 @@ namespace SchoolManagementSystem.Service
         public static void UpdateUser<T>(T user, UserInfo userInfo) where T : User, new()
         {
             int userId = GetUser<T>(user);
+
             using var context = new AppDbContext();
-            var userToUpdate = context.Users
-                .AsNoTracking()
-                .Single(u => u.UserId == userId);
+
+            var userToUpdate = context.Users.Single(u => u.UserId == userId);
 
             userToUpdate.FirstName = userInfo.FirstName;
             userToUpdate.LastName = userInfo.LastName;
