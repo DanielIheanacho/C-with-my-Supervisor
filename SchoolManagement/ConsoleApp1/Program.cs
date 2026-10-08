@@ -88,6 +88,9 @@ void AdminMenu(Admin admin)
             case "5":
                 DeleteUser(admin);
                 break;
+            case "6":
+                UpdateDetails(admin);
+                break;
             default:
                 Console.WriteLine("Invalid Input");
                 break;
@@ -113,6 +116,58 @@ void AdminMenu(Admin admin)
         }
     }
     return (users.Count, users.List);
+}
+
+void UpdateDetails<T>(T user) where T : User, new()
+{
+    var userInfo = ExtractUserInfo(user);
+    while (true)
+    {
+        Console.WriteLine("1. Firstname");
+        Console.WriteLine("2. Lastame");
+        Console.WriteLine("3. Email");
+        Console.WriteLine("4. Password");
+        Console.WriteLine("0. Exit");
+        Console.WriteLine("Select Option: ");
+        switch (Console.ReadLine())
+        {
+            case "1":
+                userInfo.FirstName = ValidInput();
+                UserService.  UpdateUser(user, userInfo);
+                break;
+            case "2":
+                userInfo.LastName = ValidInput();
+                UserService.UpdateUser(user, userInfo);
+                break;
+            case "3":
+                userInfo.Email = ValidInput();
+                UserService.UpdateUser(user, userInfo);
+                break;
+            case "4":
+                userInfo.PassWord = ValidInput();
+                UserService.UpdateUser(user, userInfo);
+                break;
+            case "0":
+                return;
+            default:
+                Console.WriteLine("Invalid Input");
+                break;
+        }
+    }
+
+}
+
+UserInfo ExtractUserInfo<T>(T user) where T : User, new()
+{
+    var userInfo = new UserInfo
+    {
+        FirstName = user.FirstName,
+        LastName = user.LastName,
+        Email = user.Email,
+        PassWord = user.PassWord,
+    };
+
+    return userInfo;
 }
 
 void DeleteUser(Admin admin)
