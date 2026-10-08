@@ -15,8 +15,8 @@ while (true)
         case "0":
             return;
         case "1":
-            var schoolInfo = GetSchoolDetail();
-            var userInfo = GetUserInfo(true);
+            var schoolInfo = InputSchoolDetail();
+            var userInfo = InputUserInfo(true);
             AuthenticationService.RegisterSchoolAndAdmin(schoolInfo, userInfo);
             break;
 
@@ -71,7 +71,7 @@ void AdminMenu(Admin admin)
                 return; ;
             case "1":
                 {
-                    var userInfo = GetUserInfo(false);
+                    var userInfo = InputUserInfo(false);
                     User newUser = admin.RegisterNewUser(userInfo);
                     AdminService.SaveUser(newUser);
                     break;
@@ -214,7 +214,7 @@ void DeleteUserInCategory(Admin admin, Roles role)
     }
 }
 
-SchoolInfo GetSchoolDetail()
+SchoolInfo InputSchoolDetail()
 {
     SchoolInfo school = new();
     Console.WriteLine("SchooL Name: ");
@@ -222,7 +222,7 @@ SchoolInfo GetSchoolDetail()
     return school;
 }
 
-UserInfo GetUserInfo(bool isAdmin)
+UserInfo InputUserInfo(bool isFirstUser)
 {
     UserInfo user = new();
 
