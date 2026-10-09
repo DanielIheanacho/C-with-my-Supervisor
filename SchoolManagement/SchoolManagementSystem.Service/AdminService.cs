@@ -2,7 +2,7 @@
 using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
-namespace SchoolManagementSystem.Services
+namespace SchoolManagementSystem.Service
 {
     public class AdminService
     {
@@ -45,5 +45,6 @@ namespace SchoolManagementSystem.Services
 
             return (users.Count, users);
         }
+
     }
 }
