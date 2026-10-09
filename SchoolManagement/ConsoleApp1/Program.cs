@@ -73,7 +73,7 @@ void AdminMenu(Admin admin)
                 {
                     var userInfo = InputUserInfo(false);
                     User newUser = admin.RegisterNewUser(userInfo);
-                    AdminService.SaveUser(newUser);
+                    UserService.SaveUser(newUser);
                     break;
                 }
             case "2":
@@ -101,7 +101,7 @@ void AdminMenu(Admin admin)
 (int Count, List<UserInfo> List) PrintUsersInCategory(Admin admin, Roles role)
 
 {
-    var users = AdminService.GetUsersInCategory(admin, role);
+    var users = UserService.GetUsersInCategory(admin, role);
 
     if (users.Count == 0)
     {
@@ -210,7 +210,7 @@ void DeleteUserInCategory(Admin admin, Roles role)
     if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
     {
         int userId = user[option - 1].UserId;
-        AdminService.RemoveUser(userId);
+        UserService.RemoveUser(userId);
     }
 }
 
