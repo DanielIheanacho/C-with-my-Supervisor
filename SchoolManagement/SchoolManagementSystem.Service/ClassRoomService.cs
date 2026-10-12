@@ -34,15 +34,15 @@ namespace SchoolManagementSystem.Service
             return classRoom;
         }
 
-        public static void UpdateClassRoom(ClassRoomInfo classInfo)
+        public static void UpdateClassRoom(ClassRoom classUpdate, int classRoomId)
         {
             using var context = new AppDbContext();
 
             var classToUpdate = context.ClassRooms
-                .Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == classInfo.Name);
+                .Single(c => c.ClassRoomId == classRoomId);
 
-            classToUpdate.Name = classInfo.Name;
-            classToUpdate.Capacity = classInfo.Capacity;
+            classToUpdate.Name = classUpdate.Name;
+            classToUpdate.Capacity = classUpdate.Capacity;
 
             context.SaveChanges();
         }

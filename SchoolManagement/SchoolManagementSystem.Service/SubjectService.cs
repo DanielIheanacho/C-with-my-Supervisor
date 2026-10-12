@@ -34,16 +34,16 @@ namespace SchoolManagementSystem.Service
             return subject;
         }
 
-        public static void UpdateSubject(SubjectInfo subjectInfo)
+        public static void UpdateSubject(Subject subjectUpdate, int id)
         {
             using var context = new AppDbContext();
 
             var subjectToUpdate = context.Subjects
-                .Single(s => s.SchoolId == GeneralVariables.SchoolId && s.Name == subjectInfo.Name);
+                .Single(s => s.SubjectId == id);
 
-            subjectToUpdate.Name = subjectInfo.Name;
-            subjectToUpdate.ClassRoom = subjectInfo.ClassRoom;
-            subjectToUpdate.IsCore = subjectInfo.IsCore;
+            subjectToUpdate.Name = subjectUpdate.Name;
+            subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
+            subjectToUpdate.IsCore = subjectUpdate.IsCore;
 
             context.SaveChanges();
         }
