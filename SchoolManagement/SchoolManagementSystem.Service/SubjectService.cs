@@ -13,4 +13,17 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
+        public List<string> GetSubjects(User user)
+        {
+            using var context = new AppDbContext();
+            var subjects = context.Subjects
+                .AsNoTracking()
+                .Where(c => c.SchoolId == user.UserId)
+                .OrderBy(c => c.Name)
+                .Select(c => c.Name)
+                .ToList();
+
+            return subjects;
+        }
+
 }
