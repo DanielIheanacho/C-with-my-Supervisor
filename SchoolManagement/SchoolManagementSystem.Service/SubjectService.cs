@@ -4,16 +4,16 @@ using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service
 {
-    public class SubjectService
+    public static class SubjectService
     {
-        public void SaveSubject(Subject subject)
+        public static void SaveSubject(Subject subject)
         {
             using var context = new AppDbContext();
             context.Add(subject);
             context.SaveChanges();
         }
 
-        public List<string> GetSubjects(User user)
+        public static List<string> GetSubjects()
         {
             using var context = new AppDbContext();
             var subjects = context.Subjects
@@ -26,7 +26,7 @@ namespace SchoolManagementSystem.Service
             return subjects;
         }
 
-        public Subject GetSubject(User user, string name)
+        public static Subject GetSubject(string name)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
@@ -34,7 +34,7 @@ namespace SchoolManagementSystem.Service
             return subject;
         }
 
-        public void UpdateSubject(SubjectInfo subjectInfo)
+        public static void UpdateSubject(SubjectInfo subjectInfo)
         {
             using var context = new AppDbContext();
 
@@ -48,7 +48,7 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public void RemoveSubject(User user, string name)
+        public static void RemoveSubject(string name)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);

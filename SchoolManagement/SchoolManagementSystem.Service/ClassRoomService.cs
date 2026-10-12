@@ -4,16 +4,16 @@ using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service
 {
-    public class ClassRoomService
+    public static class ClassRoomService
     {
-        public void SaveClassRoom(ClassRoom classRoom)
+        public static void SaveClassRoom(ClassRoom classRoom)
         {
             using var context = new AppDbContext();
             context.Add(classRoom);
             context.SaveChanges();
         }
 
-        public List<string> GetClassRooms(User user)
+        public static List<string> GetClassRooms()
         {
             using var context = new AppDbContext();
             var classRooms = context.ClassRooms
@@ -26,7 +26,7 @@ namespace SchoolManagementSystem.Service
             return classRooms;
         }
 
-        public ClassRoom GetClassRoom(User user,string name)
+        public static ClassRoom GetClassRoom(string name)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
@@ -34,7 +34,7 @@ namespace SchoolManagementSystem.Service
             return classRoom;
         }
 
-        public void UpdateClassRoom(ClassRoomInfo classInfo)
+        public static void UpdateClassRoom(ClassRoomInfo classInfo)
         {
             using var context = new AppDbContext();
 
@@ -47,7 +47,7 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public void RemoveClassRoom(User user, string name)
+        public static void RemoveClassRoom(string name)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
