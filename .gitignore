@@ -5,3 +5,8 @@ Text_processing/ParenthesesCheck/
 .vscode
 .vs
 **/Databasequery/**
+SchoolManagement/SchoolManagementSystem.Service/Migrations/20261012124302_initialCreate.cs
+SchoolManagement/SchoolManagementSystem.Service/Migrations/20261012124302_initialCreate.Designer.cs
+SchoolManagement/SchoolManagementSystem.Service/Migrations/20261012132737_SubjectId.Designer.cs
+SchoolManagement/SchoolManagementSystem.Service/Migrations/20261012132737_SubjectId.cs
+SchoolManagement/SchoolManagementSystem.Service/Migrations/AppDbContextModelSnapshot.cs
