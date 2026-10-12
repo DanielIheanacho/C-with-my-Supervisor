@@ -47,5 +47,13 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
+        public void RemoveClassRoom(User user, string name)
+        {
+            using var context = new AppDbContext();
+            var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+
+            context.ClassRooms.Remove(classRoom);
+            context.SaveChanges();
+        }
     }
 }
