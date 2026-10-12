@@ -26,4 +26,12 @@ namespace SchoolManagementSystem.Service
             return subjects;
         }
 
+        public Subject GetSubject(User user, string name)
+        {
+            using var context = new AppDbContext();
+            var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+
+            return subject;
+        }
+
 }
