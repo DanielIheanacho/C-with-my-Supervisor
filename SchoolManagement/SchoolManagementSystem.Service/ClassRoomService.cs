@@ -4,7 +4,7 @@ using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service
 {
-    internal class ClassRoomService
+    public class ClassRoomService
     {
     }
 }
