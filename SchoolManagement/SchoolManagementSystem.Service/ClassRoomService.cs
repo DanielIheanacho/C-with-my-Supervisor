@@ -18,7 +18,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
             var classRooms = context.ClassRooms
                 .AsNoTracking()
-                .Where(c => c.SchoolId == user.UserId)
+                .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
                 .Select(c => c.Name)
                 .ToList();
@@ -29,7 +29,7 @@ namespace SchoolManagementSystem.Service
         public static ClassRoom GetClassRoom(string name)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+            var classRoom = context.ClassRooms.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
 
             return classRoom;
         }
@@ -39,7 +39,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
 
             var classToUpdate = context.ClassRooms
-                .Single(c => c.SchoolId == classInfo.SchoolId && c.Name == classInfo.Name);
+                .Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == classInfo.Name);
 
             classToUpdate.Name = classInfo.Name;
             classToUpdate.Capacity = classInfo.Capacity;
@@ -50,7 +50,7 @@ namespace SchoolManagementSystem.Service
         public static void RemoveClassRoom(string name)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+            var classRoom = context.ClassRooms.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
 
             context.ClassRooms.Remove(classRoom);
             context.SaveChanges();

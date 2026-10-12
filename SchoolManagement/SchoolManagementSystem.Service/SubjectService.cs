@@ -18,7 +18,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
             var subjects = context.Subjects
                 .AsNoTracking()
-                .Where(c => c.SchoolId == user.UserId)
+                .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
                 .Select(c => c.Name)
                 .ToList();
@@ -29,7 +29,7 @@ namespace SchoolManagementSystem.Service
         public static Subject GetSubject(string name)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+            var subject = context.Subjects.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
 
             return subject;
         }
@@ -39,7 +39,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
 
             var subjectToUpdate = context.Subjects
-                .Single(s => s.SchoolId == subjectInfo.SchoolId && s.Name == subjectInfo.Name);
+                .Single(s => s.SchoolId == GeneralVariables.SchoolId && s.Name == subjectInfo.Name);
 
             subjectToUpdate.Name = subjectInfo.Name;
             subjectToUpdate.ClassRoom = subjectInfo.ClassRoom;
@@ -51,7 +51,7 @@ namespace SchoolManagementSystem.Service
         public static void RemoveSubject(string name)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+            var subject = context.Subjects.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
 
             context.Subjects.Remove(subject);
             context.SaveChanges();
