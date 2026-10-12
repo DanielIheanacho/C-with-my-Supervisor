@@ -8,6 +8,8 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
         public DbSet<User> Users { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<ClassRoom> ClassRooms { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
