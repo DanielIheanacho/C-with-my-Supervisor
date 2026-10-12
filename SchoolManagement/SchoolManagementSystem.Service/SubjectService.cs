@@ -13,17 +13,18 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static List<string> GetSubjects()
+        public static List<(int SubjectId, string Name)> GetSubjects()
         {
             using var context = new AppDbContext();
-            var subjects = context.Subjects
+
+            return context.Subjects
                 .AsNoTracking()
                 .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
-                .Select(c => c.Name)
+                .Select(c => new { c.SubjectId, c.Name })
+                .AsEnumerable()
+                .Select(c => (SubjectId: c.SubjectId, Name: c.Name))
                 .ToList();
-
-            return subjects;
         }
 
         public static Subject GetSubject(int id)

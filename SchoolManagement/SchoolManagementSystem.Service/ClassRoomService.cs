@@ -13,17 +13,16 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static List<string> GetClassRooms()
+        public static List<(int ClassRoomId,string Name)> GetClassRooms()
         {
             using var context = new AppDbContext();
-            var classRooms = context.ClassRooms
+            return context.ClassRooms
                 .AsNoTracking()
                 .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
-                .Select(c => c.Name)
+                .AsEnumerable()
+                .Select(c => (ClassRoomId: c.ClassRoomId, Name: c.Name))
                 .ToList();
-
-            return classRooms;
         }
 
         public static ClassRoom GetClassRoom(int classRoomId)
