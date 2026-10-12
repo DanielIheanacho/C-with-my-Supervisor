@@ -48,4 +48,14 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
+        public void RemoveSubject(User user, string name)
+        {
+            using var context = new AppDbContext();
+            var subject = context.Subjects.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+
+            context.Subjects.Remove(subject);
+            context.SaveChanges();
+
+        }
+    }
 }
