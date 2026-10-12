@@ -34,5 +34,18 @@ namespace SchoolManagementSystem.Service
             return classRoom;
         }
 
+        public void UpdateClassRoom(ClassRoomInfo classInfo)
+        {
+            using var context = new AppDbContext();
+
+            var classToUpdate = context.ClassRooms
+                .Single(c => c.SchoolId == classInfo.SchoolId && c.Name == classInfo.Name);
+
+            classToUpdate.Name = classInfo.Name;
+            classToUpdate.Capacity = classInfo.Capacity;
+
+            context.SaveChanges();
+        }
+
     }
 }
