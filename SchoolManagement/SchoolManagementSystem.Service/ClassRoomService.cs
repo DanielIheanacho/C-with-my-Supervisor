@@ -26,5 +26,13 @@ namespace SchoolManagementSystem.Service
             return classRooms;
         }
 
+        public ClassRoom GetClassRoom(User user,string name)
+        {
+            using var context = new AppDbContext();
+            var classRoom = context.ClassRooms.Single(c => c.SchoolId == user.SchoolId && c.Name == name);
+
+            return classRoom;
+        }
+
     }
 }
