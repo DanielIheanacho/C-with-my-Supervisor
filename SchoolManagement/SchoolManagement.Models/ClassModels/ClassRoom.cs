@@ -7,11 +7,5 @@
         public int Capacity { get; set; }
         public int SchoolId { get; set; }
 
-        public void Print()
         {
-            Console.WriteLine("ClassRoom ID: " + this.Id);
-            Console.WriteLine("Name: " + this.Name);
-            Console.WriteLine("Capacity: " + this.Capacity);
         }
-    }
-}
