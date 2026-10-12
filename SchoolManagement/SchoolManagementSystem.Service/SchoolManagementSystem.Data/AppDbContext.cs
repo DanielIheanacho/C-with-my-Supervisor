@@ -23,10 +23,18 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
             modelBuilder.Entity<Admin>().ToTable("Admins");
             modelBuilder.Entity<Teacher>().ToTable("Teachers");
             modelBuilder.Entity<Guardian>().ToTable("Guardians");
-
+            
             modelBuilder.Entity<User>()
                 .Property(u => u.UserId)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => new { u.Email})
+                .IsUnique();
+
+            modelBuilder.Entity<ClassRoom>()
+                .HasIndex(r => new { r.Name, r.SchoolId })
+                .IsUnique();
         }
     }
 }
