@@ -34,4 +34,18 @@ namespace SchoolManagementSystem.Service
             return subject;
         }
 
+        public void UpdateSubject(SubjectInfo subjectInfo)
+        {
+            using var context = new AppDbContext();
+
+            var subjectToUpdate = context.Subjects
+                .Single(s => s.SchoolId == subjectInfo.SchoolId && s.Name == subjectInfo.Name);
+
+            subjectToUpdate.Name = subjectInfo.Name;
+            subjectToUpdate.ClassRoom = subjectInfo.ClassRoom;
+            subjectToUpdate.IsCore = subjectInfo.IsCore;
+
+            context.SaveChanges();
+        }
+
 }
