@@ -26,10 +26,10 @@ namespace SchoolManagementSystem.Service
             return subjects;
         }
 
-        public static Subject GetSubject(string name)
+        public static Subject GetSubject(int id)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
+            var subject = context.Subjects.Single(c => c.SubjectId == id);
 
             return subject;
         }
@@ -48,10 +48,10 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static void RemoveSubject(string name)
+        public static void RemoveSubject(int subjectId)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
+            var subject = context.Subjects.Single(c => c.SubjectId == subjectId);
 
             context.Subjects.Remove(subject);
             context.SaveChanges();

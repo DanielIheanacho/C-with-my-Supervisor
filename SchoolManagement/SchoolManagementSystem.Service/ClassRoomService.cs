@@ -26,10 +26,10 @@ namespace SchoolManagementSystem.Service
             return classRooms;
         }
 
-        public static ClassRoom GetClassRoom(string name)
+        public static ClassRoom GetClassRoom(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
+            var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
             return classRoom;
         }
@@ -47,10 +47,10 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static void RemoveClassRoom(string name)
+        public static void RemoveClassRoom(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.SchoolId == GeneralVariables.SchoolId && c.Name == name);
+            var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
             context.ClassRooms.Remove(classRoom);
             context.SaveChanges();
