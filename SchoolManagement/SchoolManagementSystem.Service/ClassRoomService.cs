@@ -6,14 +6,14 @@ namespace SchoolManagementSystem.Service
 {
     public static class ClassRoomService
     {
-        public static void SaveClassRoom(ClassRoom classRoom)
+        public static void CreateClassRoom(ClassRoom classRoom)
         {
             using var context = new AppDbContext();
             context.Add(classRoom);
             context.SaveChanges();
         }
 
-        public static List<(int ClassRoomId,string Name)> GetClassRooms()
+        public static List<(int ClassRoomId,string Name)> GetAllClassRooms()
         {
             using var context = new AppDbContext();
             return context.ClassRooms
@@ -25,7 +25,7 @@ namespace SchoolManagementSystem.Service
                 .ToList();
         }
 
-        public static ClassRoom GetClassRoom(int classRoomId)
+        public static ClassRoom GetClassRoomById(int classRoomId)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
@@ -33,7 +33,7 @@ namespace SchoolManagementSystem.Service
             return classRoom;
         }
 
-        public static void UpdateClassRoom(ClassRoom classUpdate, int classRoomId)
+        public static void UpdateClassRoom(int classRoomId, ClassRoom classUpdate)
         {
             using var context = new AppDbContext();
 
@@ -46,7 +46,7 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static void RemoveClassRoom(int classRoomId)
+        public static void DeleteClassRoom(int classRoomId)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);

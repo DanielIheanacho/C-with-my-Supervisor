@@ -6,14 +6,14 @@ namespace SchoolManagementSystem.Service
 {
     public static class SubjectService
     {
-        public static void SaveSubject(Subject subject)
+        public static void CreateSubject(Subject subject)
         {
             using var context = new AppDbContext();
             context.Add(subject);
             context.SaveChanges();
         }
 
-        public static List<(int SubjectId, string Name)> GetSubjects()
+        public static List<(int SubjectId, string Name)> GetAllSubjects()
         {
             using var context = new AppDbContext();
 
@@ -27,7 +27,7 @@ namespace SchoolManagementSystem.Service
                 .ToList();
         }
 
-        public static Subject GetSubject(int id)
+        public static Subject GetSubjectById(int id)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == id);
@@ -35,7 +35,7 @@ namespace SchoolManagementSystem.Service
             return subject;
         }
 
-        public static void UpdateSubject(Subject subjectUpdate, int id)
+        public static void UpdateSubject(int id, Subject subjectUpdate)
         {
             using var context = new AppDbContext();
 
@@ -49,7 +49,7 @@ namespace SchoolManagementSystem.Service
             context.SaveChanges();
         }
 
-        public static void RemoveSubject(int subjectId)
+        public static void DeleteSubject(int subjectId)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == subjectId);
