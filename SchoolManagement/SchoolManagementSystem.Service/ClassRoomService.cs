@@ -25,12 +25,17 @@ namespace SchoolManagementSystem.Service
                 .ToList();
         }
 
-        public static ClassRoom GetClassRoomById(int classRoomId)
+        public static ClassRoom? GetClassRoomById(int classRoomId)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
-            return classRoom;
+            if (classRoom != null)
+            {
+                return classRoom;
+            }
+
+            return null;
         }
 
         public static void UpdateClassRoom(int classRoomId, ClassRoom classUpdate)
@@ -40,10 +45,13 @@ namespace SchoolManagementSystem.Service
             var classToUpdate = context.ClassRooms
                 .Single(c => c.ClassRoomId == classRoomId);
 
-            classToUpdate.Name = classUpdate.Name;
-            classToUpdate.Capacity = classUpdate.Capacity;
+            if (classToUpdate != null)
+            {
+                classToUpdate.Name = classUpdate.Name;
+                classToUpdate.Capacity = classUpdate.Capacity;
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
 
         public static void DeleteClassRoom(int classRoomId)
@@ -51,8 +59,11 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
-            context.ClassRooms.Remove(classRoom);
-            context.SaveChanges();
+            if (classRoom != null)
+            {
+                context.ClassRooms.Remove(classRoom);
+                context.SaveChanges();
+            }
         }
     }
 }

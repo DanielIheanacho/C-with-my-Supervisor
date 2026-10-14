@@ -27,12 +27,16 @@ namespace SchoolManagementSystem.Service
                 .ToList();
         }
 
-        public static Subject GetSubjectById(int id)
+        public static Subject? GetSubjectById(int id)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == id);
+            if (subject != null)
+            {
+                return subject;
+            }
 
-            return subject;
+            return null;
         }
 
         public static void UpdateSubject(int id, Subject subjectUpdate)
@@ -42,11 +46,13 @@ namespace SchoolManagementSystem.Service
             var subjectToUpdate = context.Subjects
                 .Single(s => s.SubjectId == id);
 
-            subjectToUpdate.Name = subjectUpdate.Name;
-            subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
-            subjectToUpdate.IsCore = subjectUpdate.IsCore;
-
-            context.SaveChanges();
+            if (subjectToUpdate != null)
+            {
+                subjectToUpdate.Name = subjectUpdate.Name;
+                subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
+                subjectToUpdate.IsCore = subjectUpdate.IsCore;
+                context.SaveChanges();
+            }
         }
 
         public static void DeleteSubject(int subjectId)
@@ -54,9 +60,11 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == subjectId);
 
-            context.Subjects.Remove(subject);
-            context.SaveChanges();
-
+            if (subject != null)
+            {
+                context.Subjects.Remove(subject);
+                context.SaveChanges();
+            }
         }
     }
 }
