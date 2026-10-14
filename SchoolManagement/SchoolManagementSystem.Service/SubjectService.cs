@@ -31,40 +31,43 @@ namespace SchoolManagementSystem.Service
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == id);
-            if (subject != null)
-            {
-                return subject;
-            }
-
-            return null;
+     
+            return subject;
         }
 
-        public static void UpdateSubject(int id, Subject subjectUpdate)
+        public static bool UpdateSubject(int id, Subject subjectUpdate)
         {
             using var context = new AppDbContext();
 
             var subjectToUpdate = context.Subjects
                 .Single(s => s.SubjectId == id);
 
-            if (subjectToUpdate != null)
+            if (subjectToUpdate == null)
             {
-                subjectToUpdate.Name = subjectUpdate.Name;
-                subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
-                subjectToUpdate.IsCore = subjectUpdate.IsCore;
-                context.SaveChanges();
+                return false;
             }
+
+            subjectToUpdate.Name = subjectUpdate.Name;
+            subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
+            subjectToUpdate.IsCore = subjectUpdate.IsCore;
+            context.SaveChanges();
+
+            return true;
         }
 
-        public static void DeleteSubject(int subjectId)
+        public static bool DeleteSubject(int subjectId)
         {
             using var context = new AppDbContext();
             var subject = context.Subjects.Single(c => c.SubjectId == subjectId);
 
-            if (subject != null)
+            if (subject == null)
             {
-                context.Subjects.Remove(subject);
-                context.SaveChanges();
+                return false;
             }
+
+            context.Subjects.Remove(subject);
+            context.SaveChanges();
+            return true;
         }
     }
 }

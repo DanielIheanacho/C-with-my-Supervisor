@@ -30,40 +30,42 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
-            if (classRoom != null)
-            {
-                return classRoom;
-            }
-
-            return null;
+            return classRoom;
+        
         }
 
-        public static void UpdateClassRoom(int classRoomId, ClassRoom classUpdate)
+        public static bool UpdateClassRoom(int classRoomId, ClassRoom classUpdate)
         {
             using var context = new AppDbContext();
 
             var classToUpdate = context.ClassRooms
                 .Single(c => c.ClassRoomId == classRoomId);
 
-            if (classToUpdate != null)
+            if (classToUpdate == null)
             {
-                classToUpdate.Name = classUpdate.Name;
-                classToUpdate.Capacity = classUpdate.Capacity;
-
-                context.SaveChanges();
+                return false;
             }
+
+            classToUpdate.Name = classUpdate.Name;
+            classToUpdate.Capacity = classUpdate.Capacity;
+
+            context.SaveChanges();
+            return true;
         }
 
-        public static void DeleteClassRoom(int classRoomId)
+        public static bool DeleteClassRoom(int classRoomId)
         {
             using var context = new AppDbContext();
             var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
 
-            if (classRoom != null)
+            if (classRoom == null)
             {
-                context.ClassRooms.Remove(classRoom);
-                context.SaveChanges();
+                return false;
             }
+
+            context.ClassRooms.Remove(classRoom);
+            context.SaveChanges();
+            return true;
         }
     }
 }
