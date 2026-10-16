@@ -2,7 +2,7 @@
 {
     public class Subject
     {
-        public int SubjectId { get; }
+        public int SubjectId { get; set; }
         public string Name { get; set; }
         public ClassRoom ClassRoom { get; set; }
         public int SchoolId { get; set; }
