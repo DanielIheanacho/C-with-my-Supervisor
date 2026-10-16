@@ -6,40 +6,39 @@ namespace SchoolManagementSystem.Service
 {
     public static class ClassRoomService
     {
-        public static void CreateClassRoom(ClassRoom classRoom)
+        public static async Task CreateClassRoomAsync(ClassRoom classRoom)
         {
             using var context = new AppDbContext();
             context.Add(classRoom);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public static List<(int ClassRoomId,string Name)> GetAllClassRooms()
+        public static async Task<List<(int ClassRoomId,string Name)>> GetAllClassRoomsAsync()
         {
             using var context = new AppDbContext();
-            return context.ClassRooms
+            return await context.ClassRooms
                 .AsNoTracking()
                 .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
-                .AsEnumerable()
-                .Select(c => (ClassRoomId: c.ClassRoomId, Name: c.Name))
-                .ToList();
+                .Select(c => new ValueTuple<int, string>(c.ClassRoomId, c.Name))
+                .ToListAsync();
         }
 
-        public static ClassRoom? GetClassRoomById(int classRoomId)
+        public static async Task<ClassRoom?> GetClassRoomByIdAsync(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
+            var classRoom = await context.ClassRooms.SingleAsync(c => c.ClassRoomId == classRoomId);
 
             return classRoom;
         
         }
 
-        public static bool UpdateClassRoom(int classRoomId, ClassRoom classUpdate)
+        public static async Task<bool> UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
         {
             using var context = new AppDbContext();
 
-            var classToUpdate = context.ClassRooms
-                .Single(c => c.ClassRoomId == classRoomId);
+            var classToUpdate = await context.ClassRooms
+                .SingleAsync(c => c.ClassRoomId == classRoomId);
 
             if (classToUpdate == null)
             {
@@ -49,14 +48,14 @@ namespace SchoolManagementSystem.Service
             classToUpdate.Name = classUpdate.Name;
             classToUpdate.Capacity = classUpdate.Capacity;
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return true;
         }
 
-        public static bool DeleteClassRoom(int classRoomId)
+        public static async Task<bool> DeleteClassRoomAsync(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = context.ClassRooms.Single(c => c.ClassRoomId == classRoomId);
+            var classRoom = await context.ClassRooms.SingleAsync(c => c.ClassRoomId == classRoomId);
 
             if (classRoom == null)
             {
@@ -64,7 +63,7 @@ namespace SchoolManagementSystem.Service
             }
 
             context.ClassRooms.Remove(classRoom);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return true;
         }
     }

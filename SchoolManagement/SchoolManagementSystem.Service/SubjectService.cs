@@ -6,41 +6,40 @@ namespace SchoolManagementSystem.Service
 {
     public static class SubjectService
     {
-        public static void CreateSubject(Subject subject)
+        public static void CreateSubjectAsync(Subject subject)
         {
             using var context = new AppDbContext();
             context.Add(subject);
-            context.SaveChanges();
+            context.SaveChangesAsync();
         }
 
-        public static List<(int SubjectId, string Name)> GetAllSubjects()
+        public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
         {
             using var context = new AppDbContext();
 
-            return context.Subjects
+            return await context.Subjects
                 .AsNoTracking()
                 .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
                 .Select(c => new { c.SubjectId, c.Name })
-                .AsEnumerable()
-                .Select(c => (SubjectId: c.SubjectId, Name: c.Name))
-                .ToList();
+                .Select(c => new ValueTuple<int, string>(c.SubjectId, c.Name))
+                .ToListAsync();
         }
 
-        public static Subject? GetSubjectById(int id)
+        public static async Task<Subject?> GetSubjectByIdAsync(int id)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SubjectId == id);
+            var subject = await  context.Subjects.SingleAsync(c => c.SubjectId == id);
      
             return subject;
         }
 
-        public static bool UpdateSubject(int id, Subject subjectUpdate)
+        public static async Task<bool> UpdateSubjectAsync(int id, Subject subjectUpdate)
         {
             using var context = new AppDbContext();
 
-            var subjectToUpdate = context.Subjects
-                .Single(s => s.SubjectId == id);
+            var subjectToUpdate = await context.Subjects
+                .SingleAsync(s => s.SubjectId == id);
 
             if (subjectToUpdate == null)
             {
@@ -50,15 +49,15 @@ namespace SchoolManagementSystem.Service
             subjectToUpdate.Name = subjectUpdate.Name;
             subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
             subjectToUpdate.IsCore = subjectUpdate.IsCore;
-            context.SaveChanges();
+            await  context.SaveChangesAsync();
 
             return true;
         }
 
-        public static bool DeleteSubject(int subjectId)
+        public static async Task<bool> DeleteSubjectAsync(int subjectId)
         {
             using var context = new AppDbContext();
-            var subject = context.Subjects.Single(c => c.SubjectId == subjectId);
+            var subject = await context.Subjects.SingleAsync(c => c.SubjectId == subjectId);
 
             if (subject == null)
             {
@@ -66,7 +65,7 @@ namespace SchoolManagementSystem.Service
             }
 
             context.Subjects.Remove(subject);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
             return true;
         }
     }
