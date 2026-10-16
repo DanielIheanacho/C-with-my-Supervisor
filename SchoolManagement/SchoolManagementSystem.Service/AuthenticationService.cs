@@ -6,7 +6,7 @@ namespace SchoolManagementSystem.Service
 {
     public class AuthenticationService
     {
-        public static void RegisterSchoolAndAdmin(SchoolInfo schoolInfo, UserInfo userInfo)
+        public static async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, UserInfo userInfo)
         {
             School school = School.RegisterSchool(schoolInfo);
             User user = Admin.RegisterNewAdmin(school, userInfo);
@@ -14,17 +14,17 @@ namespace SchoolManagementSystem.Service
             {
                 context.Add(school);
                 context.Add(user);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        public static User? LoginUser(string email, string password)
+        public static async Task<User?> LoginUserAsync(string email, string password)
         {
             using var context = new AppDbContext();
 
-            var user = context.Users
+            var user = await context.Users
                 .AsNoTracking()
-                .FirstOrDefault(u => u.Email == email && u.PassWord == password);
+                .FirstOrDefaultAsync(u => u.Email == email && u.PassWord == password);
 
             return user;
         }

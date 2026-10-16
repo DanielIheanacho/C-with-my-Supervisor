@@ -8,6 +8,8 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
         public DbSet<User> Users { get; set; }
         public DbSet<School> Schools { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<ClassRoom> ClassRooms { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -21,10 +23,18 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
             modelBuilder.Entity<Admin>().ToTable("Admins");
             modelBuilder.Entity<Teacher>().ToTable("Teachers");
             modelBuilder.Entity<Guardian>().ToTable("Guardians");
-
+            
             modelBuilder.Entity<User>()
                 .Property(u => u.UserId)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<User>()
+                .HasIndex(u => new { u.Email})
+                .IsUnique();
+
+            modelBuilder.Entity<ClassRoom>()
+                .HasIndex(r => new { r.Name, r.SchoolId })
+                .IsUnique();
         }
     }
 }
