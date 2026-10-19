@@ -1,5 +1,5 @@
 ﻿using SchoolManagement.Models.ClassModels;
-using SchoolManagementSystem.Service;
+using SchoolManagementSystem.Service.Service;
 
 while (true)
 {
