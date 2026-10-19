@@ -19,7 +19,7 @@ namespace SchoolManagementSystem.Service
 
             using var context = new AppDbContext();
 
-            var user = await context.Users.SingleAsync(u => u.UserId == userId);
+            var user = await context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
             if (user != null)
             {
                 context.Users.Remove(user);
@@ -53,7 +53,7 @@ namespace SchoolManagementSystem.Service
                 .AsNoTracking()
                 .Where(u => u.Email == user.Email && u.PassWord == user.PassWord)
                 .Select(u => u.UserId)
-                .SingleAsync();
+                .SingleOrDefaultAsync();
             return userId;
         }
 
@@ -63,8 +63,12 @@ namespace SchoolManagementSystem.Service
 
             using var context = new AppDbContext();
 
-            var userToUpdate = await context.Users.SingleAsync(u => u.UserId == userId);
+            var userToUpdate = await context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
 
+            if (userToUpdate == null)
+            {
+                return;
+            }
             userToUpdate.FirstName = userInfo.FirstName;
             userToUpdate.LastName = userInfo.LastName;
             userToUpdate.Email = userInfo.Email;

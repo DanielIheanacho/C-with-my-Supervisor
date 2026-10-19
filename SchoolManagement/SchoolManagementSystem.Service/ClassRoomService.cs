@@ -27,7 +27,7 @@ namespace SchoolManagementSystem.Service
         public static async Task<ClassRoom?> GetClassRoomByIdAsync(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = await context.ClassRooms.SingleAsync(c => c.ClassRoomId == classRoomId);
+            var classRoom = await context.ClassRooms.SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
 
             return classRoom;
         
@@ -38,7 +38,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
 
             var classToUpdate = await context.ClassRooms
-                .SingleAsync(c => c.ClassRoomId == classRoomId);
+                .SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
 
             if (classToUpdate == null)
             {
@@ -55,7 +55,7 @@ namespace SchoolManagementSystem.Service
         public static async Task<bool> DeleteClassRoomAsync(int classRoomId)
         {
             using var context = new AppDbContext();
-            var classRoom = await context.ClassRooms.SingleAsync(c => c.ClassRoomId == classRoomId);
+            var classRoom = await context.ClassRooms.SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
 
             if (classRoom == null)
             {

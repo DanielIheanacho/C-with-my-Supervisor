@@ -21,7 +21,6 @@ namespace SchoolManagementSystem.Service
                 .AsNoTracking()
                 .Where(c => c.SchoolId == GeneralVariables.SchoolId)
                 .OrderBy(c => c.Name)
-                .Select(c => new { c.SubjectId, c.Name })
                 .Select(c => new ValueTuple<int, string>(c.SubjectId, c.Name))
                 .ToListAsync();
         }
@@ -29,7 +28,7 @@ namespace SchoolManagementSystem.Service
         public static async Task<Subject?> GetSubjectByIdAsync(int id)
         {
             using var context = new AppDbContext();
-            var subject = await  context.Subjects.SingleAsync(c => c.SubjectId == id);
+            var subject = await  context.Subjects.SingleOrDefaultAsync(c => c.SubjectId == id);
      
             return subject;
         }
@@ -39,7 +38,7 @@ namespace SchoolManagementSystem.Service
             using var context = new AppDbContext();
 
             var subjectToUpdate = await context.Subjects
-                .SingleAsync(s => s.SubjectId == id);
+                .SingleOrDefaultAsync(s => s.SubjectId == id);
 
             if (subjectToUpdate == null)
             {
@@ -57,7 +56,7 @@ namespace SchoolManagementSystem.Service
         public static async Task<bool> DeleteSubjectAsync(int subjectId)
         {
             using var context = new AppDbContext();
-            var subject = await context.Subjects.SingleAsync(c => c.SubjectId == subjectId);
+            var subject = await context.Subjects.SingleOrDefaultAsync(c => c.SubjectId == subjectId);
 
             if (subject == null)
             {
