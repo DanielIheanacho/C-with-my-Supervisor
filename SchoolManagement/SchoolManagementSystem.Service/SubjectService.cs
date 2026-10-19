@@ -6,11 +6,11 @@ namespace SchoolManagementSystem.Service
 {
     public static class SubjectService
     {
-        public static void CreateSubjectAsync(Subject subject)
+        public static async Task CreateSubjectAsync(Subject subject)
         {
             using var context = new AppDbContext();
             context.Add(subject);
-            context.SaveChangesAsync();
+            await context.SaveChangesAsync();
         }
 
         public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
