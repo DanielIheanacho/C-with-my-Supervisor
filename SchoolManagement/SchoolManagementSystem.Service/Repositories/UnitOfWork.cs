@@ -1,6 +1,10 @@
-﻿namespace SchoolManagementSystem.Service.Repositories
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SchoolManagementSystem.Service.Repositories
 {
-    public class UnitOfWork
+    internal class UnitOfWork
     {
     }
 }

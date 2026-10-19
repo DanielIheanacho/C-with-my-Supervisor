@@ -1,6 +1,10 @@
-﻿namespace SchoolManagementSystem.Service.Interfaces
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace SchoolManagementSystem.Service.Interfaces
 {
-    public interface IRepository
+    internal class IRepository
     {
     }
 }
