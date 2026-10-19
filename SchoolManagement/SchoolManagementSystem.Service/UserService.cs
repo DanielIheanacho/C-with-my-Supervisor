@@ -6,32 +6,32 @@ namespace SchoolManagementSystem.Service
 {
     public class UserService
     {
-        public static void SaveUser<T>(T user) where T : User
+        public static async Task SaveUserAsync<T>(T user) where T : User
         {
 
             using var context = new AppDbContext();
             context.Add(user);
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
-        public static void RemoveUser(int userId)
+        public static async Task RemoveUserAsync(int userId)
         {
 
             using var context = new AppDbContext();
 
-            var user = context.Users.Single(u => u.UserId == userId);
+            var user = await context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
             if (user != null)
             {
                 context.Users.Remove(user);
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
         }
 
-        public static (int Count, List<UserInfo> List) GetUsersInCategory(Admin admin, Roles role)
+        public static async Task<(int Count, List<UserInfo> List)> GetUsersInCategoryAsync(Admin admin, Roles role)
         {
             using var context = new AppDbContext();
 
-            List<UserInfo> users = context.Users
+            List<UserInfo> users = await context.Users
                 .AsNoTracking()
                 .Where(u => u.SchoolId == admin.SchoolId && u.Role == role)
                 .OrderBy(u => u.LastName)
@@ -41,36 +41,40 @@ namespace SchoolManagementSystem.Service
                     FirstName = u.FirstName,
                     LastName = u.LastName
                 })
-                .ToList();
+                .ToListAsync(); 
 
             return (users.Count, users);
         }
 
-        public static int GetUser<T>(T user) where T : User, new()
+        public static async Task<int> GetUserAsync<T>(T user) where T : User, new()
         {
             using var context = new AppDbContext();
-            int userId = context.Users
+            int userId = await context.Users
                 .AsNoTracking()
                 .Where(u => u.Email == user.Email && u.PassWord == user.PassWord)
                 .Select(u => u.UserId)
-                .Single();
+                .SingleOrDefaultAsync();
             return userId;
         }
 
-        public static void UpdateUser<T>(T user, UserInfo userInfo) where T : User, new()
+        public static async Task UpdateUserAsync<T>(T user, UserInfo userInfo) where T : User, new()
         {
-            int userId = GetUser<T>(user);
+            int userId = await GetUserAsync<T>(user);
 
             using var context = new AppDbContext();
 
-            var userToUpdate = context.Users.Single(u => u.UserId == userId);
+            var userToUpdate = await context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
 
+            if (userToUpdate == null)
+            {
+                return;
+            }
             userToUpdate.FirstName = userInfo.FirstName;
             userToUpdate.LastName = userInfo.LastName;
             userToUpdate.Email = userInfo.Email;
             userToUpdate.PassWord = userInfo.PassWord;
 
-            context.SaveChanges();
+            await context.SaveChangesAsync();
         }
 
     }
