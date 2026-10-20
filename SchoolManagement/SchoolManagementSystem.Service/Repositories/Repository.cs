@@ -16,11 +16,10 @@ namespace SchoolManagementSystem.Service.Repositories
             _dbSet = context.Set<T>();
         }
 
-        public async Task<bool> AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             await _dbSet.AddAsync(entity);
             await _context.SaveChangesAsync();
-            return true;
         }
 
         public async Task<IEnumerable<T>> GetAllAsync()
