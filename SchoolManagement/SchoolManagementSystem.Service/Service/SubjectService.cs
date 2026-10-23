@@ -2,7 +2,7 @@
 using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
-namespace SchoolManagementSystem.Service
+namespace SchoolManagementSystem.Service.Service
 {
     public static class SubjectService
     {
