@@ -1,70 +1,63 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagement.Models.ClassModels;
-using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
+﻿using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.Interfaces;
 
 namespace SchoolManagementSystem.Service.Service
 {
-    public static class ClassRoomService
+    public class ClassRoomService
     {
-        public static async Task CreateClassRoomAsync(ClassRoom classRoom)
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ClassRoomService(IUnitOfWork unitOfWork)
         {
-            using var context = new AppDbContext();
-            context.Add(classRoom);
-            await context.SaveChangesAsync();
+            _unitOfWork = unitOfWork;
         }
 
-        public static async Task<List<(int ClassRoomId,string Name)>> GetAllClassRoomsAsync()
+        public async Task CreateClassRoomAsync(ClassRoom classRoom)
         {
-            using var context = new AppDbContext();
-            return await context.ClassRooms
-                .AsNoTracking()
-                .Where(c => c.SchoolId == GeneralVariables.SchoolId)
-                .OrderBy(c => c.Name)
-                .Select(c => new ValueTuple<int, string>(c.ClassRoomId, c.Name))
-                .ToListAsync();
+            await _unitOfWork.ClassRooms.AddAsync(classRoom);
+            await _unitOfWork.SaveChangesAsync();
+            _unitOfWork.Dispose();
         }
 
-        public static async Task<ClassRoom?> GetClassRoomByIdAsync(int classRoomId)
+        //public async Task<List<(int ClassRoomId,string Name)>> GetAllClassRoomsAsync()
+        //{
+        //    await _unitOfWork.ClassRooms.GetAllAsync();
+        //    await _unitOfWork.SaveChangesAsync();
+        //    _unitOfWork.Dispose();
+        //}
+
+        public async Task<ClassRoom?> GetByIdAsync(int classRoomId)
         {
-            using var context = new AppDbContext();
-            var classRoom = await context.ClassRooms.SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
-
-            return classRoom;
-        
-        }
-
-        public static async Task<bool> UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
-        {
-            using var context = new AppDbContext();
-
-            var classToUpdate = await context.ClassRooms
-                .SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
-
-            if (classToUpdate == null)
-            {
-                return false;
-            }
-
-            classToUpdate.Name = classUpdate.Name;
-            classToUpdate.Capacity = classUpdate.Capacity;
-
-            await context.SaveChangesAsync();
-            return true;
-        }
-
-        public static async Task<bool> DeleteClassRoomAsync(int classRoomId)
-        {
-            using var context = new AppDbContext();
-            var classRoom = await context.ClassRooms.SingleOrDefaultAsync(c => c.ClassRoomId == classRoomId);
+            var classRoom = await _unitOfWork.ClassRooms.GetByIdAsync(classRoomId);
 
             if (classRoom == null)
             {
-                return false;
+                return null;
             }
 
-            context.ClassRooms.Remove(classRoom);
-            await context.SaveChangesAsync();
-            return true;
+            _unitOfWork.Dispose();
+
+            return classRoom;
+        }
+
+        //public async Task UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
+        //{
+
+        //}
+
+        public async Task DeleteClassRoomAsync(int classRoomId)
+        {
+            var classRoom = await _unitOfWork.ClassRooms.GetByIdAsync(classRoomId);
+
+            if (classRoom == null)
+            {
+                return;
+            }
+
+            await _unitOfWork.ClassRooms.Delete(classRoom);
+            await _unitOfWork.SaveChangesAsync();
+
+            _unitOfWork.Dispose();
         }
     }
 }

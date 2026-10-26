@@ -1,71 +1,85 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service.Service
 {
-    public static class SubjectService
+    public class SubjectService
     {
-        public static async Task CreateSubjectAsync(Subject subject)
+        private readonly IUnitOfWork _unitOfWork;
+        public SubjectService(IUnitOfWork unitOfWork)
         {
-            using var context = new AppDbContext();
-            context.Add(subject);
-            await context.SaveChangesAsync();
+            _unitOfWork = unitOfWork;
         }
 
-        public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
+        public async Task CreateSubjectAsync(Subject subject)
         {
-            using var context = new AppDbContext();
+            await _unitOfWork.Subjects.AddAsync(subject);
+            await _unitOfWork.SaveChangesAsync();
 
-            return await context.Subjects
-                .AsNoTracking()
-                .Where(c => c.SchoolId == GeneralVariables.SchoolId)
-                .OrderBy(c => c.Name)
-                .Select(c => new ValueTuple<int, string>(c.SubjectId, c.Name))
-                .ToListAsync();
+            _unitOfWork.Dispose();
         }
 
-        public static async Task<Subject?> GetSubjectByIdAsync(int id)
+        //public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
+        //{
+        //    using var context = new AppDbContext();
+
+        //    return await context.Subjects
+        //        .AsNoTracking()
+        //        .Where(c => c.SchoolId == GeneralVariables.SchoolId)
+        //        .OrderBy(c => c.Name)
+        //        .Select(c => new ValueTuple<int, string>(c.SubjectId, c.Name))
+        //        .ToListAsync();
+        //}
+
+        public async Task<Subject?> GetByIdAsync(int subjectId)
         {
-            using var context = new AppDbContext();
-            var subject = await  context.Subjects.SingleOrDefaultAsync(c => c.SubjectId == id);
-     
+            var subject = await _unitOfWork.Subjects.GetByIdAsync(subjectId);
+
+            if(subject == null)
+            {
+                return null;
+            }
+
+            _unitOfWork.Dispose();
+
             return subject;
         }
 
-        public static async Task<bool> UpdateSubjectAsync(int id, Subject subjectUpdate)
+        //public async Task<bool> UpdateSubjectAsync(int id, Subject subjectUpdate)
+        //{
+        //    using var context = new AppDbContext();
+
+        //    var subjectToUpdate = await context.Subjects
+        //        .SingleOrDefaultAsync(s => s.SubjectId == id);
+
+        //    if (subjectToUpdate == null)
+        //    {
+        //        return false;
+        //    }
+
+        //    subjectToUpdate.Name = subjectUpdate.Name;
+        //    subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
+        //    subjectToUpdate.IsCore = subjectUpdate.IsCore;
+        //    await  context.SaveChangesAsync();
+
+        //    return true;
+        //}
+
+        public async Task DeleteSubjectAsync(int subjectId)
         {
-            using var context = new AppDbContext();
-
-            var subjectToUpdate = await context.Subjects
-                .SingleOrDefaultAsync(s => s.SubjectId == id);
-
-            if (subjectToUpdate == null)
-            {
-                return false;
-            }
-
-            subjectToUpdate.Name = subjectUpdate.Name;
-            subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
-            subjectToUpdate.IsCore = subjectUpdate.IsCore;
-            await  context.SaveChangesAsync();
-
-            return true;
-        }
-
-        public static async Task<bool> DeleteSubjectAsync(int subjectId)
-        {
-            using var context = new AppDbContext();
-            var subject = await context.Subjects.SingleOrDefaultAsync(c => c.SubjectId == subjectId);
+            var subject = await _unitOfWork.Subjects.GetByIdAsync(subjectId);
 
             if (subject == null)
             {
-                return false;
+                return ;
             }
 
-            context.Subjects.Remove(subject);
-            await context.SaveChangesAsync();
-            return true;
+            await _unitOfWork.Subjects.Delete(subject);
+            await _unitOfWork.SaveChangesAsync();
+
+            _unitOfWork.Dispose();
         }
     }
 }
