@@ -29,14 +29,18 @@ namespace SchoolManagementSystem.Service.Repositories
 
         public async Task<T?> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
 
-        public async Task UpdateAsync(T entity)
+        public Task Update(T entity)
         {
             _dbSet.Update(entity);
+
+            return Task.CompletedTask;
+
         }
 
-        public async Task DeleteAsync(T entity)
+        public Task Delete(T entity)
         {
             _dbSet.Remove(entity);
+            return Task.CompletedTask;
         }
     }
 }
