@@ -18,11 +18,6 @@ namespace SchoolManagementSystem.Service.Repositories
         {
             _context = context;
         }
-        
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
 
         public IRepository<User> Users => _users ??= new Repository<User>(_context);
         public IRepository<School> Schools => _schools ??= new Repository<School>(_context);
@@ -34,6 +29,10 @@ namespace SchoolManagementSystem.Service.Repositories
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }
