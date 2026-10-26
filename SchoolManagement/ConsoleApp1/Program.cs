@@ -1,5 +1,35 @@
-﻿using SchoolManagement.Models.ClassModels;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.Interfaces;
+using SchoolManagementSystem.Service.Repositories;
 using SchoolManagementSystem.Service.Service;
+using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        "Data Source=localhost\\SQLEXPRESS;Initial Catalog=SchoolManagementSystem;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0"));
+
+// Register your dependencies
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthenticationService>();
+
+var app = builder.Build();
+
+using var scope = app.Services.CreateScope();
+
+var userService = scope.ServiceProvider
+    .GetRequiredService<UserService>();
+var authenticationService = scope.ServiceProvider
+    .GetRequiredService<AuthenticationService>();
+
+
+
+Console.WriteLine("UserService is ready for testing.");
 
 while (true)
 {
@@ -16,36 +46,36 @@ while (true)
         case "1":
             var schoolInfo = InputSchoolDetail();
             var userInfo = InputUserInfo(true);
-            await AuthenticationService.RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
+            await authenticationService.RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
             break;
 
-        case "2":
-            Console.WriteLine("\n\nEmail: ");
-            string email = ValidInput();
-            Console.WriteLine("Password: ");
-            string passWord = ValidInput();
-            var user = await AuthenticationService.LoginUserAsync(email, passWord);
-            if (user == null)
-            {
-                Console.WriteLine("Invalid email or password.");
-                break;
-            }
+        //case "2":
+        //    Console.WriteLine("\n\nEmail: ");
+        //    string email = ValidInput();
+        //    Console.WriteLine("Password: ");
+        //    string passWord = ValidInput();
+        //    var user = await authenticationService.LoginUserAsync(email, passWord);
+        //    if (user == null)
+        //    {
+        //        Console.WriteLine("Invalid email or password.");
+        //        break;
+        //    }
 
-            Console.WriteLine($"Welcome, {user.FirstName}!");
+        //    Console.WriteLine($"Welcome, {user.FirstName}!");
 
-            switch (user)
-            {
-                case Admin admin:
-                    await AdminMenuAsync(admin);
-                    break;
-                case Teacher teacher:
-                    // teacher menu
-                    break;
-                case Guardian guardian:
-                    // guardian menu
-                    break;
-            }
-            break;
+        //    switch (user)
+        //    {
+        //        case Admin admin:
+        //            await AdminMenuAsync(admin);
+        //            break;
+        //        case Teacher teacher:
+        //            // teacher menu
+        //            break;
+        //        case Guardian guardian:
+        //            // guardian menu
+        //            break;
+        //    }
+        //    break;
 
     }
 }
@@ -73,23 +103,23 @@ async Task AdminMenuAsync(Admin admin)
                 {
                     var userInfo = InputUserInfo(false);
                     User newUser = admin.RegisterNewUser(userInfo);
-                    await UserService.SaveUserAsync(newUser);
+
                     break;
                 }
-            case "2":
-                await PrintUsersInCategoryAsync(admin, Roles.Admin);
-                break;
-            case "3":
-                await PrintUsersInCategoryAsync(admin, Roles.Teacher);
-                break;
-            case "4":
-                await PrintUsersInCategoryAsync(admin, Roles.Guardian);
-                break;
+            //case "2":
+            //    await PrintUsersInCategoryAsync(admin, Roles.Admin);
+            //    break;
+            //case "3":
+            //    await PrintUsersInCategoryAsync(admin, Roles.Teacher);
+            //    break;
+            //case "4":
+            //    await PrintUsersInCategoryAsync(admin, Roles.Guardian);
+            //    break;
             case "5":
                 await DeleteUserAsync(admin);
                 break;
-            case "6":
-                await UpdateDetailsAsync(admin);
+            //case "6":
+            //    await UpdateDetailsAsync(admin);
                 break;
             default:
                 Console.WriteLine("Invalid Input");
@@ -98,64 +128,64 @@ async Task AdminMenuAsync(Admin admin)
     }
 }
 
-async Task<(int Count, List<UserInfo> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
+//async Task<(int Count, List<UserInfo> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
 
-{
-    var users = await UserService.GetUsersInCategoryAsync(admin, role);
+//{
+//    var users = await UserService.GetUsersInCategoryAsync(admin, role);
 
-    if (users.Count == 0)
-    {
-        Console.WriteLine("No users found.");
-    }
-    else
-    {
-        int i = 1;
-        foreach (var u in users.List)
-        {
-            Console.WriteLine($"{i++}. {u.FirstName} {u.LastName}");
-        }
-    }
-    return (users.Count, users.List);
-}
+//    if (users.Count == 0)
+//    {
+//        Console.WriteLine("No users found.");
+//    }
+//    else
+//    {
+//        int i = 1;
+//        foreach (var u in users.List)
+//        {
+//            Console.WriteLine($"{i++}. {u.FirstName} {u.LastName}");
+//        }
+//    }
+//    return (users.Count, users.List);
+//}
 
-async Task UpdateDetailsAsync<T>(T user) where T : User, new()
-{
-    var userInfo = ExtractUserInfo(user);
-    while (true)
-    {
-        Console.WriteLine("1. Firstname");
-        Console.WriteLine("2. Lastame");
-        Console.WriteLine("3. Email");
-        Console.WriteLine("4. Password");
-        Console.WriteLine("0. Exit");
-        Console.WriteLine("Select Option: ");
-        switch (Console.ReadLine())
-        {
-            case "1":
-                userInfo.FirstName = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
-                break;
-            case "2":
-                userInfo.LastName = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
-                break;
-            case "3":
-                userInfo.Email = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
-                break;
-            case "4":
-                userInfo.PassWord = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
-                break;
-            case "0":
-                return;
-            default:
-                Console.WriteLine("Invalid Input");
-                break;
-        }
-    }
+//async Task UpdateDetailsAsync<T>(T user) where T : User, new()
+//{
+//    var userInfo = ExtractUserInfo(user);
+//    while (true)
+//    {
+//        Console.WriteLine("1. Firstname");
+//        Console.WriteLine("2. Lastame");
+//        Console.WriteLine("3. Email");
+//        Console.WriteLine("4. Password");
+//        Console.WriteLine("0. Exit");
+//        Console.WriteLine("Select Option: ");
+//        switch (Console.ReadLine())
+//        {
+//            case "1":
+//                userInfo.FirstName = ValidInput();
+//                await UserService.UpdateUserAsync(user, userInfo);
+//                break;
+//            case "2":
+//                userInfo.LastName = ValidInput();
+//                await UserService.UpdateUserAsync(user, userInfo);
+//                break;
+//            case "3":
+//                userInfo.Email = ValidInput();
+//                await UserService.UpdateUserAsync(user, userInfo);
+//                break;
+//            case "4":
+//                userInfo.PassWord = ValidInput();
+//                await UserService.UpdateUserAsync(user, userInfo);
+//                break;
+//            case "0":
+//                return;
+//            default:
+//                Console.WriteLine("Invalid Input");
+//                break;
+//        }
+//    }
 
-}
+//}
 
 UserInfo ExtractUserInfo<T>(T user) where T : User, new()
 {
@@ -185,15 +215,15 @@ async Task DeleteUserAsync(Admin admin)
         {
             case "0":
                 return;
-            case "1":
-                await DeleteUserInCategoryAsync(admin, Roles.Admin);
-                break;
-            case "2":
-                await DeleteUserInCategoryAsync(admin, Roles.Teacher);
-                break;
-            case "3":
-                await DeleteUserInCategoryAsync(admin, Roles.Guardian);
-                break;
+            //case "1":
+            //    await DeleteUserInCategoryAsync(admin, Roles.Admin);
+            //    break;
+            //case "2":
+            //    await DeleteUserInCategoryAsync(admin, Roles.Teacher);
+            //    break;
+            //case "3":
+            //    await DeleteUserInCategoryAsync(admin, Roles.Guardian);
+            //    break;
             default:
                 Console.WriteLine("Invalid Input");
                 break;
@@ -201,18 +231,18 @@ async Task DeleteUserAsync(Admin admin)
     }
 }
 
-async Task DeleteUserInCategoryAsync(Admin admin, Roles role)
-{
-    var result = await PrintUsersInCategoryAsync(admin, role);
-    var userCount = result.Count;
-    var user = result.List;
-    Console.WriteLine("Select option:");
-    if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
-    {
-        int userId = user[option - 1].UserId;
-        await UserService.RemoveUserAsync(userId);
-    }
-}
+//async Task DeleteUserInCategoryAsync(Admin admin, Roles role)
+//{
+//    var result = await PrintUsersInCategoryAsync(admin, role);
+//    var userCount = result.Count;
+//    var user = result.List;
+//    Console.WriteLine("Select option:");
+//    if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
+//    {
+//        int userId = user[option - 1].UserId;
+//        await UserService.UserAsync(userId);
+//    }
+//}
 
 SchoolInfo InputSchoolDetail()
 {
