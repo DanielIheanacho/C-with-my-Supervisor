@@ -19,7 +19,6 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
-            _unitOfWork.Dispose();
         }
 
         public async Task DeleteUserAsync(int userId)
@@ -34,7 +33,6 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.Users.Delete(user!);
             await _unitOfWork.SaveChangesAsync();
 
-            _unitOfWork.Dispose();
         }
 
         //public async Task<(int Count, List<UserInfo> List)> GetUsersInCategoryAsync(Admin admin, Roles role)
@@ -64,8 +62,6 @@ namespace SchoolManagementSystem.Service.Service
             {
                 return null;
             }
-
-            _unitOfWork.Dispose();
 
             return (T)user;
         }

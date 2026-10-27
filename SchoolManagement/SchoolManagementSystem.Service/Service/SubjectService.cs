@@ -18,7 +18,6 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.Subjects.AddAsync(subject);
             await _unitOfWork.SaveChangesAsync();
 
-            _unitOfWork.Dispose();
         }
 
         //public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
@@ -41,8 +40,6 @@ namespace SchoolManagementSystem.Service.Service
             {
                 return null;
             }
-
-            _unitOfWork.Dispose();
 
             return subject;
         }
@@ -79,7 +76,6 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.Subjects.Delete(subject);
             await _unitOfWork.SaveChangesAsync();
 
-            _unitOfWork.Dispose();
         }
     }
 }

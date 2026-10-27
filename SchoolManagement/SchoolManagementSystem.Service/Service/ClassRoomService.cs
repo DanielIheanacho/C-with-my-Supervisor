@@ -16,14 +16,13 @@ namespace SchoolManagementSystem.Service.Service
         {
             await _unitOfWork.ClassRooms.AddAsync(classRoom);
             await _unitOfWork.SaveChangesAsync();
-            _unitOfWork.Dispose();
+
         }
 
         //public async Task<List<(int ClassRoomId,string Name)>> GetAllClassRoomsAsync()
         //{
         //    await _unitOfWork.ClassRooms.GetAllAsync();
         //    await _unitOfWork.SaveChangesAsync();
-        //    _unitOfWork.Dispose();
         //}
 
         public async Task<ClassRoom?> GetByIdAsync(int classRoomId)
@@ -34,8 +33,6 @@ namespace SchoolManagementSystem.Service.Service
             {
                 return null;
             }
-
-            _unitOfWork.Dispose();
 
             return classRoom;
         }
@@ -57,7 +54,6 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.ClassRooms.Delete(classRoom);
             await _unitOfWork.SaveChangesAsync();
 
-            _unitOfWork.Dispose();
         }
     }
 }
