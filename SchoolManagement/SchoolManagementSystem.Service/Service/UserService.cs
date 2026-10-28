@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagement.Models.ClassModels;
-using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
+﻿using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 
 namespace SchoolManagementSystem.Service.Service
