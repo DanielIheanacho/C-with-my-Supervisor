@@ -27,7 +27,7 @@ var userService = scope.ServiceProvider
 Console.WriteLine("UserService is ready for testing.");
 
 while (true)
-{    
+{
     var authenticationService = scope.ServiceProvider
                     .GetRequiredService<AuthenticationService>();
 
@@ -85,7 +85,7 @@ while (true)
 
 async Task AdminMenuAsync(Admin admin)
 {
-    
+
     while (true)
     {
         Console.WriteLine("---Menu---\n");
@@ -322,3 +322,357 @@ static string ValidInput()
         Console.WriteLine("Cannot be left Empty");
     }
 }
+
+
+//===============================================================
+//                    How  To Use Test
+//===============================================================
+
+//Comment everythis not commented
+            
+//            AND
+
+//Uncomment everything that is commented
+
+
+
+
+
+
+//using Microsoft.EntityFrameworkCore;
+//using Microsoft.Extensions.DependencyInjection;
+//using Microsoft.Extensions.Hosting;
+
+//using SchoolManagement.Models.ClassModels;
+//using SchoolManagementSystem.Service.Interfaces;
+//using SchoolManagementSystem.Service.Repositories;
+//using SchoolManagementSystem.Service.Service;
+//using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
+
+//var builder = Host.CreateApplicationBuilder(args);
+
+//// Database configuration
+//builder.Services.AddDbContext<AppDbContext>(options =>
+//    options.UseSqlServer(
+//        "Data Source=localhost\\SQLEXPRESS;" +
+//        "Initial Catalog=SchoolManagementSystem;" +
+//        "Integrated Security=True;" +
+//        "Encrypt=True;" +
+//        "TrustServerCertificate=True"));
+
+//// Dependency injection
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddScoped<ClassRoomService>();
+//builder.Services.AddScoped<SubjectService>();
+
+//var app = builder.Build();
+
+//using var scope = app.Services.CreateScope();
+
+//var unitOfWork =
+//    scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
+
+//var classroomService =
+//    scope.ServiceProvider.GetRequiredService<ClassRoomService>();
+
+//var subjectService =
+//    scope.ServiceProvider.GetRequiredService<SubjectService>();
+
+//void WaitForEnter(string message)
+//{
+//    Console.WriteLine();
+//    Console.WriteLine("----------------------------------------");
+//    Console.WriteLine(message);
+//    Console.WriteLine("Press ENTER to continue...");
+//    Console.ReadLine();
+//}
+
+//try
+//{
+//    // Find an existing school for the test records.
+//    var schools = await unitOfWork.Schools.GetAllAsync();
+//    var school = schools.FirstOrDefault();
+
+//    if (school == null)
+//    {
+//        Console.WriteLine(
+//            "TEST ABORTED: No school exists in the database.");
+//        return;
+//    }
+
+//    var testAdmin = new Admin
+//    {
+//        SchoolId = school.SchoolId
+//    };
+
+//    string testId = Guid.NewGuid().ToString("N")[..8];
+
+//    ClassRoom? classroom = null;
+//    Subject? subject = null;
+
+//    Console.WriteLine("CRUD SERVICE TEST");
+//    Console.WriteLine($"Using school: {school.Name}");
+//    Console.WriteLine($"School ID: {school.SchoolId}");
+//    Console.WriteLine("Test records will be deleted at the end.");
+
+//    // ==========================================
+//    // CLASSROOM: CREATE
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM 1/5: CREATE");
+
+//    classroom = new ClassRoom
+//    {
+//        Name = $"TestRoom_{testId}",
+//        Capacity = 30,
+//        SchoolId = school.SchoolId
+//    };
+
+//    await classroomService.CreateClassRoomAsync(classroom);
+
+//    Console.WriteLine("CLASSROOM CREATED");
+//    Console.WriteLine($"ID: {classroom.ClassRoomId}");
+//    Console.WriteLine($"Name: {classroom.Name}");
+//    Console.WriteLine($"Capacity: {classroom.Capacity}");
+
+//    // ==========================================
+//    // CLASSROOM: READ BY ID
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM 2/5: READ BY ID");
+
+//    var foundClassroom =
+//        await classroomService.GetByIdAsync(classroom.ClassRoomId);
+
+//    if (foundClassroom == null)
+//    {
+//        throw new Exception("Could not read the created classroom.");
+//    }
+
+//    Console.WriteLine("CLASSROOM RETRIEVED FROM DATABASE");
+//    Console.WriteLine($"ID: {foundClassroom.ClassRoomId}");
+//    Console.WriteLine($"Name: {foundClassroom.Name}");
+//    Console.WriteLine($"Capacity: {foundClassroom.Capacity}");
+//    Console.WriteLine($"School ID: {foundClassroom.SchoolId}");
+
+//    // ==========================================
+//    // CLASSROOM: READ ALL
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM 3/5: READ ALL FOR THIS SCHOOL");
+
+//    var classrooms =
+//        await classroomService.GetAllClassRoomsAsync(testAdmin);
+
+//    Console.WriteLine($"CLASSROOMS FOUND: {classrooms.Count}");
+
+//    foreach (var item in classrooms)
+//    {
+//        Console.WriteLine($"ID: {item.Id} | Name: {item.Name}");
+//    }
+
+//    // ==========================================
+//    // CLASSROOM: UPDATE
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM 4/5: UPDATE");
+
+//    var classroomUpdate = new ClassRoom
+//    {
+//        Name = $"UpdatedRoom_{testId}",
+//        Capacity = 40
+//    };
+
+//    await classroomService.UpdateClassRoomAsync(
+//        classroom.ClassRoomId,
+//        classroomUpdate);
+
+//    Console.WriteLine("CLASSROOM UPDATE REQUEST COMPLETED.");
+//    Console.WriteLine("The next step will read the updated record.");
+
+//    // ==========================================
+//    // CLASSROOM: VERIFY UPDATE
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM: VERIFY UPDATED VALUES");
+
+//    foundClassroom =
+//        await classroomService.GetByIdAsync(classroom.ClassRoomId);
+
+//    if (foundClassroom == null ||
+//        foundClassroom.Name != classroomUpdate.Name ||
+//        foundClassroom.Capacity != classroomUpdate.Capacity)
+//    {
+//        throw new Exception("Classroom update verification failed.");
+//    }
+
+//    Console.WriteLine("UPDATED CLASSROOM RETRIEVED");
+//    Console.WriteLine($"ID: {foundClassroom.ClassRoomId}");
+//    Console.WriteLine($"Name: {foundClassroom.Name}");
+//    Console.WriteLine($"Capacity: {foundClassroom.Capacity}");
+//    Console.WriteLine("UPDATE VERIFIED.");
+
+//    // ==========================================
+//    // SUBJECT: CREATE
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT 1/5: CREATE");
+
+//    subject = new Subject
+//    {
+//        Name = $"TestSubject_{testId}",
+//        ClassRoom = foundClassroom,
+//        SchoolId = school.SchoolId,
+//        IsCore = true
+//    };
+
+//    await subjectService.CreateSubjectAsync(subject);
+
+//    Console.WriteLine("SUBJECT CREATED");
+//    Console.WriteLine($"ID: {subject.SubjectId}");
+//    Console.WriteLine($"Name: {subject.Name}");
+//    Console.WriteLine($"Classroom ID: {foundClassroom.ClassRoomId}");
+//    Console.WriteLine($"IsCore: {subject.IsCore}");
+
+//    // ==========================================
+//    // SUBJECT: READ BY ID
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT 2/5: READ BY ID");
+
+//    var foundSubject =
+//        await subjectService.GetByIdAsync(subject.SubjectId);
+
+//    if (foundSubject == null)
+//    {
+//        throw new Exception("Could not read the created subject.");
+//    }
+
+//    Console.WriteLine("SUBJECT RETRIEVED FROM DATABASE");
+//    Console.WriteLine($"ID: {foundSubject.SubjectId}");
+//    Console.WriteLine($"Name: {foundSubject.Name}");
+//    Console.WriteLine($"IsCore: {foundSubject.IsCore}");
+//    Console.WriteLine($"School ID: {foundSubject.SchoolId}");
+
+//    // ==========================================
+//    // SUBJECT: READ ALL
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT 3/5: READ ALL FOR THIS SCHOOL");
+
+//    var subjects =
+//        await subjectService.GetAllSubjectsAsync(testAdmin);
+
+//    Console.WriteLine($"SUBJECTS FOUND: {subjects.Count}");
+
+//    foreach (var item in subjects)
+//    {
+//        Console.WriteLine($"ID: {item.Id} | Name: {item.Name}");
+//    }
+
+//    // ==========================================
+//    // SUBJECT: UPDATE
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT 4/5: UPDATE");
+
+//    var subjectUpdate = new Subject
+//    {
+//        Name = $"UpdatedSubject_{testId}",
+//        ClassRoom = foundClassroom,
+//        IsCore = false
+//    };
+
+//    await subjectService.UpdateSubjectAsync(
+//        subject.SubjectId,
+//        subjectUpdate);
+
+//    Console.WriteLine("SUBJECT UPDATE REQUEST COMPLETED.");
+//    Console.WriteLine("The next step will read the updated record.");
+
+//    // ==========================================
+//    // SUBJECT: VERIFY UPDATE
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT: VERIFY UPDATED VALUES");
+
+//    foundSubject =
+//        await subjectService.GetByIdAsync(subject.SubjectId);
+
+//    if (foundSubject == null ||
+//        foundSubject.Name != subjectUpdate.Name ||
+//        foundSubject.IsCore != subjectUpdate.IsCore)
+//    {
+//        throw new Exception("Subject update verification failed.");
+//    }
+
+//    Console.WriteLine("UPDATED SUBJECT RETRIEVED");
+//    Console.WriteLine($"ID: {foundSubject.SubjectId}");
+//    Console.WriteLine($"Name: {foundSubject.Name}");
+//    Console.WriteLine($"IsCore: {foundSubject.IsCore}");
+//    Console.WriteLine("UPDATE VERIFIED.");
+
+//    // ==========================================
+//    // SUBJECT: DELETE
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT 5/5: DELETE");
+
+//    await subjectService.DeleteSubjectAsync(subject.SubjectId);
+
+//    Console.WriteLine($"Delete requested for subject ID {subject.SubjectId}.");
+
+//    // ==========================================
+//    // SUBJECT: VERIFY DELETE
+//    // ==========================================
+
+//    WaitForEnter("SUBJECT: VERIFY DELETION");
+
+//    foundSubject =
+//        await subjectService.GetByIdAsync(subject.SubjectId);
+
+//    if (foundSubject != null)
+//    {
+//        throw new Exception("Subject still exists after deletion.");
+//    }
+
+//    Console.WriteLine("SUBJECT DELETION VERIFIED.");
+
+//    // ==========================================
+//    // CLASSROOM: DELETE
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM 5/5: DELETE");
+
+//    await classroomService.DeleteClassRoomAsync(classroom.ClassRoomId);
+
+//    Console.WriteLine(
+//        $"Delete requested for classroom ID {classroom.ClassRoomId}.");
+
+//    // ==========================================
+//    // CLASSROOM: VERIFY DELETE
+//    // ==========================================
+
+//    WaitForEnter("CLASSROOM: VERIFY DELETION");
+
+//    foundClassroom =
+//        await classroomService.GetByIdAsync(classroom.ClassRoomId);
+
+//    if (foundClassroom != null)
+//    {
+//        throw new Exception("Classroom still exists after deletion.");
+//    }
+
+//    Console.WriteLine("CLASSROOM DELETION VERIFIED.");
+
+//    Console.WriteLine();
+//    Console.WriteLine("ALL CRUD TESTS PASSED.");
+//}
+//catch (Exception ex)
+//{
+//    Console.WriteLine();
+//    Console.WriteLine("CRUD TEST FAILED:");
+//    Console.WriteLine(ex);
+//}
+
+//WaitForEnter("TEST FINISHED. Press ENTER to exit.");
