@@ -215,15 +215,15 @@ async Task DeleteUserAsync(Admin admin)
         {
             case "0":
                 return;
-            //case "1":
-            //    await DeleteUserInCategoryAsync(admin, Roles.Admin);
-            //    break;
-            //case "2":
-            //    await DeleteUserInCategoryAsync(admin, Roles.Teacher);
-            //    break;
-            //case "3":
-            //    await DeleteUserInCategoryAsync(admin, Roles.Guardian);
-            //    break;
+            case "1":
+                await DeleteUserInCategoryAsync(admin, Roles.Admin);
+                break;
+            case "2":
+                await DeleteUserInCategoryAsync(admin, Roles.Teacher);
+                break;
+            case "3":
+                await DeleteUserInCategoryAsync(admin, Roles.Guardian);
+                break;
             default:
                 Console.WriteLine("Invalid Input");
                 break;
