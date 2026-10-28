@@ -128,26 +128,6 @@ async Task AdminMenuAsync(Admin admin)
     }
 }
 
-//async Task<(int Count, List<UserInfo> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
-
-//{
-//    var users = await UserService.GetUsersInCategoryAsync(admin, role);
-
-//    if (users.Count == 0)
-//    {
-//        Console.WriteLine("No users found.");
-//    }
-//    else
-//    {
-//        int i = 1;
-//        foreach (var u in users.List)
-//        {
-//            Console.WriteLine($"{i++}. {u.FirstName} {u.LastName}");
-//        }
-//    }
-//    return (users.Count, users.List);
-//}
-
 //async Task UpdateDetailsAsync<T>(T user) where T : User, new()
 //{
 //    var userInfo = ExtractUserInfo(user);
@@ -186,6 +166,26 @@ async Task AdminMenuAsync(Admin admin)
 //    }
 
 //}
+async Task<(int Count, List<NameAndIdDto> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
+
+{
+    var users = await userService.GetUsersInCategoryAsync(admin, role);
+
+    if (users.Count == 0)
+    {
+        Console.WriteLine("No users found.");
+    }
+    else
+    {
+        int i = 1;
+        foreach (var u in users)
+        {
+            Console.WriteLine($"{i++}. {u.Name}");
+        }
+    }
+    return (users.Count, users);
+}
+
 
 UserInfo ExtractUserInfo<T>(T user) where T : User, new()
 {
