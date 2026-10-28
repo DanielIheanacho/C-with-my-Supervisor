@@ -44,38 +44,38 @@ while (true)
         case "0":
             return;
         case "1":
-            var schoolInfo = InputSchoolDetail();
-            var userInfo = InputUserInfo(true);
-            await authenticationService.RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
+            {
+                var schoolInfo = InputSchoolDetail();
+                var userInfo = InputUserInfo(true);
+            }
+
+        case "2":
+            Console.WriteLine("\n\nEmail: ");
+            string email = ValidInput();
+            Console.WriteLine("Password: ");
+            string passWord = ValidInput();
+            var user = await authenticationService.LoginUserAsync(email, passWord);
+            if (user == null)
+            {
+                Console.WriteLine("Invalid email or password.");
+                break;
+            }
+
+            Console.WriteLine($"Welcome, {user.FirstName}!");
+
+            switch (user)
+            {
+                case Admin admin:
+                    await AdminMenuAsync(admin);
+                    break;
+                case Teacher teacher:
+                    // teacher menu
+                    break;
+                case Guardian guardian:
+                    // guardian menu
+                    break;
+            }
             break;
-
-        //case "2":
-        //    Console.WriteLine("\n\nEmail: ");
-        //    string email = ValidInput();
-        //    Console.WriteLine("Password: ");
-        //    string passWord = ValidInput();
-        //    var user = await authenticationService.LoginUserAsync(email, passWord);
-        //    if (user == null)
-        //    {
-        //        Console.WriteLine("Invalid email or password.");
-        //        break;
-        //    }
-
-        //    Console.WriteLine($"Welcome, {user.FirstName}!");
-
-        //    switch (user)
-        //    {
-        //        case Admin admin:
-        //            await AdminMenuAsync(admin);
-        //            break;
-        //        case Teacher teacher:
-        //            // teacher menu
-        //            break;
-        //        case Guardian guardian:
-        //            // guardian menu
-        //            break;
-        //    }
-        //    break;
 
     }
 }
