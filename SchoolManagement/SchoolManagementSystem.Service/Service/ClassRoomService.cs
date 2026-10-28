@@ -19,11 +19,16 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
-        //public async Task<List<(int ClassRoomId,string Name)>> GetAllClassRoomsAsync()
-        //{
-        //    await _unitOfWork.ClassRooms.GetAllAsync();
-        //    await _unitOfWork.SaveChangesAsync();
-        //}
+        public async Task<List<NameAndIdDto>> GetAllClassRoomsAsync(Admin user)
+        {
+            return await _unitOfWork.ClassRooms.GetAllProjectedAsync(
+            u => u.SchoolId == user.SchoolId,
+            u => new NameAndIdDto
+            {
+                Id = u.ClassRoomId,
+                Name = u.Name
+            });
+        }
 
         public async Task<ClassRoom?> GetByIdAsync(int classRoomId)
         {

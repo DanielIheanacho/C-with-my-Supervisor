@@ -18,17 +18,17 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
-        //public static async Task<List<(int SubjectId, string Name)>> GetAllSubjectsAsync()
-        //{
-        //    using var context = new AppDbContext();
+        public async Task<List<NameAndIdDto>> GetAllSubjectsAsync(Admin user)
+        {
 
-        //    return await context.Subjects
-        //        .AsNoTracking()
-        //        .Where(c => c.SchoolId == GeneralVariables.SchoolId)
-        //        .OrderBy(c => c.Name)
-        //        .Select(c => new ValueTuple<int, string>(c.SubjectId, c.Name))
-        //        .ToListAsync();
-        //}
+            return await _unitOfWork.Subjects.GetAllProjectedAsync(
+            s => s.SchoolId == user.SchoolId,
+            s => new NameAndIdDto
+            {
+                Id = s.SubjectId,
+                Name = s.Name
+            });
+        }
 
         public async Task<Subject?> GetByIdAsync(int subjectId)
         {
