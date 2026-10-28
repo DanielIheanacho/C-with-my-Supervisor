@@ -11,5 +11,7 @@ namespace SchoolManagementSystem.Service.Interfaces
         IRepository<Student> Students { get; }
 
         Task<int> SaveChangesAsync();
+
+        Task<User?> LoginUserAsync(string email, string password);
     }
 }
