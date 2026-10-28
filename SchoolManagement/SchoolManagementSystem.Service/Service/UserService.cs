@@ -35,24 +35,30 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
-        //public async Task<(int Count, List<UserInfo> List)> GetUsersInCategoryAsync(Admin admin, Roles role)
-        //{
-        //    using var context = new AppDbContext();
-
-        //    List<UserInfo> users = await context.Users
-        //        .AsNoTracking()
-        //        .Where(u => u.SchoolId == admin.SchoolId && u.Role == role)
-        //        .OrderBy(u => u.LastName)
-        //        .Select(u => new UserInfo
-        //        {
-        //            UserId = u.UserId,
-        //            FirstName = u.FirstName,
-        //            LastName = u.LastName
-        //        })
-        //        .ToListAsync(); 
-
-        //    return (users.Count, users);
-        //}
+        public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin)
+        {
+            var users = await _unitOfWork.Users
+                .GetAllProjectedAsync(
+                u => u.SchoolId == admin.SchoolId,
+                u => new NameAndIdDto
+                {
+                    Id = u.UserId,
+                    Name = u.FirstName + " " + u.LastName
+                });
+            return users;
+        }
+        public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin, Roles role)
+        {
+            var users = await _unitOfWork.Users
+                .GetAllProjectedAsync(
+                u => u.SchoolId == admin.SchoolId & u.Role == role ,
+                u => new NameAndIdDto
+                {
+                    Id = u.UserId,
+                    Name = u.FirstName + " " + u.LastName
+                });
+            return users;
+        }
 
         public async Task<T?> GetByIdAsync<T>(int userId) where T : User, new()
         {
