@@ -1,4 +1,6 @@
-﻿namespace SchoolManagementSystem.Service.Interfaces
+﻿using System.Linq.Expressions;
+
+namespace SchoolManagementSystem.Service.Interfaces
 {
     public interface IRepository<T> where T : class
     {
