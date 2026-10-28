@@ -231,18 +231,18 @@ async Task DeleteUserAsync(Admin admin)
     }
 }
 
-//async Task DeleteUserInCategoryAsync(Admin admin, Roles role)
-//{
-//    var result = await PrintUsersInCategoryAsync(admin, role);
-//    var userCount = result.Count;
-//    var user = result.List;
-//    Console.WriteLine("Select option:");
-//    if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
-//    {
-//        int userId = user[option - 1].UserId;
-//        await UserService.UserAsync(userId);
-//    }
-//}
+async Task DeleteUserInCategoryAsync(Admin admin, Roles role)
+{
+    var result = await PrintUsersInCategoryAsync(admin, role);
+    var userCount = result.Count;
+    var users = result.List;
+    Console.WriteLine("Select option:");
+    if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
+    {
+        int userId = users[option - 1].Id;
+        await userService.DeleteUserAsync(userId);
+    }
+}
 
 SchoolInfo InputSchoolDetail()
 {
