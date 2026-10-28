@@ -72,25 +72,21 @@ namespace SchoolManagementSystem.Service.Service
             return (T)user;
         }
 
-        //public static async Task UpdateUserAsync<T>(T user, UserInfo userInfo) where T : User, new()
-        //{
-        //    int userId = await GetUserAsync<T>(user);
+        public async Task UpdateUserAsync(int userId, UserInfo userInfo)
+        {
+            var userToUpdate = await _unitOfWork.Users.GetByIdAsync(userId);
 
-        //    using var context = new AppDbContext();
+            if (userToUpdate == null)
+            {
+                return;
+            }
+            userToUpdate.FirstName = userInfo.FirstName;
+            userToUpdate.LastName = userInfo.LastName;
+            userToUpdate.Email = userInfo.Email;
+            userToUpdate.PassWord = userInfo.PassWord;
 
-        //    var userToUpdate = await context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
-
-        //    if (userToUpdate == null)
-        //    {
-        //        return;
-        //    }
-        //    userToUpdate.FirstName = userInfo.FirstName;
-        //    userToUpdate.LastName = userInfo.LastName;
-        //    userToUpdate.Email = userInfo.Email;
-        //    userToUpdate.PassWord = userInfo.PassWord;
-
-        //    await context.SaveChangesAsync();
-        //}
+            await _unitOfWork.SaveChangesAsync();
+        }
 
     }
 }
