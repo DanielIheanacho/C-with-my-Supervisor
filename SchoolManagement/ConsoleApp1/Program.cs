@@ -128,44 +128,6 @@ async Task AdminMenuAsync(Admin admin)
     }
 }
 
-//async Task UpdateDetailsAsync<T>(T user) where T : User, new()
-//{
-//    var userInfo = ExtractUserInfo(user);
-//    while (true)
-//    {
-//        Console.WriteLine("1. Firstname");
-//        Console.WriteLine("2. Lastame");
-//        Console.WriteLine("3. Email");
-//        Console.WriteLine("4. Password");
-//        Console.WriteLine("0. Exit");
-//        Console.WriteLine("Select Option: ");
-//        switch (Console.ReadLine())
-//        {
-//            case "1":
-//                userInfo.FirstName = ValidInput();
-//                await UserService.UpdateUserAsync(user, userInfo);
-//                break;
-//            case "2":
-//                userInfo.LastName = ValidInput();
-//                await UserService.UpdateUserAsync(user, userInfo);
-//                break;
-//            case "3":
-//                userInfo.Email = ValidInput();
-//                await UserService.UpdateUserAsync(user, userInfo);
-//                break;
-//            case "4":
-//                userInfo.PassWord = ValidInput();
-//                await UserService.UpdateUserAsync(user, userInfo);
-//                break;
-//            case "0":
-//                return;
-//            default:
-//                Console.WriteLine("Invalid Input");
-//                break;
-//        }
-//    }
-
-//}
 async Task<(int Count, List<NameAndIdDto> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
 
 {
@@ -186,6 +148,45 @@ async Task<(int Count, List<NameAndIdDto> List)> PrintUsersInCategoryAsync(Admin
     return (users.Count, users);
 }
 
+async Task UpdateDetailsAsync<T>(T user) where T : User, new()
+{
+    var userInfo = ExtractUserInfo(user);
+    var Id = user.UserId;
+    while (true)
+    {
+        Console.WriteLine("1. Firstname");
+        Console.WriteLine("2. Lastame");
+        Console.WriteLine("3. Email");
+        Console.WriteLine("4. Password");
+        Console.WriteLine("0. Exit");
+        Console.WriteLine("Select Option: ");
+        switch (Console.ReadLine())
+        {
+            case "1":
+                userInfo.FirstName = ValidInput();
+                await userService.UpdateUserAsync(Id, userInfo);
+                break;
+            case "2":
+                userInfo.LastName = ValidInput();
+                await userService.UpdateUserAsync(Id, userInfo);
+                break;
+            case "3":
+                userInfo.Email = ValidInput();
+                await userService.UpdateUserAsync(Id, userInfo);
+                break;
+            case "4":
+                userInfo.PassWord = ValidInput();
+                await userService.UpdateUserAsync(Id, userInfo);
+                break;
+            case "0":
+                return;
+            default:
+                Console.WriteLine("Invalid Input");
+                break;
+        }
+    }
+
+}
 
 UserInfo ExtractUserInfo<T>(T user) where T : User, new()
 {
