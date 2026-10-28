@@ -1,7 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagement.Models.ClassModels;
+﻿using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Interfaces;
-using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service.Service
 {
@@ -36,7 +34,7 @@ namespace SchoolManagementSystem.Service.Service
         {
             var subject = await _unitOfWork.Subjects.GetByIdAsync(subjectId);
 
-            if(subject == null)
+            if (subject == null)
             {
                 return null;
             }
@@ -70,7 +68,7 @@ namespace SchoolManagementSystem.Service.Service
 
             if (subject == null)
             {
-                return ;
+                return;
             }
 
             await _unitOfWork.Subjects.Delete(subject);
