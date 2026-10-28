@@ -25,15 +25,11 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.SaveChangesAsync();
         }
 
-        //public async Task<User?> LoginUserAsync(string email, string password)
-        //{
-        //    using var context = new AppDbContext();
+        public async Task<User?> LoginUserAsync(string email, string password)
+        {
+            var user = await _unitOfWork.LoginUserAsync(email, password);
+            return user;
+        }
 
-        //    var user = await context.Users
-        //        .AsNoTracking()
-        //        .FirstOrDefaultAsync(u => u.Email == email && u.PassWord == password);
-
-        //    return user;
-        //}
     }
 }
