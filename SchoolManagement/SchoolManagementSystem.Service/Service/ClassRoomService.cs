@@ -1,0 +1,76 @@
+﻿using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
+using SchoolManagementSystem.Service.Interfaces;
+using System.Linq.Expressions;
+
+namespace SchoolManagementSystem.Service.Service
+{
+    public class ClassRoomService
+    {
+        private readonly IUnitOfWork _unitOfWork;
+
+        public ClassRoomService(IUnitOfWork unitOfWork)
+        {
+            _unitOfWork = unitOfWork;
+        }
+
+        public async Task CreateClassRoomAsync(ClassRoom classRoom)
+        {
+            await _unitOfWork.ClassRooms.AddAsync(classRoom);
+            await _unitOfWork.SaveChangesAsync();
+
+        }
+
+        public async Task<List<NameAndIdDto>> GetAllClassRoomsAsync(Admin user)
+        {
+            return await _unitOfWork.ClassRooms.GetAllProjectedAsync(
+            u => u.SchoolId == user.SchoolId,
+            u => new NameAndIdDto
+            {
+                Id = u.ClassRoomId,
+                Name = u.Name
+            });
+        }
+
+        public async Task<ClassRoom?> GetByIdAsync(int classRoomId)
+        {
+            var classRoom = await _unitOfWork.ClassRooms.GetByIdAsync(classRoomId);
+
+            if (classRoom == null)
+            {
+                return null;
+            }
+
+            return classRoom;
+        }
+
+        public async Task UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
+        {
+            var classRoomToUpdate = await GetByIdAsync(classRoomId);
+
+            if (classRoomToUpdate == null)
+            {
+                return;
+            }
+            classRoomToUpdate.Name = classUpdate.Name;
+            classRoomToUpdate.Capacity = classUpdate.Capacity;
+
+            await _unitOfWork.SaveChangesAsync();
+
+        }
+
+        public async Task DeleteClassRoomAsync(int classRoomId)
+        {
+            var classRoom = await _unitOfWork.ClassRooms.GetByIdAsync(classRoomId);
+
+            if (classRoom == null)
+            {
+                return;
+            }
+
+            await _unitOfWork.ClassRooms.Delete(classRoom);
+            await _unitOfWork.SaveChangesAsync();
+
+        }
+    }
+}

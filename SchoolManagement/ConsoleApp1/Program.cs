@@ -1,8 +1,36 @@
-﻿using SchoolManagement.Models.ClassModels;
-using SchoolManagementSystem.Service;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
+using SchoolManagementSystem.Service.Interfaces;
+using SchoolManagementSystem.Service.Repositories;
+using SchoolManagementSystem.Service.Service;
+using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        "Data Source=localhost\\SQLEXPRESS;Initial Catalog=SchoolManagementSystem;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0"));
+
+// Register your dependencies
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthenticationService>();
+
+var app = builder.Build();
+using var scope = app.Services.CreateScope();
+
+var userService = scope.ServiceProvider
+                    .GetRequiredService<UserService>();
+
+Console.WriteLine("UserService is ready for testing.");
 
 while (true)
-{
+{    
+    var authenticationService = scope.ServiceProvider
+                    .GetRequiredService<AuthenticationService>();
+
     Console.WriteLine("---Menu---\n");
     Console.WriteLine("1. Register new School");
     Console.WriteLine("2. Login");
@@ -14,17 +42,21 @@ while (true)
         case "0":
             return;
         case "1":
-            var schoolInfo = InputSchoolDetail();
-            var userInfo = InputUserInfo(true);
-            await AuthenticationService.RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
-            break;
+            {
+                var schoolInfo = InputSchoolDetail();
+                var userInfo = InputUserInfo(true);
+
+                await authenticationService
+                    .RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
+                break;
+            }
 
         case "2":
             Console.WriteLine("\n\nEmail: ");
             string email = ValidInput();
             Console.WriteLine("Password: ");
             string passWord = ValidInput();
-            var user = await AuthenticationService.LoginUserAsync(email, passWord);
+            var user = await authenticationService.LoginUserAsync(email, passWord);
             if (user == null)
             {
                 Console.WriteLine("Invalid email or password.");
@@ -53,6 +85,7 @@ while (true)
 
 async Task AdminMenuAsync(Admin admin)
 {
+    
     while (true)
     {
         Console.WriteLine("---Menu---\n");
@@ -60,7 +93,7 @@ async Task AdminMenuAsync(Admin admin)
         Console.WriteLine("2. View Admin(s)");
         Console.WriteLine("3. View Teahers(s)");
         Console.WriteLine("4. View Guardian(s)");
-        Console.WriteLine("5. Remove User");
+        Console.WriteLine("5. Delete User");
         Console.WriteLine("6. Update Details");
         Console.WriteLine("0. Exit\n\n");
         Console.Write("Select Option: ");
@@ -73,7 +106,7 @@ async Task AdminMenuAsync(Admin admin)
                 {
                     var userInfo = InputUserInfo(false);
                     User newUser = admin.RegisterNewUser(userInfo);
-                    await UserService.SaveUserAsync(newUser);
+
                     break;
                 }
             case "2":
@@ -98,10 +131,10 @@ async Task AdminMenuAsync(Admin admin)
     }
 }
 
-async Task<(int Count, List<UserInfo> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
+async Task<(int Count, List<NameAndIdDto> List)> PrintUsersInCategoryAsync(Admin admin, Roles role)
 
 {
-    var users = await UserService.GetUsersInCategoryAsync(admin, role);
+    var users = await userService.GetUsersInCategoryAsync(admin, role);
 
     if (users.Count == 0)
     {
@@ -110,17 +143,18 @@ async Task<(int Count, List<UserInfo> List)> PrintUsersInCategoryAsync(Admin adm
     else
     {
         int i = 1;
-        foreach (var u in users.List)
+        foreach (var u in users)
         {
-            Console.WriteLine($"{i++}. {u.FirstName} {u.LastName}");
+            Console.WriteLine($"{i++}. {u.Name}");
         }
     }
-    return (users.Count, users.List);
+    return (users.Count, users);
 }
 
 async Task UpdateDetailsAsync<T>(T user) where T : User, new()
 {
     var userInfo = ExtractUserInfo(user);
+    var Id = user.UserId;
     while (true)
     {
         Console.WriteLine("1. Firstname");
@@ -133,19 +167,19 @@ async Task UpdateDetailsAsync<T>(T user) where T : User, new()
         {
             case "1":
                 userInfo.FirstName = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
+                await userService.UpdateUserAsync(Id, userInfo);
                 break;
             case "2":
                 userInfo.LastName = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
+                await userService.UpdateUserAsync(Id, userInfo);
                 break;
             case "3":
                 userInfo.Email = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
+                await userService.UpdateUserAsync(Id, userInfo);
                 break;
             case "4":
                 userInfo.PassWord = ValidInput();
-                await UserService.UpdateUserAsync(user, userInfo);
+                await userService.UpdateUserAsync(Id, userInfo);
                 break;
             case "0":
                 return;
@@ -205,12 +239,12 @@ async Task DeleteUserInCategoryAsync(Admin admin, Roles role)
 {
     var result = await PrintUsersInCategoryAsync(admin, role);
     var userCount = result.Count;
-    var user = result.List;
+    var users = result.List;
     Console.WriteLine("Select option:");
     if (int.TryParse(Console.ReadLine(), out int option) && option > 0 && option <= userCount)
     {
-        int userId = user[option - 1].UserId;
-        await UserService.RemoveUserAsync(userId);
+        int userId = users[option - 1].Id;
+        await userService.DeleteUserAsync(userId);
     }
 }
 
