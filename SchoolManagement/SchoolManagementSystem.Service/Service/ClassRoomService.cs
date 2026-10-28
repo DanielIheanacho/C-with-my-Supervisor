@@ -42,8 +42,18 @@ namespace SchoolManagementSystem.Service.Service
             return classRoom;
         }
 
-        //public async Task UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
-        //{
+        public async Task UpdateClassRoomAsync(int classRoomId, ClassRoom classUpdate)
+        {
+            var classRoomToUpdate = await GetByIdAsync(classRoomId);
+
+            if (classRoomToUpdate == null)
+            {
+                return;
+            }
+            classRoomToUpdate.Name = classUpdate.Name;
+            classRoomToUpdate.Capacity = classUpdate.Capacity;
+
+            await _unitOfWork.SaveChangesAsync();
 
         //}
 

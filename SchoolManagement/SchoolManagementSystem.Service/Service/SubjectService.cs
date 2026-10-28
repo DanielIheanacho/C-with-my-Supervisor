@@ -42,25 +42,20 @@ namespace SchoolManagementSystem.Service.Service
             return subject;
         }
 
-        //public async Task<bool> UpdateSubjectAsync(int id, Subject subjectUpdate)
-        //{
-        //    using var context = new AppDbContext();
+        public async Task UpdateSubjectAsync(int subjectId, Subject subjectUpdate)
+        {
+            var subjectToUpdate = await GetByIdAsync(subjectId);
 
-        //    var subjectToUpdate = await context.Subjects
-        //        .SingleOrDefaultAsync(s => s.SubjectId == id);
+            if (subjectToUpdate == null)
+            {
+                return;
+            }
+            subjectToUpdate.Name = subjectUpdate.Name;
+            subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
+            subjectToUpdate.IsCore = subjectUpdate.IsCore;
 
-        //    if (subjectToUpdate == null)
-        //    {
-        //        return false;
-        //    }
-
-        //    subjectToUpdate.Name = subjectUpdate.Name;
-        //    subjectToUpdate.ClassRoom = subjectUpdate.ClassRoom;
-        //    subjectToUpdate.IsCore = subjectUpdate.IsCore;
-        //    await  context.SaveChangesAsync();
-
-        //    return true;
-        //}
+            await _unitOfWork.SaveChangesAsync();
+        }
 
         public async Task DeleteSubjectAsync(int subjectId)
         {
