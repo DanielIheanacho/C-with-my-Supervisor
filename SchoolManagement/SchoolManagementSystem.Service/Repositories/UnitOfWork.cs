@@ -34,5 +34,16 @@ namespace SchoolManagementSystem.Service.Repositories
         {
             _context.Dispose();
         }
+
+        public async Task<User?> LoginUserAsync(string email, string password)
+        {
+
+
+            var user = await _context.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Email == email && u.PassWord == password);
+
+            return user;
+        }
     }
 }
