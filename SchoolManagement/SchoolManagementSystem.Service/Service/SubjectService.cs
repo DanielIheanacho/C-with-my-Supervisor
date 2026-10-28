@@ -1,4 +1,5 @@
 ﻿using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 
 namespace SchoolManagementSystem.Service.Service
