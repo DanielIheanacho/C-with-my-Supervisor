@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagement.Models.ClassModels;
+﻿using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
@@ -7,7 +6,7 @@ namespace SchoolManagementSystem.Service.Service
 {
     public class AuthenticationService
     {
-        private readonly IUnitOfWork _unitOfWork; 
+        private readonly IUnitOfWork _unitOfWork;
 
         public AuthenticationService(IUnitOfWork unitOfWork)
         {
