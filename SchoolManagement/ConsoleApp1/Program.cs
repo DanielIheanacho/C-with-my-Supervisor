@@ -83,6 +83,7 @@ while (true)
 
 async Task AdminMenuAsync(Admin admin)
 {
+    
     while (true)
     {
         Console.WriteLine("---Menu---\n");
@@ -90,7 +91,7 @@ async Task AdminMenuAsync(Admin admin)
         Console.WriteLine("2. View Admin(s)");
         Console.WriteLine("3. View Teahers(s)");
         Console.WriteLine("4. View Guardian(s)");
-        Console.WriteLine("5. Remove User");
+        Console.WriteLine("5. Delete User");
         Console.WriteLine("6. Update Details");
         Console.WriteLine("0. Exit\n\n");
         Console.Write("Select Option: ");
@@ -106,20 +107,20 @@ async Task AdminMenuAsync(Admin admin)
 
                     break;
                 }
-            //case "2":
-            //    await PrintUsersInCategoryAsync(admin, Roles.Admin);
-            //    break;
-            //case "3":
-            //    await PrintUsersInCategoryAsync(admin, Roles.Teacher);
-            //    break;
-            //case "4":
-            //    await PrintUsersInCategoryAsync(admin, Roles.Guardian);
-            //    break;
+            case "2":
+                await PrintUsersInCategoryAsync(admin, Roles.Admin);
+                break;
+            case "3":
+                await PrintUsersInCategoryAsync(admin, Roles.Teacher);
+                break;
+            case "4":
+                await PrintUsersInCategoryAsync(admin, Roles.Guardian);
+                break;
             case "5":
                 await DeleteUserAsync(admin);
                 break;
-            //case "6":
-            //    await UpdateDetailsAsync(admin);
+            case "6":
+                await UpdateDetailsAsync(admin);
                 break;
             default:
                 Console.WriteLine("Invalid Input");
