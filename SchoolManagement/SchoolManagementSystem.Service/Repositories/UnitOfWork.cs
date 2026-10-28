@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Models.ClassModels;
+﻿using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
