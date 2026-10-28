@@ -4,6 +4,9 @@
     {
         Task AddAsync(T entity);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<List<TResult>> GetAllProjectedAsync<TResult>(
+            Expression<Func<T, bool>> predicate,
+            Expression<Func<T, TResult>> selector);
         Task<T?> GetByIdAsync(int id);
         Task Update(T entity);
         Task Delete(T entity);
