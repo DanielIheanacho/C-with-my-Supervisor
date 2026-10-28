@@ -19,20 +19,18 @@ builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthenticationService>();
 
 var app = builder.Build();
-
 using var scope = app.Services.CreateScope();
 
 var userService = scope.ServiceProvider
-    .GetRequiredService<UserService>();
-var authenticationService = scope.ServiceProvider
-    .GetRequiredService<AuthenticationService>();
-
-
+                    .GetRequiredService<UserService>();
 
 Console.WriteLine("UserService is ready for testing.");
 
 while (true)
-{
+{    
+    var authenticationService = scope.ServiceProvider
+                    .GetRequiredService<AuthenticationService>();
+
     Console.WriteLine("---Menu---\n");
     Console.WriteLine("1. Register new School");
     Console.WriteLine("2. Login");
@@ -47,6 +45,10 @@ while (true)
             {
                 var schoolInfo = InputSchoolDetail();
                 var userInfo = InputUserInfo(true);
+
+                await authenticationService
+                    .RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
+                break;
             }
 
         case "2":
