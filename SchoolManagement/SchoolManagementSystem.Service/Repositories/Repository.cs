@@ -27,6 +27,16 @@ namespace SchoolManagementSystem.Service.Repositories
             return await _dbSet.AsNoTracking().ToListAsync();
         }
 
+        public async Task<List<TResult>> GetAllProjectedAsync<TResult>(
+            Expression<Func<T, bool>> predicate,
+            Expression<Func<T, TResult>> selector)
+        {
+            return await _dbSet
+                .AsNoTracking()
+                .Where(predicate)
+                .Select(selector)
+                .ToListAsync();
+        }
         public async Task<T?> GetByIdAsync(int id) => await _dbSet.FindAsync(id);
 
         public Task Update(T entity)
