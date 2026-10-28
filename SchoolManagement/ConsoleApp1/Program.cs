@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Service.Repositories;
 using SchoolManagementSystem.Service.Service;
