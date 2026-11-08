@@ -8,18 +8,23 @@ using SchoolManagementSystem.Service.Repositories;
 using SchoolManagementSystem.Service.Service;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddDbContext<AppDbContext>(options =>
+//var builder = Host.CreateApplicationBuilder(args);
+
+var services = new ServiceCollection();
+
+services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(
         "Data Source=localhost\\SQLEXPRESS;Initial Catalog=SchoolManagementSystem;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Command Timeout=0"));
 
 // Register your dependencies
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<AuthenticationService>();
+services.AddScoped<IUnitOfWork, UnitOfWork>();
+services.AddScoped<UserService>();
+services.AddScoped<AuthenticationService>();
 
-var app = builder.Build();
-using var scope = app.Services.CreateScope();
+IServiceProvider serviceProvider = services.BuildServiceProvider();
+
+//var app = builder.Build();
+using IServiceScope scope = serviceProvider.CreateScope();
 
 var userService = scope.ServiceProvider
                     .GetRequiredService<UserService>();
@@ -50,7 +55,6 @@ while (true)
                     .RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
                 break;
             }
-
         case "2":
             Console.WriteLine("\n\nEmail: ");
             string email = ValidInput();
@@ -78,7 +82,6 @@ while (true)
                     break;
             }
             break;
-
     }
 }
 
