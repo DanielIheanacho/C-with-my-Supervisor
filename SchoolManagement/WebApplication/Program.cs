@@ -14,8 +14,10 @@ services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionSt
 services.AddScoped<IUnitOfWork, UnitOfWork>();
 services.AddScoped<AuthenticationService>();
 services.AddScoped<UserService>();
+services.AddControllers();
 
 var app = builder.Build();
 
+app.MapGroup("SchoolManagementSystem").MapControllers();
 
 app.Run();
