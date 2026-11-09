@@ -1,0 +1,26 @@
+@host = http://localhost:5223/SchoolManagementSystem
+
+### Register School
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "schoolname":"Plerom",
+  "adminFirstName": "Mecy",
+  "adminLastName": "Ownkwe",
+  "adminEmail": "test@gmail.com",
+  "adminPassWord": "11121"
+}
+
+### Login User
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "Email":"test1@gmail.com",
+  "PassWord":"11121"
+}
+
+### Get All Users and Id
+GET {{HOST}}/users
+
