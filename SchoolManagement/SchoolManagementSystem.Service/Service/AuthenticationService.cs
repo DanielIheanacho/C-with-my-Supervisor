@@ -1,6 +1,5 @@
 ﻿using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Interfaces;
-using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service.Service
 {
