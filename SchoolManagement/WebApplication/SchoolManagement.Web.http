@@ -22,5 +22,5 @@ Content-Type: application/json
 }
 
 ### Get All Users and Id
-GET {{HOST}}/users
+GET {{host}}/users
 
