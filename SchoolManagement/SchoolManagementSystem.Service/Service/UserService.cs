@@ -34,6 +34,20 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
+        public async Task<List<NameAndIdDto>> GetAllUsersAsync()
+        {
+            var users = await _unitOfWork.Users
+                .GetAllProjectedAsync(
+                u => true,
+                u => new NameAndIdDto
+                {
+                    Id = u.UserId,
+                    Name = u.FirstName + " " + u.LastName
+                });
+
+            return users;
+        }
+
         public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin)
         {
             var users = await _unitOfWork.Users
