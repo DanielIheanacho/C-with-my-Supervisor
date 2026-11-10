@@ -48,11 +48,11 @@ namespace SchoolManagementSystem.Service.Service
             return users;
         }
 
-        public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin)
+        public async Task<List<NameAndIdDto>> GetUsersAsync(int schoolId)
         {
             var users = await _unitOfWork.Users
                 .GetAllProjectedAsync(
-                u => u.SchoolId == admin.SchoolId,
+                u => u.SchoolId == schoolId,
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
@@ -73,7 +73,7 @@ namespace SchoolManagementSystem.Service.Service
             return users;
         }
 
-        public async Task<T?> GetByIdAsync<T>(int userId) where T : User, new()
+        public async Task<User?> GetByIdAsync(int userId)
         {
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
 
@@ -82,7 +82,7 @@ namespace SchoolManagementSystem.Service.Service
                 return null;
             }
 
-            return (T)user;
+            return user;
         }
 
         public async Task<bool> UpdateUserAsync(int userId, UpdateUser userInfo)
