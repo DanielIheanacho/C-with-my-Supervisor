@@ -14,14 +14,13 @@
         {
             T user = FillUserDetail<T>(userInfo);
             user.SchoolId = this.SchoolId;
-            user.Role = SelectRole(userInfo);
-            Console.WriteLine(user.SchoolId);
+            user.Role = SelectRole(role);
             return user;
         }
 
-        public static Roles SelectRole(UserInfo userInfo)
+        private static Roles SelectRole(string role)
         {
-            switch (userInfo.Role.ToLower())
+            switch (role)
             {
                 case "admin":
                     return Roles.Admin;
