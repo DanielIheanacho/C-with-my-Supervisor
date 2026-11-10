@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Service;
 
 namespace SchoolManagement.Web.Controllers
@@ -14,9 +15,40 @@ namespace SchoolManagement.Web.Controllers
         }
 
         [HttpGet("users")]
-        public async Task<IActionResult> GetUsers()
+        public async Task<IActionResult> GetUsers(int id)
         {
-            return Ok(await _userService.GetAllUsersAsync());
+            return Ok(await _userService.GetUsersAsync(id));
+        }
+
+        [HttpGet("users/{id}")]
+        public async Task<IActionResult> GetByIdAsync(int id)
+        {
+            return Ok(await _userService.GetByIdAsync(id));
+        }
+
+        [HttpPut("users/{id}")]
+        public async Task<IActionResult> UpdateUserAsync(int id, UpdateUser user)
+        {
+            if (user == null)
+            {
+                return BadRequest("Request body cannot be empty.");
+            }
+
+            var flag = await _userService.UpdateUserAsync(id, user);
+
+            if (!flag)
+            {
+                return NotFound("User not found.");
+            }
+
+            return Ok(user);
+        }
+
+        [HttpDelete("users/{id}")]
+        public async Task<IActionResult> DeleteUserAsync(int id)
+        {
+            await _userService.DeleteUserAsync(id);
+            return Ok();
         }
     }
 }
