@@ -2,11 +2,11 @@
 {
     public class Admin : User
     {
-        public static Admin RegisterNewAdmin(School school, UserInfo userInfo)
+        public static Admin RegisterFirstAdmin(int schoolId, NewUser userInfo)
         {
             Admin user = FillUserDetail<Admin>(userInfo);
             user.Role = Roles.Admin;
-            user.SchoolId = school.SchoolId;
+            user.SchoolId = schoolId;
             return user;
         }
 
