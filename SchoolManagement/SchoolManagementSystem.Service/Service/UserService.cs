@@ -89,16 +89,18 @@ namespace SchoolManagementSystem.Service.Service
         {
             var userToUpdate = await _unitOfWork.Users.GetByIdAsync(userId);
 
-            if (userToUpdate == null)
+            if (userToUpdate == null || userInfo == null)
             {
-                return;
+                return false;
             }
-            userToUpdate.FirstName = userInfo.FirstName;
-            userToUpdate.LastName = userInfo.LastName;
-            userToUpdate.Email = userInfo.Email;
-            userToUpdate.PassWord = userInfo.PassWord;
+            userToUpdate.FirstName = userInfo.FirstName ?? userToUpdate.FirstName;
+            userToUpdate.LastName = userInfo.LastName ?? userToUpdate.LastName;
+            userToUpdate.Email = userInfo.Email ?? userToUpdate.Email;
+            userToUpdate.PassWord = userInfo.PassWord ?? userToUpdate.PassWord;
 
             await _unitOfWork.SaveChangesAsync();
+
+            return true;
         }
 
     }
