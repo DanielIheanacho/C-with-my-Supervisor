@@ -22,12 +22,13 @@ namespace SchoolManagement.Web.Controllers
             {
                 Name = school.SchoolName
             };
-            var userInfo = new UpdateUser
+            var userInfo = new NewUser
             {
                 FirstName = school.AdminFirstName,
                 LastName = school.AdminLastName,
                 Email = school.AdminEmail,
-                PassWord = school.AdminPassWord
+                PassWord = school.AdminPassWord,
+                Role = null
             };
 
             await _authenticationService.RegisterSchoolAndAdminAsync(schoolInfo, userInfo);
