@@ -14,6 +14,13 @@ namespace SchoolManagement.Web.Controllers
             _userService = userservice;
         }
 
+        [HttpPost("users/{adminId}")]
+        public async Task<IActionResult> CreateUser(int adminId, NewUser user)
+        {
+            await _userService.CreateUserAsync(adminId, user, user.Role);
+            return Ok();
+        }
+
         [HttpGet("users")]
         public async Task<IActionResult> GetUsers(int id)
         {
