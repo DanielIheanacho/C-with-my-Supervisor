@@ -85,7 +85,7 @@ namespace SchoolManagementSystem.Service.Service
             return (T)user;
         }
 
-        public async Task UpdateUserAsync(int userId, UserInfo userInfo)
+        public async Task<bool> UpdateUserAsync(int userId, UpdateUser userInfo)
         {
             var userToUpdate = await _unitOfWork.Users.GetByIdAsync(userId);
 

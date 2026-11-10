@@ -22,7 +22,7 @@ namespace SchoolManagement.Web.Controllers
             {
                 Name = school.SchoolName
             };
-            var userInfo = new UserInfo
+            var userInfo = new UpdateUser
             {
                 FirstName = school.AdminFirstName,
                 LastName = school.AdminLastName,
