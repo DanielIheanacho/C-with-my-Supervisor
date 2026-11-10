@@ -1,5 +1,6 @@
 @host = http://localhost:5223/SchoolManagementSystem
 
+
 ### Register School
 POST {{host}}/register
 Content-Type: application/json
@@ -22,5 +23,23 @@ Content-Type: application/json
 }
 
 ### Get All Users and Id
-GET {{host}}/users
+GET {{host}}/users?id=1
+
+### Get User by Id
+GET {{host}}/users/562
+
+### Get User by Id
+DELETE {{host}}/users/564
+
+### Update User
+PUT {{host}}/users/562
+Content-Type: application/json
+
+{
+"firstname": null,
+"lastname": "Iheanacho",
+"Email": null,
+"PassWord": null,
+"Role": null
+}
 
