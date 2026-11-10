@@ -40,6 +40,17 @@ Content-Type: application/json
 "lastname": "Iheanacho",
 "Email": null,
 "PassWord": null,
-"Role": null
+"Role": "admin"
 }
 
+### Create new user
+POST {{host}}/users/562
+Content-Type: application/json
+
+{
+  "firstname": "Benjamin",
+  "LastName": "Sunday",
+  "Email": "benjamin@gmail.com",
+  "PassWord": "0000",
+  "role": "admin"
+}
