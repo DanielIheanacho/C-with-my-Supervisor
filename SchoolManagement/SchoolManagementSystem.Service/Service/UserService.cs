@@ -13,8 +13,15 @@ namespace SchoolManagementSystem.Service.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task SaveUserAsync<T>(T user) where T : User
+        public async Task CreateUserAsync(int adminId, NewUser newUser, string role)
         {
+            Admin? admin = await GetByIdAsync(adminId) as Admin;
+
+            if (admin == null) 
+                return;
+
+            var user = admin.RegisterNewUser(newUser, role);
+
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
