@@ -12,10 +12,10 @@ namespace SchoolManagementSystem.Service.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, UpdateUser userInfo)
+        public async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, NewUser userInfo)
         {
             School school = School.RegisterSchool(schoolInfo);
-            User user = Admin.RegisterNewAdmin(school, userInfo);
+            User user = Admin.RegisterFirstAdmin(school, userInfo);
 
             await _unitOfWork.Schools.AddAsync(school);
             await _unitOfWork.Users.AddAsync(user);
