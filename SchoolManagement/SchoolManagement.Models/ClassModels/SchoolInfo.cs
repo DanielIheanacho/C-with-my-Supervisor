@@ -1,7 +1,7 @@
 ﻿namespace SchoolManagement.Models.ClassModels
 {
-    public class SchoolInfo
+    public record SchoolInfo
     {
-        public string Name;
+        public required string Name { get; set; }
     }
 }

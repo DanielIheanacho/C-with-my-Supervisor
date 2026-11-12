@@ -13,8 +13,15 @@ namespace SchoolManagementSystem.Service.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task SaveUserAsync<T>(T user) where T : User
+        public async Task CreateUserAsync(int adminId, NewUser newUser, string role)
         {
+            Admin? admin = await GetByIdAsync(adminId) as Admin;
+
+            if (admin == null) 
+                return;
+
+            var user = admin.RegisterNewUser(newUser, role);
+
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
@@ -34,11 +41,25 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
-        public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin)
+        public async Task<List<NameAndIdDto>> GetAllUsersAsync()
         {
             var users = await _unitOfWork.Users
                 .GetAllProjectedAsync(
-                u => u.SchoolId == admin.SchoolId,
+                u => true,
+                u => new NameAndIdDto
+                {
+                    Id = u.UserId,
+                    Name = u.FirstName + " " + u.LastName
+                });
+
+            return users;
+        }
+
+        public async Task<List<NameAndIdDto>> GetUsersAsync(int schoolId)
+        {
+            var users = await _unitOfWork.Users
+                .GetAllProjectedAsync(
+                u => u.SchoolId == schoolId,
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
@@ -59,7 +80,7 @@ namespace SchoolManagementSystem.Service.Service
             return users;
         }
 
-        public async Task<T?> GetByIdAsync<T>(int userId) where T : User, new()
+        public async Task<User?> GetByIdAsync(int userId)
         {
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
 
@@ -68,23 +89,25 @@ namespace SchoolManagementSystem.Service.Service
                 return null;
             }
 
-            return (T)user;
+            return user;
         }
 
-        public async Task UpdateUserAsync(int userId, UserInfo userInfo)
+        public async Task<bool> UpdateUserAsync(int userId, UpdateUser userInfo)
         {
             var userToUpdate = await _unitOfWork.Users.GetByIdAsync(userId);
 
-            if (userToUpdate == null)
+            if (userToUpdate == null || userInfo == null)
             {
-                return;
+                return false;
             }
-            userToUpdate.FirstName = userInfo.FirstName;
-            userToUpdate.LastName = userInfo.LastName;
-            userToUpdate.Email = userInfo.Email;
-            userToUpdate.PassWord = userInfo.PassWord;
+            userToUpdate.FirstName = userInfo.FirstName ?? userToUpdate.FirstName;
+            userToUpdate.LastName = userInfo.LastName ?? userToUpdate.LastName;
+            userToUpdate.Email = userInfo.Email ?? userToUpdate.Email;
+            userToUpdate.PassWord = userInfo.PassWord ?? userToUpdate.PassWord;
 
             await _unitOfWork.SaveChangesAsync();
+
+            return true;
         }
 
     }

@@ -2,41 +2,25 @@
 {
     public class Admin : User
     {
-        public static Admin RegisterNewAdmin(School school, UserInfo userInfo)
+        public static Admin RegisterFirstAdmin(int schoolId, NewUser userInfo)
         {
             Admin user = FillUserDetail<Admin>(userInfo);
             user.Role = Roles.Admin;
-            user.SchoolId = school.SchoolId;
+            user.SchoolId = schoolId;
             return user;
         }
 
-        public User RegisterNewUser(UserInfo userInfo)
-        {
-            switch (SelectRole(userInfo))
-            {
-                case Roles.Admin:
-                    return RegisterAnyUser<Admin>(userInfo);
-                case Roles.Teacher:
-                    return RegisterAnyUser<Teacher>(userInfo);
-                case Roles.Guardian:
-                    return RegisterAnyUser<Guardian>(userInfo);
-                default:
-                    throw new Exception("Something went wrong.");
-            }
-        }
-
-        public T RegisterAnyUser<T>(UserInfo userInfo) where T : User, new()
+        private T  RegisterAnyUser<T>(NewUser userInfo, string role) where T : User, new()
         {
             T user = FillUserDetail<T>(userInfo);
             user.SchoolId = this.SchoolId;
-            user.Role = SelectRole(userInfo);
-            Console.WriteLine(user.SchoolId);
+            user.Role = SelectRole(role);
             return user;
         }
 
-        public static Roles SelectRole(UserInfo userInfo)
+        private static Roles SelectRole(string role)
         {
-            switch (userInfo.Role.ToLower())
+            switch (role)
             {
                 case "admin":
                     return Roles.Admin;
@@ -44,6 +28,21 @@
                     return Roles.Teacher;
                 case "guardian":
                     return Roles.Guardian;
+                default:
+                    throw new Exception("Something went wrong.");
+            }
+        }
+
+        public User RegisterNewUser(NewUser userInfo, string role)
+        {
+            switch (SelectRole(role))
+            {
+                case Roles.Admin:
+                    return RegisterAnyUser<Admin>(userInfo, role);
+                case Roles.Teacher:
+                    return RegisterAnyUser<Teacher>(userInfo, role);
+                case Roles.Guardian:
+                    return RegisterAnyUser<Guardian>(userInfo, role);
                 default:
                     throw new Exception("Something went wrong.");
             }

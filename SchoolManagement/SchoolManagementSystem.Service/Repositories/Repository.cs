@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 using System.Linq.Expressions;

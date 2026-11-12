@@ -1,6 +1,5 @@
 ﻿using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.Interfaces;
-using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
 namespace SchoolManagementSystem.Service.Service
 {
@@ -13,10 +12,10 @@ namespace SchoolManagementSystem.Service.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, UserInfo userInfo)
+        public async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, NewUser userInfo)
         {
             School school = School.RegisterSchool(schoolInfo);
-            User user = Admin.RegisterNewAdmin(school, userInfo);
+            User user = Admin.RegisterFirstAdmin(school, userInfo);
 
             await _unitOfWork.Schools.AddAsync(school);
             await _unitOfWork.Users.AddAsync(user);
