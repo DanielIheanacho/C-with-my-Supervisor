@@ -33,7 +33,7 @@ namespace SchoolManagementSystem.Service.Service
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task<User?> LoginUserAsync(string email, string password)
+        public async Task<LoginResponse?> LoginUserAsync(string email, string password)
         {
             var user = await _unitOfWork.LoginUserAsync(email, password);
             return user;
