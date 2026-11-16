@@ -38,13 +38,13 @@ namespace SchoolManagement.Web.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> LoginAsync(LoginRequest login )
         {
-             var user = await _authenticationService.LoginUserAsync(login.Email, login.PassWord);
-            if (user == null)
+             var loginResponse = await _authenticationService.LoginUserAsync(login.Email, login.PassWord);
+            if (loginResponse == null)
             { 
                 return Unauthorized("email or password is incorrect."); 
             }
 
-            return Ok(user);
+            return Ok(loginResponse);
 
         }
     }
