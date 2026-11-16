@@ -1,5 +1,11 @@
-﻿using SchoolManagement.Models.ClassModels;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
+using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace SchoolManagementSystem.Service.Service
 {
