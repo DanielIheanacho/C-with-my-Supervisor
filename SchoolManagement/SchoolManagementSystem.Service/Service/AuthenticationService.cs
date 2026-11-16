@@ -36,8 +36,41 @@ namespace SchoolManagementSystem.Service.Service
         public async Task<LoginResponse?> LoginUserAsync(string email, string password)
         {
             var user = await _unitOfWork.LoginUserAsync(email, password);
-            return user;
-        }
 
+            if (user == null)
+            {
+                return null;
+
+            }
+
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString())
+                };
+
+            var secretBytes = Encoding.UTF8.GetBytes(_key);
+
+            var securityKey = new SymmetricSecurityKey(secretBytes);
+
+            var creds = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken
+            (
+                        issuer: _issuer,
+                        audience: _audience,
+                        claims: claims,
+                        expires: DateTime.UtcNow.AddMinutes(5),
+                        signingCredentials: creds
+            );
+
+            var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+            return new LoginResponse
+            {
+                AccessToken = tokenString,
+                ExpiresAt = token.ValidTo
+            };
+        }
     }
 }
