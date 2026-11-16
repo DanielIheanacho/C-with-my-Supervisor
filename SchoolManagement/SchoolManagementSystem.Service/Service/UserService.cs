@@ -49,7 +49,8 @@ namespace SchoolManagementSystem.Service.Service
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
-                    Name = u.FirstName + " " + u.LastName
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
                 });
 
             return users;
@@ -63,7 +64,8 @@ namespace SchoolManagementSystem.Service.Service
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
-                    Name = u.FirstName + " " + u.LastName
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
                 });
             return users;
         }
@@ -75,7 +77,8 @@ namespace SchoolManagementSystem.Service.Service
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
-                    Name = u.FirstName + " " + u.LastName
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
                 });
             return users;
         }
