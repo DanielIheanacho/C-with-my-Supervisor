@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 using SchoolManagementSystem.Services.SchoolManagementSystem.Data;
 
@@ -36,7 +37,7 @@ namespace SchoolManagementSystem.Service.Repositories
             _context.Dispose();
         }
 
-        public async Task<User?> LoginUserAsync(string email, string password)
+        public async Task<NameAndIdDto?> LoginUserAsync(string email, string password)
         {
 
 
@@ -44,7 +45,16 @@ namespace SchoolManagementSystem.Service.Repositories
                 .AsNoTracking()
                 .FirstOrDefaultAsync(u => u.Email == email && u.PassWord == password);
 
-            return user;
+            if(user == null)
+            {
+                return null;
+            }
+
+            return new NameAndIdDto
+            {
+                Id = user.UserId,
+                Role = user.Role.ToString()
+            };
         }
     }
 }
