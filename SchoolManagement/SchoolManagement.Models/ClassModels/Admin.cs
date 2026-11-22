@@ -20,7 +20,7 @@
 
         private static Roles SelectRole(string role)
         {
-            switch (role)
+            switch (role.ToLower())
             {
                 case "admin":
                     return Roles.Admin;
@@ -29,7 +29,7 @@
                 case "guardian":
                     return Roles.Guardian;
                 default:
-                    throw new Exception("Something went wrong.");
+                    throw new Exception("Something went wrong with selecting role.");
             }
         }
 
@@ -44,7 +44,7 @@
                 case Roles.Guardian:
                     return RegisterAnyUser<Guardian>(userInfo, role);
                 default:
-                    throw new Exception("Something went wrong.");
+                    throw new Exception("Something went wrong with selecting role 2s.");
             }
         }
     }
