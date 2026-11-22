@@ -11,8 +11,12 @@ namespace SchoolManagement.Web.Controllers
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
+        private readonly IAuthorizationService _authorizationService;
+        private int CurrentUserId =>
+     int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)!);
 
-        public UserController(UserService userservice)
+        private int CurrentSchoolId =>
+            int.Parse(User.FindFirstValue("SchoolId")!);
         {
             _userService = userservice;
         }
