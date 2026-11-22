@@ -35,6 +35,9 @@ namespace SchoolManagementSystem.Service.Service
 
             user.School = school;
 
+            var hasher = new PasswordHasher<User>();
+
+            user.PassWord = hasher.HashPassword(user, user.PassWord);
 
             await _unitOfWork.Schools.AddAsync(school);
             await _unitOfWork.Users.AddAsync(user);
