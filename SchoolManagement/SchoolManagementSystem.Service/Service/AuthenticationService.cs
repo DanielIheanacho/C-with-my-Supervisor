@@ -28,12 +28,13 @@ namespace SchoolManagementSystem.Service.Service
             _key = configuration["Jwt:Key"] ?? throw new InvalidOperationException("Jwt:Key is missing from configuration");
         }
 
-
-
         public async Task RegisterSchoolAndAdminAsync(SchoolInfo schoolInfo, NewUser userInfo)
         {
             School school = School.RegisterSchool(schoolInfo);
-            User user = Admin.RegisterFirstAdmin(school.SchoolId, userInfo);
+            User user = Admin.RegisterFirstAdmin(userInfo);
+
+            user.School = school;
+
 
             await _unitOfWork.Schools.AddAsync(school);
             await _unitOfWork.Users.AddAsync(user);
