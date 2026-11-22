@@ -55,6 +55,17 @@ namespace SchoolManagementSystem.Service.Service
 
             }
 
+            var hasher = new PasswordHasher<User>();
+            var result = hasher.VerifyHashedPassword(
+                user,
+                user.PassWord,
+                password);
+
+            if (result == PasswordVerificationResult.Failed)
+            {
+                return null;
+            }
+
             var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
