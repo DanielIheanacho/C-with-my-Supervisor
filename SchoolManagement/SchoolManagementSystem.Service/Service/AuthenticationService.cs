@@ -68,8 +68,9 @@ namespace SchoolManagementSystem.Service.Service
 
             var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Role, user.Role.ToString())
+                    new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                    new Claim(ClaimTypes.Role, user.Role.ToString()!),
+                    new Claim("SchoolId", user.SchoolId.ToString())
                 };
 
             var secretBytes = Encoding.UTF8.GetBytes(_key);
