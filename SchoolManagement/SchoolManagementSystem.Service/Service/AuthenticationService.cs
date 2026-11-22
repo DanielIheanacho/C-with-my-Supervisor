@@ -47,7 +47,7 @@ namespace SchoolManagementSystem.Service.Service
 
         public async Task<LoginResponse?> LoginUserAsync(string email, string password)
         {
-            var user = await _unitOfWork.LoginUserAsync(email, password);
+            var user = await _unitOfWork.LoginUserAsync(email);
 
             if (user == null)
             {
