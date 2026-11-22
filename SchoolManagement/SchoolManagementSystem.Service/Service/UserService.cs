@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Models.ClassModels;
+﻿using Microsoft.AspNetCore.Identity;
+using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 
@@ -82,6 +83,7 @@ namespace SchoolManagementSystem.Service.Service
                     Id = u.UserId,
                     Name = u.FirstName + " " + u.LastName,
                     Role = u.Role.ToString()
+    
                 });
             return users;
         }
@@ -95,7 +97,7 @@ namespace SchoolManagementSystem.Service.Service
                 return null;
             }
 
-            return user;
+           return user;
         }
 
         public async Task<bool> UpdateUserAsync(int userId, UpdateUser userInfo)
