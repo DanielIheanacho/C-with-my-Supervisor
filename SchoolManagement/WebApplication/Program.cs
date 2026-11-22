@@ -41,6 +41,25 @@ services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionSt
 services.AddScoped<IUnitOfWork, UnitOfWork>();
 services.AddScoped<AuthenticationService>();
 services.AddScoped<UserService>();
+
+services.AddEndpointsApiExplorer();
+
+services.AddSwaggerGen(options =>
+{
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Enter your JWT access token."
+    });
+
+    options.OperationFilter<AuthorizeCheckOperationFilter>();
+});
+
+
 services.AddControllers();
 services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(option =>
@@ -50,6 +69,13 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 services.AddOpenApi();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 
 app.UseAuthentication();
 app.UseAuthorization();
