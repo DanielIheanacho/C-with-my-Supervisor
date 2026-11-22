@@ -40,7 +40,8 @@ var rules = new TokenValidationParameters
 
 var services = builder.Services;
 
-services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(connectionString));
 services.AddScoped<IUnitOfWork, UnitOfWork>();
 services.AddScoped<AuthenticationService>();
 services.AddScoped<UserService>();
