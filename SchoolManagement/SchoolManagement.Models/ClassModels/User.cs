@@ -18,10 +18,21 @@
         {
             var user = new T
             {
-                FirstName = userDetail.FirstName,
-                LastName = userDetail.LastName,
-                Email = userDetail.Email.ToLower(),
-                PassWord = userDetail.PassWord
+                FirstName = string.IsNullOrWhiteSpace(userDetail.FirstName) 
+                ? throw new ArgumentException("First Name cannot be left empty.") 
+                : userDetail.FirstName,
+
+                LastName = string.IsNullOrWhiteSpace(userDetail.LastName)
+                ? throw new ArgumentException("Last Name cannot be left empty.")
+                : userDetail.LastName,
+
+                Email = string.IsNullOrWhiteSpace(userDetail.Email)
+                ? throw new ArgumentException("Email cannot be left empty.")
+                : userDetail.Email.ToLower(),
+
+                PassWord = string.IsNullOrWhiteSpace(userDetail.PassWord)
+                ? throw new ArgumentException("Password cannot be left empty.")
+                : userDetail.PassWord
             };
 
             return user;
