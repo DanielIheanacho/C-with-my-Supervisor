@@ -104,6 +104,6 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapGroup("SchoolManagementSystem").MapControllers();
+app.MapControllers();
 
 app.Run();
