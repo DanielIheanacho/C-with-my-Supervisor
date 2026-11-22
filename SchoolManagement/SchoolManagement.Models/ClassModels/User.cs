@@ -9,7 +9,7 @@
         public string Email { get; set; }
         public string? PhoneNumber { get; set; }
         public Genders? Gender { get; set; }
-        public Roles Role { get; set; }
+        public Roles? Role { get; set; }
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
         public School School { get; set; }
