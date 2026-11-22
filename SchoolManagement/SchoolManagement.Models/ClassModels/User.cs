@@ -12,6 +12,7 @@
         public Roles Role { get; set; }
         public string PassWord { get; set; }
         public int SchoolId { get; set; }
+        public School School { get; set; }
 
         internal static T FillUserDetail<T>(NewUser userDetail) where T : User, new()
         {
