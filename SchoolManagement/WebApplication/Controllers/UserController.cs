@@ -49,25 +49,76 @@ namespace SchoolManagement.Web.Controllers
             return Ok(await _userService.GetUsersAsync(id));
         }
 
-        [HttpGet("users/{id}")]
-        [Authorize(Roles = "Admin")]
+        [HttpGet("user")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
-            return Ok(await _userService.GetByIdAsync(id));
-        }
+            var targetUser = await _userService.GetByIdAsync(id);
 
-        [HttpPut("users/{id}")]
-        [Authorize(Roles = "Admin,Teacher,Guardian")]
-        public async Task<IActionResult> UpdateUserAsync(int id, UpdateUser user)
-        {
-            if (!IsCurrentUser(id))
+            if (targetUser == null)
+            {
+                return NotFound("User not Found");
+            }
+
+            var adminAuthorizationResult = await _authorizationService.AuthorizeAsync(
+                User,
+                targetUser,
+                "AdminSameSchool");
+
+            var personalAuthorizationResult = await _authorizationService.AuthorizeAsync(
+                User,
+                targetUser,
+                "IsMe");
+
+            if (!adminAuthorizationResult.Succeeded && !
+                personalAuthorizationResult.Succeeded)
             {
                 return Forbid();
             }
 
+
+            var userResponse = new NameAndIdDto
+            {
+                Id = targetUser.UserId,
+                Name = targetUser.FirstName + " " + targetUser.LastName,
+                Role = targetUser.Role.ToString()
+            };
+
+            return Ok(userResponse);
+        }
+
+        [HttpPut("Updateusers/{id}")]
+        //[Authorize(Roles = "Admin,Teacher,Guardian")]
+        public async Task<IActionResult> UpdateUserAsync(
+            int id,
+            UpdateUser user)
+        {
             if (user == null)
             {
-                return BadRequest("Request body cannot be empty.");
+                return BadRequest("Request body cannot be empty");
+            }
+
+            var targetUser = await _userService.GetByIdAsync(id);
+
+            if (targetUser == null)
+            {
+                return NotFound("User not found.");
+            }
+
+            var adminAuthorizationResult = await _authorizationService.AuthorizeAsync(
+                User,
+                targetUser,
+                "AdminSameSchool");
+
+            var personalAuthorizationResult = await _authorizationService.AuthorizeAsync(
+                User,
+                targetUser,
+                "IsMe");
+
+
+            if (!adminAuthorizationResult.Succeeded &&
+                !personalAuthorizationResult.Succeeded)
+            {
+                return Forbid();
             }
 
             var flag = await _userService.UpdateUserAsync(id, user);
@@ -81,9 +132,25 @@ namespace SchoolManagement.Web.Controllers
         }
 
         [HttpDelete("users/{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteUserAsync(int id)
         {
+            var targetUser = await _userService.GetByIdAsync(id);
+
+            if (targetUser == null)
+            {
+                return NotFound("User not Found.");
+            }
+
+            var adminAuthorizationResult = await _authorizationService.AuthorizeAsync(
+                User,
+                targetUser,
+                "AdminSameSchool");
+
+            if (!adminAuthorizationResult.Succeeded)                
+            {
+                return Forbid();
+            }
+
             await _userService.DeleteUserAsync(id);
             return Ok();
         }
