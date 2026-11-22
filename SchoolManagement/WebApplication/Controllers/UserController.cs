@@ -17,8 +17,12 @@ namespace SchoolManagement.Web.Controllers
 
         private int CurrentSchoolId =>
             int.Parse(User.FindFirstValue("SchoolId")!);
+        public UserController(
+            UserService userservice,
+            IAuthorizationService authorizationService)
         {
             _userService = userservice;
+            _authorizationService = authorizationService;
         }
 
         private bool IsCurrentUser(int callerId)
