@@ -66,7 +66,27 @@ services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     {
         option.TokenValidationParameters = rules;
     });
-services.AddOpenApi();
+services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+    {
+        policy.RequireRole("Admin");
+    });
+
+    options.AddPolicy("AdminSameSchool", policy =>
+    {
+        policy.RequireRole("Admin");
+        policy.AddRequirements(new SameSchoolRequirement());
+    });
+
+    options.AddPolicy("IsMe", policy =>
+    {
+        policy.AddRequirements(new IsMeRequirement());
+    });
+});
+
+services.AddScoped<IAuthorizationHandler, SameSchoolHandler>();
+services.AddScoped<IAuthorizationHandler, IsMeHandler>();
 
 var app = builder.Build();
 
