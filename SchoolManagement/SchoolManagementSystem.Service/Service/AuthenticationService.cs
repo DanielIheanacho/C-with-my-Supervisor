@@ -85,7 +85,7 @@ namespace SchoolManagementSystem.Service.Service
                         issuer: _issuer,
                         audience: _audience,
                         claims: claims,
-                        expires: DateTime.UtcNow.AddMinutes(5),
+                        expires: DateTime.UtcNow.AddMinutes(500),
                         signingCredentials: creds
             );
 
