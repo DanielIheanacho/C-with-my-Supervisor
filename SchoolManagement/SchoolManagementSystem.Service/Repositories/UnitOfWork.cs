@@ -37,24 +37,24 @@ namespace SchoolManagementSystem.Service.Repositories
             _context.Dispose();
         }
 
-        public async Task<NameAndIdDto?> LoginUserAsync(string email, string password)
+        public async Task<User?> LoginUserAsync(string email)
         {
-
-
             var user = await _context.Users
                 .AsNoTracking()
-                .FirstOrDefaultAsync(u => u.Email == email && u.PassWord == password);
+                .FirstOrDefaultAsync(u => u.Email == email);
 
             if(user == null)
             {
                 return null;
             }
 
-            return new NameAndIdDto
-            {
-                Id = user.UserId,
-                Role = user.Role.ToString()
-            };
+            return user;
+            //return new NameAndIdDto
+            //{
+            //    Id = user.UserId,
+            //    Role = user.Role.ToString(),
+            //    PasswordHash = user.PassWord
+            //};
         }
     }
 }
