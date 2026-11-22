@@ -103,10 +103,22 @@ namespace SchoolManagementSystem.Service.Service
             {
                 return false;
             }
-            userToUpdate.FirstName = userInfo.FirstName ?? userToUpdate.FirstName;
-            userToUpdate.LastName = userInfo.LastName ?? userToUpdate.LastName;
-            userToUpdate.Email = userInfo.Email ?? userToUpdate.Email;
-            userToUpdate.PassWord = userInfo.PassWord ?? userToUpdate.PassWord;
+
+            userToUpdate.FirstName = string.IsNullOrWhiteSpace(userInfo.FirstName)
+                ? userToUpdate.FirstName
+                : userInfo.FirstName;
+            userToUpdate.LastName = string.IsNullOrWhiteSpace(userInfo.LastName)
+                ? userToUpdate.LastName
+                : userInfo.LastName;
+            userToUpdate.Email = string.IsNullOrWhiteSpace(userInfo.Email)
+                ? userToUpdate.Email
+                : userInfo.Email;
+            userToUpdate.PassWord = string.IsNullOrWhiteSpace(userInfo.PassWord)
+                ? userToUpdate.PassWord
+                : userInfo.PassWord;
+
+            var hasher = new PasswordHasher<User>();
+            userToUpdate.PassWord = hasher.HashPassword(userToUpdate, userToUpdate.PassWord);
 
             await _unitOfWork.SaveChangesAsync();
 
