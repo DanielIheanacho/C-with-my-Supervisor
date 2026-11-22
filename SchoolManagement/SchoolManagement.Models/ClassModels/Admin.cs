@@ -5,6 +5,7 @@
         public static Admin RegisterFirstAdmin(NewUser userInfo)
         {
             Admin user = FillUserDetail<Admin>(userInfo);
+
             user.Role = Roles.Admin;
 
             return user;
