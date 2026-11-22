@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Service;
 using System.Security.Claims;
 
