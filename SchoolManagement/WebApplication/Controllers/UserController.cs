@@ -25,28 +25,19 @@ namespace SchoolManagement.Web.Controllers
             _authorizationService = authorizationService;
         }
 
-        private bool IsCurrentUser(int callerId)
-        {
-            var userIdText = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var userId = int.Parse(userIdText!);
-
-            return (callerId == userId);
-        
-        }
-
-        [HttpPost("users/{adminId}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> CreateUser(int adminId, NewUser user)
+        [HttpPost("users")]
+        public async Task<IActionResult> CreateUser(NewUser user)
         {
-            await _userService.CreateUserAsync(adminId, user, user.Role);
-            return Ok();
+            await _userService.CreateUserAsync(CurrentUserId, user, user.Role);
+            return Ok("Done");
         }
 
         [HttpGet("users")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> GetUsers(int id)
+        public async Task<IActionResult> GetUsers()
         {
-            return Ok(await _userService.GetUsersAsync(id));
+            return Ok(await _userService.GetUsersAsync(CurrentSchoolId));
         }
 
         [HttpGet("user")]
