@@ -13,6 +13,6 @@ namespace SchoolManagementSystem.Service.Interfaces
 
         Task<int> SaveChangesAsync();
 
-        Task<NameAndIdDto?> LoginUserAsync(string email, string password);
+        Task<User?> LoginUserAsync(string email);
     }
 }
