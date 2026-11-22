@@ -36,6 +36,19 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
                 .Property(u => u.UserId)
                 .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<School>()
+                .Property(u => u.SchoolId)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<School>()
+                .HasKey(s => s.SchoolId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.School)
+                .WithMany(s => s.Users)
+                .HasForeignKey(u => u.SchoolId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<User>()
                 .HasIndex(u => new { u.Email})
                 .IsUnique();
