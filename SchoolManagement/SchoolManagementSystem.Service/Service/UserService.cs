@@ -21,6 +21,9 @@ namespace SchoolManagementSystem.Service.Service
                 return;
 
             var user = admin.RegisterNewUser(newUser, role);
+            
+            var hasher = new PasswordHasher<User>();
+            user.PassWord = hasher.HashPassword(user, user.PassWord);
 
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
