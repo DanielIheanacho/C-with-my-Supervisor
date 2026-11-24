@@ -1,5 +1,6 @@
 <Solution>
   <Project Path="../SchoolManagement.Models/SchoolManagement.Models.csproj" />
+  <Project Path="../SchoolManagement.Tests/SchoolManagement.Tests.csproj" Id="484e8604-f9da-42cf-a4ff-199c4ba2856b" />
   <Project Path="../SchoolManagementSystem.Service/SchoolManagementSystem.Service.csproj" />
   <Project Path="SchoolManagement.Web.csproj" />
 </Solution>
