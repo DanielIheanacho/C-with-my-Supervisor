@@ -1,4 +1,5 @@
-﻿using SchoolManagement.Models.ClassModels;
+﻿using Microsoft.AspNetCore.Identity;
+using SchoolManagement.Models.ClassModels;
 using SchoolManagementSystem.Service.DTOS;
 using SchoolManagementSystem.Service.Interfaces;
 
@@ -13,8 +14,18 @@ namespace SchoolManagementSystem.Service.Service
             _unitOfWork = unitOfWork;
         }
 
-        public async Task SaveUserAsync<T>(T user) where T : User
+        public async Task CreateUserAsync(int adminId, NewUser newUser, string role)
         {
+            Admin? admin = await GetByIdAsync(adminId) as Admin;
+
+            if (admin == null) 
+                return;
+
+            var user = admin.RegisterNewUser(newUser, role);
+            
+            var hasher = new PasswordHasher<User>();
+            user.PassWord = hasher.HashPassword(user, user.PassWord);
+
             await _unitOfWork.Users.AddAsync(user);
             await _unitOfWork.SaveChangesAsync();
 
@@ -34,15 +45,31 @@ namespace SchoolManagementSystem.Service.Service
 
         }
 
-        public async Task<List<NameAndIdDto>> GetUsersInCategoryAsync(Admin admin)
+        public async Task<List<NameAndIdDto>> GetAllUsersAsync()
         {
             var users = await _unitOfWork.Users
                 .GetAllProjectedAsync(
-                u => u.SchoolId == admin.SchoolId,
+                u => true,
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
-                    Name = u.FirstName + " " + u.LastName
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
+                });
+
+            return users;
+        }
+
+        public async Task<List<NameAndIdDto>> GetUsersAsync(int schoolId)
+        {
+            var users = await _unitOfWork.Users
+                .GetAllProjectedAsync(
+                u => u.SchoolId == schoolId,
+                u => new NameAndIdDto
+                {
+                    Id = u.UserId,
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
                 });
             return users;
         }
@@ -54,12 +81,14 @@ namespace SchoolManagementSystem.Service.Service
                 u => new NameAndIdDto
                 {
                     Id = u.UserId,
-                    Name = u.FirstName + " " + u.LastName
+                    Name = u.FirstName + " " + u.LastName,
+                    Role = u.Role.ToString()
+    
                 });
             return users;
         }
 
-        public async Task<T?> GetByIdAsync<T>(int userId) where T : User, new()
+        public async Task<User?> GetByIdAsync(int userId)
         {
             var user = await _unitOfWork.Users.GetByIdAsync(userId);
 
@@ -68,23 +97,37 @@ namespace SchoolManagementSystem.Service.Service
                 return null;
             }
 
-            return (T)user;
+           return user;
         }
 
-        public async Task UpdateUserAsync(int userId, UserInfo userInfo)
+        public async Task<bool> UpdateUserAsync(int userId, UpdateUser userInfo)
         {
             var userToUpdate = await _unitOfWork.Users.GetByIdAsync(userId);
 
-            if (userToUpdate == null)
+            if (userToUpdate == null || userInfo == null)
             {
-                return;
+                return false;
             }
-            userToUpdate.FirstName = userInfo.FirstName;
-            userToUpdate.LastName = userInfo.LastName;
-            userToUpdate.Email = userInfo.Email;
-            userToUpdate.PassWord = userInfo.PassWord;
+
+            userToUpdate.FirstName = string.IsNullOrWhiteSpace(userInfo.FirstName)
+                ? userToUpdate.FirstName
+                : userInfo.FirstName;
+            userToUpdate.LastName = string.IsNullOrWhiteSpace(userInfo.LastName)
+                ? userToUpdate.LastName
+                : userInfo.LastName;
+            userToUpdate.Email = string.IsNullOrWhiteSpace(userInfo.Email)
+                ? userToUpdate.Email
+                : userInfo.Email;
+            userToUpdate.PassWord = string.IsNullOrWhiteSpace(userInfo.PassWord)
+                ? userToUpdate.PassWord
+                : userInfo.PassWord;
+
+            var hasher = new PasswordHasher<User>();
+            userToUpdate.PassWord = hasher.HashPassword(userToUpdate, userToUpdate.PassWord);
 
             await _unitOfWork.SaveChangesAsync();
+
+            return true;
         }
 
     }

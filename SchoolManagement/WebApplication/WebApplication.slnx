@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../SchoolManagement.Models/SchoolManagement.Models.csproj" />
+  <Project Path="../SchoolManagementSystem.Service/SchoolManagementSystem.Service.csproj" />
+  <Project Path="SchoolManagement.Web.csproj" />
+</Solution>

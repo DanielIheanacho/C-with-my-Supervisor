@@ -5,11 +5,8 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
 {
     public class AppDbContext : DbContext
     {
-        public AppDbContext()
-        {
-        }
-
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) 
+            : base(options) { }
 
         public DbSet<User> Users { get; set; }
         public DbSet<School> Schools { get; set; }
@@ -35,6 +32,19 @@ namespace SchoolManagementSystem.Services.SchoolManagementSystem.Data
             modelBuilder.Entity<User>()
                 .Property(u => u.UserId)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<School>()
+                .Property(u => u.SchoolId)
+                .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<School>()
+                .HasKey(s => s.SchoolId);
+
+            modelBuilder.Entity<User>()
+                .HasOne(u => u.School)
+                .WithMany(s => s.Users)
+                .HasForeignKey(u => u.SchoolId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<User>()
                 .HasIndex(u => new { u.Email})

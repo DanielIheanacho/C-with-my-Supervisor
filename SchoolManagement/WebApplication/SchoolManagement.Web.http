@@ -1,0 +1,60 @@
+@host = http://localhost:5223/SchoolManagementSystem
+
+
+### Register School
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "schoolname":"Plerom",
+  "adminFirstName": "Mecy",
+  "adminLastName": "Ownkwe",
+  "adminEmail": "test@gmail.com",
+  "adminPassWord": "11121"
+}
+
+### Login User
+POST {{host}}/login
+Content-Type: application/json
+
+{
+  "Email":"teacher12@seed.school.test",
+  "PassWord":"SEEDED_PLACEHOLDER_HASH"
+}
+
+### Get All Users and Id
+GET {{host}}/users?id=1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVGVhY2hlciIsImV4cCI6MTc5NDgxNTgwMywiaXNzIjoiU2Nob29sTWFuYWdlbWVudC5XZWJBcHAiLCJhdWQiOiJTY2hvb2xNYW5hZ2VtZW50LldlYkFwcCJ9.o3eqwkrB_RwKg_C3J0yLzE6b-mjA76DNZkc4DBh2wU0
+  
+### Get User by Id
+GET {{host}}/users/562
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVGVhY2hlciIsImV4cCI6MTc5NDgxNTgwMywiaXNzIjoiU2Nob29sTWFuYWdlbWVudC5XZWJBcHAiLCJhdWQiOiJTY2hvb2xNYW5hZ2VtZW50LldlYkFwcCJ9.o3eqwkrB_RwKg_C3J0yLzE6b-mjA76DNZkc4DBh2wU0
+  
+### Get User by Id
+DELETE {{host}}/users/500
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVGVhY2hlciIsImV4cCI6MTc5NDgxNTgwMywiaXNzIjoiU2Nob29sTWFuYWdlbWVudC5XZWJBcHAiLCJhdWQiOiJTY2hvb2xNYW5hZ2VtZW50LldlYkFwcCJ9.o3eqwkrB_RwKg_C3J0yLzE6b-mjA76DNZkc4DBh2wU0
+  
+### Update User
+PUT {{host}}/users/12
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjEyIiwiaHR0cDovL3NjaGVtYXMubWljcm9zb2Z0LmNvbS93cy8yMDA4LzA2L2lkZW50aXR5L2NsYWltcy9yb2xlIjoiVGVhY2hlciIsImV4cCI6MTc5NDgxNTgwMywiaXNzIjoiU2Nob29sTWFuYWdlbWVudC5XZWJBcHAiLCJhdWQiOiJTY2hvb2xNYW5hZ2VtZW50LldlYkFwcCJ9.3eqwkrB_RwKg_C3J0yLzE6b-mjA76DNZkc4DBh2wU0
+  
+{
+"firstname": null,
+"lastname": "Iheanacho",
+"Email": null,
+"PassWord": null,
+"Role": "admin"
+}
+
+### Create new user
+POST {{host}}/users/562
+Content-Type: application/json
+
+{
+  "firstname": "Benjamin",
+  "LastName": "Sunday",
+  "Email": "benjamin@gmail.com",
+  "PassWord": "0000",
+  "role": "admin"
+}

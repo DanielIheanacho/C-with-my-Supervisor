@@ -1,4 +1,5 @@
 ﻿using SchoolManagement.Models.ClassModels;
+using SchoolManagementSystem.Service.DTOS;
 
 namespace SchoolManagementSystem.Service.Interfaces
 {
@@ -12,6 +13,6 @@ namespace SchoolManagementSystem.Service.Interfaces
 
         Task<int> SaveChangesAsync();
 
-        Task<User?> LoginUserAsync(string email, string password);
+        Task<User?> LoginUserAsync(string email);
     }
 }
